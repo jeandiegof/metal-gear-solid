@@ -1,2 +1,8 @@
 # Description files
 *.pdf
+
+# Qt Creator 'pro' files
+*.pro*
+
+# Qt Creator autosave
+*.autosave*
