@@ -13,16 +13,16 @@
 int main(void)
 {
 
- struct soEnemy enemy;
+ struct Enemy enemy;
  int x = 40, y = 10;
 
- initWindow();
+ InitWindow();
 
- initEnemy(&enemy, x, y, 3);
+ InitEnemy(x, y, 3, &enemy);
 
- rotateSight(&(enemy.sight), angle0);
+ RotateSight(kAngle0, &(enemy.sight));
 
- drawEnemy(&enemy);
+ DrawEnemy(&enemy);
 
  refresh();
 

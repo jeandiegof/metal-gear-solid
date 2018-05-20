@@ -11,7 +11,10 @@
 #include "personages.h"
 #include <string.h>
 
-void initEnemy(soEnemy *enemy, uint8_t x, uint8_t y, uint8_t sightLenght)
+void InitEnemy(const uint8_t x,
+			   const uint8_t y,
+			   const uint8_t sight_lenght,
+			   Enemy *enemy)
 {
 	// Init enemy position.
 	enemy->base.point.x = x;
@@ -21,36 +24,36 @@ void initEnemy(soEnemy *enemy, uint8_t x, uint8_t y, uint8_t sightLenght)
 	strcpy(enemy->base.img, U_ENEMY);
 
 	// Validates Sight lenght. Should be at least 1.
-	if(sightLenght < 1)
+	if(sight_lenght < 1)
 		enemy->sight.lenght = 1;
 	else
-		enemy->sight.lenght = sightLenght;
+		enemy->sight.lenght = sight_lenght;
 
-	enemy->sight.angle = angle0;
+	enemy->sight.angle = kAngle0;
 
 	// Set each boundry's angle to +- 45° from main angle, 0° in this case.
-	enemy->sight.boundry1.angle = angle45;
-	enemy->sight.boundry2.angle = angle315;
+	enemy->sight.bound1.angle = kAngle45;
+	enemy->sight.bound2.angle = kAngle315;
 	//
-	enemy->sight.boundry3.angle = angle90;
+	enemy->sight.bound3.angle = kAngle90;
 
 	// Init boundries offset with 0.
 	for(uint8_t i = 0; i < SIGHT_LENGHT_MAX_SIZE; i++)
 	{
-		enemy->sight.boundry1.offset[i].x = 0;
-		enemy->sight.boundry1.offset[i].y = 0;
-		enemy->sight.boundry2.offset[i].x = 0;
-		enemy->sight.boundry2.offset[i].y = 0;
+		enemy->sight.bound1.offset[i].x = 0;
+		enemy->sight.bound1.offset[i].y = 0;
+		enemy->sight.bound2.offset[i].x = 0;
+		enemy->sight.bound2.offset[i].y = 0;
 	}
 
 	// Create sight boundries for an angle of 0 degrees.
 	for(uint8_t i = 1; i <= enemy->sight.lenght; i++)
 	{
-		enemy->sight.boundry1.points[i-1].x = enemy->base.point.x + i;
-		enemy->sight.boundry1.points[i-1].y = enemy->base.point.y - i;
+		enemy->sight.bound1.points[i-1].x = enemy->base.point.x + i;
+		enemy->sight.bound1.points[i-1].y = enemy->base.point.y - i;
 
-		enemy->sight.boundry2.points[i-1].x = enemy->base.point.x + i;
-		enemy->sight.boundry2.points[i-1].y = enemy->base.point.y + i;
+		enemy->sight.bound2.points[i-1].x = enemy->base.point.x + i;
+		enemy->sight.bound2.points[i-1].y = enemy->base.point.y + i;
 	}
 
 
@@ -60,7 +63,7 @@ void initEnemy(soEnemy *enemy, uint8_t x, uint8_t y, uint8_t sightLenght)
 //		enemy->sight.boundry3.
 //	}
 
-	strcpy(enemy->sight.boundry1.img, U_DOTLINE_NE);
-	strcpy(enemy->sight.boundry2.img, U_DOTLINE_NW);
+	strcpy(enemy->sight.bound1.img, U_DOTLINE_NE);
+	strcpy(enemy->sight.bound2.img, U_DOTLINE_NW);
 }
 

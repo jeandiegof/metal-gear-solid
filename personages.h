@@ -1,4 +1,4 @@
-#ifndef STRUCTPERSONAGE_H
+﻿#ifndef STRUCTPERSONAGE_H
 #define STRUCTPERSONAGE_H
 
 #include <stdint.h>
@@ -6,54 +6,56 @@
 #include "unicodes.h"
 #include "enumAngles.h"
 
-#define SIGHT_POINTS_MAX_SIZE 30
-#define SIGHT_LENGHT_MAX_SIZE 10
+#define SIGHT_LENGHT_MAX_SIZE 5
 
 
 // ---- START Abstract Structs.
 
 /**
- * @brief Abstract struct for point x, y coordinate system.
+ * @brief Abstract struct for a point in console.
+ *
+ *  x, y coordinate system.
 */
-typedef struct saPoint
+typedef struct Point
 {
 	int16_t x;
 	int16_t y;
 
-}saPoint;
+}Point;
 //===================================================================
 
 
 /**
  * @brief Abstract struct for personage creation.
  *
- * This is the base class for sHero, sEnemy and sHostage.
+ * This is the base struct for Hero, Enemy and Hostage.
  *
  * It contains:
  *     Image displayed in console.
  *     Coordinates in x,y format.
 */
-typedef struct saPersonageBase
+typedef struct PersonageBase
 {
-	char img[U_LENGHT]; /**< 11 characters for unicode string. */
+	/** @brief 11 characters for unicode string. */
+	char img[U_LENGHT];
 
-	struct saPoint point;
+	struct Point point;
 
-}saPersonageBase;
+}PersonageBase;
 //===================================================================
 
 
-typedef struct saBoundry
+typedef struct Boundry
 {
 	char img[U_LENGHT];
 
-	saPoint points[SIGHT_LENGHT_MAX_SIZE];
+	Point points[SIGHT_LENGHT_MAX_SIZE];
 
-	struct saPoint offset[SIGHT_LENGHT_MAX_SIZE]; /**< Hack, magical numbers.*/
+	struct Point offset[SIGHT_LENGHT_MAX_SIZE]; /**< Hack, magical numbers.*/
 
-	enum eAngles angle;
+	enum Angles angle;
 
-}saBoundry;
+}Boundry;
 //===================================================================
 
 
@@ -66,17 +68,17 @@ typedef struct saBoundry
  * triangle has its size determined by #lenght.
  *
 */
-typedef struct saSight
+typedef struct Sight
 {
-	enum eAngles angle;
+	enum Angles angle;
 
 	uint8_t lenght; /**< Triangle's height lenght. */
 
-	struct saBoundry boundry1;
-	struct saBoundry boundry2;
-	struct saBoundry boundry3; /**< Its not displayed, just for colision algorithm.*/
+	struct Boundry bound1;
+	struct Boundry bound2;
+	struct Boundry bound3; /**< Its not displayed, just for colision algorithm.*/
 
-}saSight;
+}Sight;
 //===================================================================
 
 
@@ -87,27 +89,27 @@ typedef struct saSight
 
 // ---- START Personage Structs.
 
-typedef struct soHostage
+typedef struct Hostage
 {
-	struct saPersonageBase base;
+	struct PersonageBase base;
 
-}soHostage;
+}Hostage;
 //===================================================================
 
 
-typedef struct soEnemy
+typedef struct Enemy
 {
-	struct saPersonageBase base;
+	struct PersonageBase base;
 
-	struct saSight sight;
+	struct Sight sight;
 
-}soEnemy;
+}Enemy;
 //===================================================================
 
 
-typedef struct soHero
+typedef struct Hero
 {
-	struct saPersonageBase base;
+	struct PersonageBase base;
 
 	uint8_t speed; /**< Movement speed */
 
@@ -115,7 +117,7 @@ typedef struct soHero
 
 	uint8_t ammo; /**< Ammunition counter.*/
 
-}soHero;
+}Hero;
 //===================================================================
 
 
@@ -123,13 +125,23 @@ typedef struct soHero
 // ------ START Functions
 
 
-void initBase();
+void InitBase();
 
-void initEnemy(soEnemy *enemy, uint8_t x, uint8_t y, uint8_t sightLenght);
+/**
+ * @brief
+ * @param[in]  x
+ * @param[in]  y
+ * @param[in]  sight_lenght
+ * @param[out] enemy
+ */
+void InitEnemy(const uint8_t x,
+			   const uint8_t y,
+			   const uint8_t sight_lenght,
+			   Enemy *enemy);
 
-void initHero();
+void InitHero();
 
-void initSight(saSight *sight, uint8_t sightLenght);
+void InitSight(Sight *sight, uint8_t sightLenght);
 
 
 // ------ END Functions

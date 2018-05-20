@@ -1,6 +1,6 @@
 #include "window.h"
 
-void initWindow()
+void InitWindow()
 {
 	setlocale(LC_ALL, "en_US.utf8");
 	initscr();         // Initialize the window

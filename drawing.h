@@ -12,21 +12,21 @@
 /**
  *
  */
-void drawEnemy(soEnemy *enemy);
+void DrawEnemy(Enemy *enemy);
 //===================================================================
 
 
 /**
  *
  */
-void drawPersonage(saPersonageBase *personage);
+void DrawPersonage(PersonageBase *personage);
 //===================================================================
 
 
 /**
  *
  */
-void drawEnemySight(saSight *sight);
+void DrawEnemySight(Sight *sight);
 //===================================================================
 
 // ---- END Drawing Functions.
@@ -49,7 +49,7 @@ void drawEnemySight(saSight *sight);
  * @param sight Pointer to some sight struct.
  */
 
-void updateDotLineSightImg(saSight *sight);
+void UpdateDotLineSightImg(Sight *sight);
 //===================================================================
 
 // ---- ENDPrivate Function.

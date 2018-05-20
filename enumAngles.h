@@ -1,16 +1,16 @@
 #ifndef ANGLES_H
 #define ANGLES_H
 
-enum eAngles
+enum Angles
 {
-	angle0   =    0,
-	angle45  =   45,
-	angle90  =   90,
-	angle135 =  135,
-	angle180 =  180,
-	angle225 =  225,
-	angle270 =  270,
-	angle315 =  315
+	kAngle0   =    0,
+	kAngle45  =   45,
+	kAngle90  =   90,
+	kAngle135 =  135,
+	kAngle180 =  180,
+	kAngle225 =  225,
+	kAngle270 =  270,
+	kAngle315 =  315
 };
 
 #endif // ANGLES_H

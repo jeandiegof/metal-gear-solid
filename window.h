@@ -5,6 +5,6 @@
 #include <locale.h>
 
 
-void initWindow();
+void InitWindow();
 
 #endif // WINDOW_H

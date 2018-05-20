@@ -3,70 +3,70 @@
 #include "debug.h"
 
 
-void rotateSight(saSight *sight, enum eAngles inputAngle)
+void RotateSight(const enum Angles angle, Sight *sight)
 {
 	uint8_t repeats;
 
-	repeats = inputAngle / angle45;
+	repeats = angle / kAngle45;
 
 	for(uint8_t j = 0; j < repeats; j++)
 	{
 		for(uint8_t i = 0; i < sight->lenght; i++)
 		{
-			rotate45(&(sight->boundry1.points[i]),
-					 &(sight->boundry1.angle),
-					 i+1);
+			Rotate45(i+1,
+					 &(sight->bound1.points[i]),
+					 &(sight->bound1.angle));
 
-			rotate45(&(sight->boundry2.points[i]),
-					 &(sight->boundry2.angle),
-					 i+1);
+			Rotate45(i+1,
+					 &(sight->bound2.points[i]),
+					 &(sight->bound2.angle));
 		}
 
-		sight->angle += angle45;
-		sight->boundry1.angle += angle45;
-		sight->boundry2.angle += angle45;
+		sight->angle += kAngle45;
+		sight->bound1.angle += kAngle45;
+		sight->bound2.angle += kAngle45;
 
 
-		if(sight->angle > angle315)
-			sight->angle = angle0;
+		if(sight->angle > kAngle315)
+			sight->angle = kAngle0;
 
-		if(sight->boundry1.angle > angle315)
-			sight->boundry1.angle = angle0;
+		if(sight->bound1.angle > kAngle315)
+			sight->bound1.angle = kAngle0;
 
-		if(sight->boundry2.angle > angle315)
-			sight->boundry2.angle = angle0;
+		if(sight->bound2.angle > kAngle315)
+			sight->bound2.angle = kAngle0;
 	}
 
-	setBoundryOffset(sight);
+	SetBoundryOffset(sight);
 }
 //===================================================================
 
 
-void rotate45(saPoint *point, enum eAngles *angle, uint8_t scalar)
+void Rotate45(const uint8_t scalar, Point *point, enum Angles *angle)
 {
 	switch(*angle)
 	{
-	case angle0:
-		translateN(point, scalar);
+	case kAngle0:
+		TranslateN(point, scalar);
 		break;
 
-	case angle45:
-	case angle90:
-		translateW(point, scalar);
+	case kAngle45:
+	case kAngle90:
+		TranslateW(point, scalar);
 		break;
 
-	case angle135:
-	case angle180:
-		translateS(point, scalar);
+	case kAngle135:
+	case kAngle180:
+		TranslateS(point, scalar);
 		break;
 
-	case angle225:
-	case angle270:
-		translateE(point, scalar);
+	case kAngle225:
+	case kAngle270:
+		TranslateE(point, scalar);
 		break;
 
-	case angle315:
-		translateN(point, scalar);
+	case kAngle315:
+		TranslateN(point, scalar);
 		break;
 
 	default:
@@ -77,96 +77,96 @@ void rotate45(saPoint *point, enum eAngles *angle, uint8_t scalar)
 //===================================================================
 
 
-void translateE(saPoint *point, const uint8_t scalar)
+void TranslateE(Point *point, const uint8_t scalar)
 {
 	point->x = point->x + scalar;
 }
 //===================================================================
 
 
-void translateN(saPoint *point, const uint8_t scalar)
+void TranslateN(Point *point, const uint8_t scalar)
 {
 	point->y = point->y - scalar;
 }
 //===================================================================
 
 
-void translateS(saPoint *point, const uint8_t scalar)
+void TranslateS(Point *point, const uint8_t scalar)
 {
 	point->y = point->y + scalar;
 }
 //===================================================================
 
 
-void translateW(saPoint *point, const uint8_t scalar)
+void TranslateW(Point *point, const uint8_t scalar)
 {
 	point->x = point->x - scalar;
 }
 //===================================================================
 
 
-void setBoundryOffset(saSight *sight)
+void SetBoundryOffset(Sight *sight)
 {
 	// Make tweaks in x position, by changing offset value based on angle.
 	switch(sight->angle)
 	{
-	case angle0:
+	case kAngle0:
 		for(uint8_t i=0; i < sight->lenght; i++)
 		{
-			sight->boundry1.offset[i].x = i;
-			sight->boundry2.offset[i].x = i;
+			sight->bound1.offset[i].x = i;
+			sight->bound2.offset[i].x = i;
 		}
 		break;
 
-	case angle45:
+	case kAngle45:
 		for(uint8_t i=0; i < sight->lenght; i++)
 		{
-			sight->boundry2.offset[i].x = i+1;
+			sight->bound2.offset[i].x = i+1;
 		}
 		break;
 
-	case angle90:
+	case kAngle90:
 		for(uint8_t i=0; i < sight->lenght; i++)
 		{
-			sight->boundry1.offset[i].x = -i;
-			sight->boundry2.offset[i].x =  i;
+			sight->bound1.offset[i].x = -i;
+			sight->bound2.offset[i].x =  i;
 		}
 		break;
 
-	case angle135:
+	case kAngle135:
 		for(uint8_t i=0; i < sight->lenght; i++)
 		{
-			sight->boundry1.offset[i].x = -i-1;
+			sight->bound1.offset[i].x = -i-1;
 		}
 		break;
 
-	case angle180:
+	case kAngle180:
 		for(uint8_t i=0; i < sight->lenght; i++)
 		{
-			sight->boundry1.offset[i].x = -i;
-			sight->boundry2.offset[i].x = -i;
+			sight->bound1.offset[i].x = -i;
+			sight->bound2.offset[i].x = -i;
 		}
 		break;
 
-	case angle225:
+	case kAngle225:
 		for(uint8_t i=0; i < sight->lenght; i++)
 		{
-			sight->boundry2.offset[i].x = -i-1;
+			sight->bound2.offset[i].x = -i-1;
 		}
 		break;
 
-	case angle270:
+	case kAngle270:
 		for(uint8_t i=0; i < sight->lenght; i++)
 		{
-			sight->boundry1.offset[i].x =  i;
-			sight->boundry2.offset[i].x = -i;
+			sight->bound1.offset[i].x =  i;
+			sight->bound2.offset[i].x = -i;
 		}
 		break;
 
-	case angle315:
+	case kAngle315:
 		for(uint8_t i=0; i < sight->lenght; i++)
 		{
-			sight->boundry1.offset[i].x = i+1;
+			sight->bound1.offset[i].x = i+1;
 		}
 		break;
 

@@ -5,6 +5,6 @@
 #include "personages.h"
 
 // TODO Implement isPointInEnemy.
-uint8_t isPointInEnemy(const soEnemy *enemy, const saPoint *point);
+uint8_t IsPointInEnemy(const Enemy *enemy, const Point *point);
 
 #endif // COLISION_H

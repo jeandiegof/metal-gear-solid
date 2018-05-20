@@ -6,22 +6,22 @@
 #include "personages.h"
 
 
-void rotateSight(saSight *sight,enum eAngles inputAngle);
+void RotateSight(const enum Angles angle, Sight *sight);
 
 
-void rotate45(saPoint *point, enum eAngles *angle, uint8_t scalar);
+void Rotate45(const uint8_t scalar, Point *point, enum Angles *angle);
 
 
-void translateE(saPoint *point, const uint8_t scalar);
+void TranslateE(Point *point, const uint8_t scalar);
 
 
-void translateN(saPoint *point, const uint8_t scalar);
+void TranslateN(Point *point, const uint8_t scalar);
 
 
-void translateS(saPoint *point, const uint8_t scalar);
+void TranslateS(Point *point, const uint8_t scalar);
 
 
-void translateW(saPoint *point, const uint8_t scalar);
+void TranslateW(Point *point, const uint8_t scalar);
 
 
 
@@ -29,9 +29,9 @@ void translateW(saPoint *point, const uint8_t scalar);
 
 // ---- START Private Functions
 
-void setBoundryOffset(saSight *sight);
+void SetBoundryOffset(Sight *sight);
 
-void fillAreaPoints(saSight *sight);
+void FillAreaPoints(Sight *sight);
 
 // ---- END Private Functions
 

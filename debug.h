@@ -5,9 +5,9 @@
 
 #include "personages.h"
 
-void dSightBoundrypoints(saSight *sight);
+void dSightBoundrypoints(Sight *sight);
 
-void dSightBoundryPointsOffset(saSight *sight);
+void DebugSightBoundryPointsOffset(Sight *sight);
 
 void dFlag();
 
