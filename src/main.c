@@ -5,7 +5,7 @@
 #include "inc/debug.h"
 
 #include "inc/unicodes.h"
-#include "inc/geometry.h"
+#include "inc/line.h"
 #include "inc/window.h"
 #include "inc/personages.h"
 #include "inc/display.h"
@@ -29,18 +29,18 @@ int main(void)
  Point origin = {40,10};
  Point p2 = {42,10};
 
- LineCreate(origin, ANGLE_0, 4, line);
+ LineCreate(&origin, ANGLE_0, 4, line);
 
 // Rotate45(LineGetPoint(0,line), line);
 // Rotate45(LineGetPoint(0,line), line);
- Rotate45(LineGetPoint(0,line), line);
+// Rotate45(LineGetPoint(0,line), line);
  Rotate45(LineGetPoint(0,line), line);
  Rotate45(LineGetPoint(0,line), line);
 
 // DebugLine(line);
  ShowLine(line, "\\");
 
- LineDestroy(line);
+ DestroyLine(line);
 
  while(1);
 

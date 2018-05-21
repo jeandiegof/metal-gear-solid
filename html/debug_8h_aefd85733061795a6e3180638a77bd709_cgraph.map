@@ -1,4 +1,4 @@
 <map id="DebugLine" name="DebugLine">
-<area shape="rect" id="node2" href="$geometry_8h.html#acfd3f48d49e6df8353faa86e078896b8" title="LineGetPoint" alt="" coords="137,5,235,32"/>
-<area shape="rect" id="node3" href="$pointvector_8h.html#a5f16b9250fb1fc9ef3e20aad6c102cb7" title="Returns a value out of a vector at the given index. " alt="" coords="283,5,405,32"/>
+<area shape="rect" id="node2" href="$geometry_8h.html#a7743b0f360843a568aa252301b70c327" title="Returns a Point inside Line at index position. " alt="" coords="137,5,235,32"/>
+<area shape="rect" id="node3" href="$pointvector_8h.html#a5f16b9250fb1fc9ef3e20aad6c102cb7" title="Returns a Point inside VectorPoint at index position. " alt="" coords="283,5,405,32"/>
 </map>

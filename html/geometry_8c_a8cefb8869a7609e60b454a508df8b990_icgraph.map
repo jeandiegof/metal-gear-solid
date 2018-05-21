@@ -1,0 +1,7 @@
+<map id="LineUpdateMaxMinPoints" name="LineUpdateMaxMinPoints">
+<area shape="rect" id="node2" href="$geometry_8c.html#ac2f94fb9c6d6fa84c54c554905f1539f" title="Inserts a Point object at the end of Line. " alt="" coords="224,5,344,32"/>
+<area shape="rect" id="node5" href="$geometry_8c.html#a8e1c27a4824d4a9070217927ddf65aab" title="LineInsertPoint" alt="" coords="229,56,339,83"/>
+<area shape="rect" id="node3" href="$geometry_8c.html#ac5b3c4ec56ccf6e344970c92758336a4" title="Creates the points that constitute a Line object. " alt="" coords="392,5,477,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="525,31,576,57"/>
+<area shape="rect" id="node6" href="$transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="397,56,472,83"/>
+</map>

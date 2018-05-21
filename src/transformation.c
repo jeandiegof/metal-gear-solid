@@ -45,75 +45,74 @@
 void Rotate45(const Point center_point, Line *line)
 {
 //  DebugLine(line);
-  Point line_point;
+  Point *line_point;
 
   int16_t magnitude;
 
   for(uint16_t i = 0; i < line->lenght; i++)
   {
-    line_point = LineGetPoint(i, line);
+    line_point = LineGetPointRef(i, line);
     switch(line->angle)
     {
       case ANGLE_0:
       case ANGLE_315:
-        magnitude = abs( line_point.x - center_point.x );
-        LineInsertPoint( i, TranslateN(magnitude, &line_point), line );
+        magnitude = abs( line_point->x - center_point.x );
+        TranslateN(magnitude, line_point);
+        LineInsertPoint( i, line_point, line );
         break;
 
       case ANGLE_45:
       case ANGLE_90:
-        magnitude = abs( line_point.y - center_point.y );
-        LineInsertPoint( i, TranslateW(magnitude, &line_point), line );
+        magnitude = abs( line_point->y - center_point.y );
+        TranslateW(magnitude, line_point);
+        LineInsertPoint( i, line_point , line );
         break;
 
       case ANGLE_135:
       case ANGLE_180:
-        magnitude = abs( line_point.x - center_point.x );
-        LineInsertPoint( i, TranslateS(magnitude, &line_point), line );
+        magnitude = abs( line_point->x - center_point.x );
+        TranslateS(magnitude, line_point);
+        LineInsertPoint( i, line_point, line );
         break;
 
       case ANGLE_225:
       case ANGLE_270:
-        magnitude = abs( line_point.y - center_point.y );
-        LineInsertPoint( i, TranslateE(magnitude, &line_point), line );
+        magnitude = abs( line_point->y - center_point.y );
+        TranslateE(magnitude, line_point);
+        LineInsertPoint( i, line_point, line );
         break;
     }
   }
-
   line->angle += ANGLE_45;
 //  DebugLine(line);
 }
 //===================================================================
 
 
-Point TranslateE(const int16_t scalar, Point *point)
+void TranslateE(const int16_t scalar, Point *point)
 {
-	point->x = point->x + scalar;
-  return *point;
+  point->x = point->x + scalar;
 }
 //===================================================================
 
 
-Point TranslateN(const int16_t scalar, Point *point)
+void TranslateN(const int16_t scalar, Point *point)
 {
-	point->y = point->y - scalar;
-  return *point;
+  point->y = point->y - scalar;
 }
 //===================================================================
 
 
-Point TranslateS(const int16_t scalar, Point *point)
+void TranslateS(const int16_t scalar, Point *point)
 {
-	point->y = point->y + scalar;
-  return *point;
+  point->y = point->y + scalar;
 }
 //===================================================================
 
 
-Point TranslateW(const int16_t scalar, Point *point)
+void TranslateW(const int16_t scalar, Point *point)
 {
 	point->x = point->x - scalar;
-  return *point;
 }
 //===================================================================
 

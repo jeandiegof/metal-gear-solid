@@ -5,7 +5,7 @@
 
 #include "inc/unicodes.h"
 #include "inc/angles.h"
-#include "inc/geometry.h"
+#include "inc/line.h"
 
 #define SIGHT_LENGHT_MAX_SIZE 5
 

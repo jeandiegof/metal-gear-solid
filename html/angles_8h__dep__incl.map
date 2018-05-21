@@ -1,6 +1,6 @@
 <map id="inc/angles.h" name="inc/angles.h">
 <area shape="rect" id="node2" href="$personages_8h.html" title="inc/personages.h" alt="" coords="309,155,430,181"/>
-<area shape="rect" id="node13" href="$geometry_8h.html" title="inc/geometry.h" alt="" coords="443,80,551,107"/>
+<area shape="rect" id="node13" href="$geometry_8h.html" title="Code to define a Line object for terminal application enviorment. " alt="" coords="443,80,551,107"/>
 <area shape="rect" id="node3" href="$colision_8h.html" title="inc/colision.h" alt="" coords="23,229,121,256"/>
 <area shape="rect" id="node5" href="$debug_8h.html" title="inc/debug.h" alt="" coords="557,229,646,256"/>
 <area shape="rect" id="node7" href="$main_8c.html" title="src/main.c" alt="" coords="503,379,585,405"/>

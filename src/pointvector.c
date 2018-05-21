@@ -2,47 +2,56 @@
 
 #include "inc/pointvector.h"
 
-#define VECTORINT_DEFAULT_CAPACITY 5
 
-void VectorPointAppend(const Point value, VectorPoint *vector)
+void VectorPointAppend(const Point *value, VectorPoint *vector)
 {
   // make sure there's room to expand into
   VectorPointResizeIfFull(vector);
 
   // append the value and increment vector->size
-  vector->data[vector->size++] = value;
+  vector->data[vector->size++] = *value;
 }
 
 
-void VectorPointFree(VectorPoint *vector)
+void DestroyVectorPoint(VectorPoint *vector)
 {
   free(vector->data);
 }
 
 
-void VectorPointInit(VectorPoint *vector)
+VectorPoint *NewVectorPoint()
 {
-  // initialize size and capacity
-  vector->size = 0;
-  vector->capacity = VECTORINT_DEFAULT_CAPACITY;
+  // Create VectorPoint.
+  VectorPoint *vector = malloc(sizeof(VectorPoint));
 
-  // allocate memory for vector->data
+  // Initialize size and capacity
+  vector->size = 0;
+  vector->capacity = VECTOR_POINT_DEFAULT_CAPACITY;
+
+  // Allocate memory for vector->data
   vector->data = malloc(sizeof(Point) * vector->capacity);
+
+  return vector;
 }
 
 
-void VectorPointInsert(const uint16_t index, const Point point, VectorPoint *vector)
+void VectorPointInsert(const uint16_t index,
+                       const Point *value,
+                       VectorPoint *vector)
 {
+
   Point zero_point = {0};
+
   // Zero fill *vector until desired index.
   while (index >= vector->size)
   {
-    VectorPointAppend(zero_point, vector);
+    VectorPointAppend(&zero_point, vector);
   }
 
   // Insert value at the desired index.
-  vector->data[index] = point;
+  vector->data[index] = *value;
 }
+
 
 uint16_t VectorPointSize(const VectorPoint *vector)
 {
@@ -62,18 +71,33 @@ Point VectorPointValue(const int index, const VectorPoint *vector)
 }
 
 
+Point *VectorPointValueRef(const int index, const VectorPoint *vector)
+{
+  if (index >= vector->size || index < 0)
+  {
+    printf("Index %d out of bounds for vector of size %d\n",
+         index, vector->size);
+    exit(1);
+  }
+  return vector->data+index;
+}
+
+
+
+
+
 // ---- START Private Functions.
 
-void VectorPointResizeIfFull(VectorPoint *vector)
+static void VectorPointResizeIfFull(VectorPoint *vector)
 {
   if (vector->size >= vector->capacity)
   {
-    // Double vector->capacity and resize the allocated memory
-    // accordingly.
-    vector->capacity += VECTORINT_DEFAULT_CAPACITY;
+    vector->capacity += VECTOR_POINT_DEFAULT_CAPACITY;
     vector->data = realloc(vector->data, sizeof(Point) * vector->capacity);
   }
 }
 
 // ---- END Private Functions.
+
+
 

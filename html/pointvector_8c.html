@@ -104,7 +104,6 @@ $(document).ready(function(){initNavTree('pointvector_8c.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">pointvector.c File Reference</div>  </div>
@@ -116,61 +115,112 @@ Include dependency graph for pointvector.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="pointvector_8c__incl.png" border="0" usemap="#src_2pointvector_8c" alt=""/></div>
 <map name="src_2pointvector_8c" id="src_2pointvector_8c">
-<area shape="rect" id="node2" href="pointvector_8h.html" title="inc/pointvector.h" alt="" coords="98,80,217,107"/>
+<area shape="rect" id="node2" href="pointvector_8h.html" title="Code to define a dynamic vector to store xy coordinate points defined by the struct Point..." alt="" coords="98,80,217,107"/>
 <area shape="rect" id="node6" href="point_8h.html" title="inc/point.h" alt="" coords="229,155,312,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a9b65cfefefef2020a6b1094c3268adec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a9b65cfefefef2020a6b1094c3268adec">VECTORINT_DEFAULT_CAPACITY</a>&#160;&#160;&#160;5</td></tr>
-<tr class="separator:a9b65cfefefef2020a6b1094c3268adec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a98a54617776630ed1f1592ef3e9e7668"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a98a54617776630ed1f1592ef3e9e7668">VectorPointAppend</a> (const <a class="el" href="struct_point.html">Point</a> value, <a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
-<tr class="memdesc:a98a54617776630ed1f1592ef3e9e7668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts value at the end of the vector.  <a href="#a98a54617776630ed1f1592ef3e9e7668">More...</a><br /></td></tr>
-<tr class="separator:a98a54617776630ed1f1592ef3e9e7668"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ce1fadd157680d46f1fadf56b89223d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a4ce1fadd157680d46f1fadf56b89223d">VectorPointFree</a> (<a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
-<tr class="memdesc:a4ce1fadd157680d46f1fadf56b89223d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the memory allocated for the data array.  <a href="#a4ce1fadd157680d46f1fadf56b89223d">More...</a><br /></td></tr>
-<tr class="separator:a4ce1fadd157680d46f1fadf56b89223d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3935dd90475af28d6d2a5265858b5a7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a3935dd90475af28d6d2a5265858b5a7e">VectorPointInit</a> (<a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
-<tr class="memdesc:a3935dd90475af28d6d2a5265858b5a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiate VectorInt struct.  <a href="#a3935dd90475af28d6d2a5265858b5a7e">More...</a><br /></td></tr>
-<tr class="separator:a3935dd90475af28d6d2a5265858b5a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa61ee47a670a94369ea4997ad043fd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#aaa61ee47a670a94369ea4997ad043fd0">VectorPointInsert</a> (const uint16_t index, const <a class="el" href="struct_point.html">Point</a> point, <a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
-<tr class="memdesc:aaa61ee47a670a94369ea4997ad043fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts #value at the given #index.  <a href="#aaa61ee47a670a94369ea4997ad043fd0">More...</a><br /></td></tr>
-<tr class="separator:aaa61ee47a670a94369ea4997ad043fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a025f4d30fa91f30068b24142a9f52b9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a025f4d30fa91f30068b24142a9f52b9a">VectorPointAppend</a> (const <a class="el" href="struct_point.html">Point</a> *value, <a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
+<tr class="memdesc:a025f4d30fa91f30068b24142a9f52b9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts value at the end of the vector.  <a href="#a025f4d30fa91f30068b24142a9f52b9a">More...</a><br /></td></tr>
+<tr class="separator:a025f4d30fa91f30068b24142a9f52b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedf28b5fe20acd232a70e8e4092cbbca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#aedf28b5fe20acd232a70e8e4092cbbca">DestroyVectorPoint</a> (<a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
+<tr class="memdesc:aedf28b5fe20acd232a70e8e4092cbbca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the memory allocated for the <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a>.  <a href="#aedf28b5fe20acd232a70e8e4092cbbca">More...</a><br /></td></tr>
+<tr class="separator:aedf28b5fe20acd232a70e8e4092cbbca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b0cd09e559055aaaca8ef87cd422c6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_vector_point.html">VectorPoint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a1b0cd09e559055aaaca8ef87cd422c6a">NewVectorPoint</a> ()</td></tr>
+<tr class="memdesc:a1b0cd09e559055aaaca8ef87cd422c6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiate VectorInt struct.  <a href="#a1b0cd09e559055aaaca8ef87cd422c6a">More...</a><br /></td></tr>
+<tr class="separator:a1b0cd09e559055aaaca8ef87cd422c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68a2a02a04aa773c46c6c87febd2a83f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a68a2a02a04aa773c46c6c87febd2a83f">VectorPointInsert</a> (const uint16_t index, const <a class="el" href="struct_point.html">Point</a> *value, <a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
+<tr class="memdesc:a68a2a02a04aa773c46c6c87febd2a83f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts <code>value</code> at the given <code>index</code>.  <a href="#a68a2a02a04aa773c46c6c87febd2a83f">More...</a><br /></td></tr>
+<tr class="separator:a68a2a02a04aa773c46c6c87febd2a83f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e1a648167726b7c60a7e232d0f5003f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a8e1a648167726b7c60a7e232d0f5003f">VectorPointSize</a> (const <a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
+<tr class="memdesc:a8e1a648167726b7c60a7e232d0f5003f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of points in the vector.  <a href="#a8e1a648167726b7c60a7e232d0f5003f">More...</a><br /></td></tr>
 <tr class="separator:a8e1a648167726b7c60a7e232d0f5003f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f16b9250fb1fc9ef3e20aad6c102cb7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_point.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a5f16b9250fb1fc9ef3e20aad6c102cb7">VectorPointValue</a> (const int index, const <a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
-<tr class="memdesc:a5f16b9250fb1fc9ef3e20aad6c102cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a value out of a vector at the given index.  <a href="#a5f16b9250fb1fc9ef3e20aad6c102cb7">More...</a><br /></td></tr>
+<tr class="memdesc:a5f16b9250fb1fc9ef3e20aad6c102cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a> at <code>index</code> position.  <a href="#a5f16b9250fb1fc9ef3e20aad6c102cb7">More...</a><br /></td></tr>
 <tr class="separator:a5f16b9250fb1fc9ef3e20aad6c102cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22dd454533788ddd4468cb451578c986"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#a22dd454533788ddd4468cb451578c986">VectorPointResizeIfFull</a> (<a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
-<tr class="memdesc:a22dd454533788ddd4468cb451578c986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Doubles the underlying data array capacity if #vector-&gt;size &gt;= #vector-&gt;capacity.  <a href="#a22dd454533788ddd4468cb451578c986">More...</a><br /></td></tr>
-<tr class="separator:a22dd454533788ddd4468cb451578c986"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb97b0913490b82787f448c741c7d4fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_point.html">Point</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#adb97b0913490b82787f448c741c7d4fb">VectorPointValueRef</a> (const int index, const <a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
+<tr class="memdesc:adb97b0913490b82787f448c741c7d4fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a> at <code>index</code> position.  <a href="#adb97b0913490b82787f448c741c7d4fb">More...</a><br /></td></tr>
+<tr class="separator:adb97b0913490b82787f448c741c7d4fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae917fce73483b7a64f89aee1b9905178"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointvector_8c.html#ae917fce73483b7a64f89aee1b9905178">VectorPointResizeIfFull</a> (<a class="el" href="struct_vector_point.html">VectorPoint</a> *vector)</td></tr>
+<tr class="separator:ae917fce73483b7a64f89aee1b9905178"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a9b65cfefefef2020a6b1094c3268adec"></a>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="aedf28b5fe20acd232a70e8e4092cbbca"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define VECTORINT_DEFAULT_CAPACITY&#160;&#160;&#160;5</td>
+          <td class="memname">void DestroyVectorPoint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_vector_point.html">VectorPoint</a> *&#160;</td>
+          <td class="paramname"><em>vector</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Frees the memory allocated for the <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a>. </p>
+<p>Freeing the <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a> struct is left to client code (so it can use any sort of pointer, be it stack or heap, and then clean up.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector[out]</td><td>A pointer to the <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a> that should be destroyed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="pointvector_8c_aedf28b5fe20acd232a70e8e4092cbbca_icgraph.png" border="0" usemap="#pointvector_8c_aedf28b5fe20acd232a70e8e4092cbbca_icgraph" alt=""/></div>
+<map name="pointvector_8c_aedf28b5fe20acd232a70e8e4092cbbca_icgraph" id="pointvector_8c_aedf28b5fe20acd232a70e8e4092cbbca_icgraph">
+<area shape="rect" id="node2" href="geometry_8c.html#adfd07ecf6c410608c98ac4c5a8e37990" title="Free the memory used by Line. " alt="" coords="189,5,281,32"/>
+<area shape="rect" id="node3" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="329,5,380,32"/>
+</map>
+</div>
+</p>
+
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a98a54617776630ed1f1592ef3e9e7668"></a>
+<a class="anchor" id="a1b0cd09e559055aaaca8ef87cd422c6a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_vector_point.html">VectorPoint</a>* NewVectorPoint </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initiate VectorInt struct. </p>
+<p>It sets <code>vector-&gt;size</code> to 0, capacity to <code>VECTOR_POINT_DEFAULT_CAPACITY</code> and allocates an appropriate amount of memory (<code>vector-&gt;capacity</code> * sizeof(int)) for the underlying data array.</p>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to the <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a> created. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="pointvector_8c_a1b0cd09e559055aaaca8ef87cd422c6a_icgraph.png" border="0" usemap="#pointvector_8c_a1b0cd09e559055aaaca8ef87cd422c6a_icgraph" alt=""/></div>
+<map name="pointvector_8c_a1b0cd09e559055aaaca8ef87cd422c6a_icgraph" id="pointvector_8c_a1b0cd09e559055aaaca8ef87cd422c6a_icgraph">
+<area shape="rect" id="node2" href="geometry_8c.html#a20ca65de2d8923ecb2f37a2a042c1240" title="Creates a Line object. " alt="" coords="171,5,244,32"/>
+<area shape="rect" id="node3" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="292,5,343,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a025f4d30fa91f30068b24142a9f52b9a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void VectorPointAppend </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a> *&#160;</td>
           <td class="paramname"><em>value</em>, </td>
         </tr>
         <tr>
@@ -188,8 +238,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inserts value at the end of the vector. </p>
-<p>If the underlying data array is full, then calling this function should cause #vector-&gt;data to expand to accept this value.</p>
-<p>Increments #vector-&gt;size.</p>
+<p>If the underlying data array is full, then calling this function should cause <code>vector-&gt;data</code> to expand to accept this value.</p>
+<p>Increments <code>vector-&gt;size</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value[in]</td><td></td></tr>
@@ -201,9 +251,9 @@ Functions</h2></td></tr>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="pointvector_8c_a98a54617776630ed1f1592ef3e9e7668_cgraph.png" border="0" usemap="#pointvector_8c_a98a54617776630ed1f1592ef3e9e7668_cgraph" alt=""/></div>
-<map name="pointvector_8c_a98a54617776630ed1f1592ef3e9e7668_cgraph" id="pointvector_8c_a98a54617776630ed1f1592ef3e9e7668_cgraph">
-<area shape="rect" id="node2" href="pointvector_8c.html#a22dd454533788ddd4468cb451578c986" title="Doubles the underlying data array capacity if #vector&#45;&gt;size &gt;= #vector&#45;&gt;capacity. ..." alt="" coords="188,5,348,32"/>
+<div class="center"><img src="pointvector_8c_a025f4d30fa91f30068b24142a9f52b9a_cgraph.png" border="0" usemap="#pointvector_8c_a025f4d30fa91f30068b24142a9f52b9a_cgraph" alt=""/></div>
+<map name="pointvector_8c_a025f4d30fa91f30068b24142a9f52b9a_cgraph" id="pointvector_8c_a025f4d30fa91f30068b24142a9f52b9a_cgraph">
+<area shape="rect" id="node2" href="pointvector_8c.html#ae917fce73483b7a64f89aee1b9905178" title="VectorPointResizeIfFull" alt="" coords="188,5,348,32"/>
 </map>
 </div>
 </p>
@@ -211,13 +261,13 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="pointvector_8c_a98a54617776630ed1f1592ef3e9e7668_icgraph.png" border="0" usemap="#pointvector_8c_a98a54617776630ed1f1592ef3e9e7668_icgraph" alt=""/></div>
-<map name="pointvector_8c_a98a54617776630ed1f1592ef3e9e7668_icgraph" id="pointvector_8c_a98a54617776630ed1f1592ef3e9e7668_icgraph">
-<area shape="rect" id="node2" href="geometry_8c.html#a05c605ef5bfd265bbf08a4f5d535767e" title="Inserts a Point object at the end of Line. " alt="" coords="189,5,309,32"/>
-<area shape="rect" id="node5" href="pointvector_8c.html#aaa61ee47a670a94369ea4997ad043fd0" title="Inserts #value at the given #index. " alt="" coords="188,56,311,83"/>
-<area shape="rect" id="node3" href="geometry_8c.html#a9a8f6478385dda9f79414b3e8657f925" title="LineCreate" alt="" coords="516,5,601,32"/>
+<div class="center"><img src="pointvector_8c_a025f4d30fa91f30068b24142a9f52b9a_icgraph.png" border="0" usemap="#pointvector_8c_a025f4d30fa91f30068b24142a9f52b9a_icgraph" alt=""/></div>
+<map name="pointvector_8c_a025f4d30fa91f30068b24142a9f52b9a_icgraph" id="pointvector_8c_a025f4d30fa91f30068b24142a9f52b9a_icgraph">
+<area shape="rect" id="node2" href="geometry_8c.html#ac2f94fb9c6d6fa84c54c554905f1539f" title="Inserts a Point object at the end of Line. " alt="" coords="189,5,309,32"/>
+<area shape="rect" id="node5" href="pointvector_8c.html#a68a2a02a04aa773c46c6c87febd2a83f" title="Inserts value at the given index. " alt="" coords="188,56,311,83"/>
+<area shape="rect" id="node3" href="geometry_8c.html#ac5b3c4ec56ccf6e344970c92758336a4" title="Creates the points that constitute a Line object. " alt="" coords="516,5,601,32"/>
 <area shape="rect" id="node4" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="649,31,700,57"/>
-<area shape="rect" id="node6" href="geometry_8c.html#a19aba85a5ba19f73f00f9088b27f5ee4" title="LineInsertPoint" alt="" coords="359,56,468,83"/>
+<area shape="rect" id="node6" href="geometry_8c.html#a8e1c27a4824d4a9070217927ddf65aab" title="LineInsertPoint" alt="" coords="359,56,468,83"/>
 <area shape="rect" id="node7" href="transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="521,56,596,83"/>
 </map>
 </div>
@@ -225,79 +275,7 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a4ce1fadd157680d46f1fadf56b89223d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void VectorPointFree </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_vector_point.html">VectorPoint</a> *&#160;</td>
-          <td class="paramname"><em>vector</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Frees the memory allocated for the data array. </p>
-<p>Freeing the VectorInt struct is left to client code (so it can use any sort of pointer, be it stack or heap, and then clean up.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vector[out]</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="pointvector_8c_a4ce1fadd157680d46f1fadf56b89223d_icgraph.png" border="0" usemap="#pointvector_8c_a4ce1fadd157680d46f1fadf56b89223d_icgraph" alt=""/></div>
-<map name="pointvector_8c_a4ce1fadd157680d46f1fadf56b89223d_icgraph" id="pointvector_8c_a4ce1fadd157680d46f1fadf56b89223d_icgraph">
-<area shape="rect" id="node2" href="geometry_8c.html#a934092acfdcce47ce8777035ba25a24a" title="Free the memory used by line. " alt="" coords="169,5,261,32"/>
-<area shape="rect" id="node3" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="309,5,360,32"/>
-</map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="a3935dd90475af28d6d2a5265858b5a7e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void VectorPointInit </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_vector_point.html">VectorPoint</a> *&#160;</td>
-          <td class="paramname"><em>vector</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initiate VectorInt struct. </p>
-<p>It sets #vector-&gt;size to 0, capacity to VECTORINT_DEFAULT_CAPACITY and allocates an appropriate amount of memory (#vector-&gt;capacity * sizeof(int)) for the underlying data array.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vector[out]</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="pointvector_8c_a3935dd90475af28d6d2a5265858b5a7e_icgraph.png" border="0" usemap="#pointvector_8c_a3935dd90475af28d6d2a5265858b5a7e_icgraph" alt=""/></div>
-<map name="pointvector_8c_a3935dd90475af28d6d2a5265858b5a7e_icgraph" id="pointvector_8c_a3935dd90475af28d6d2a5265858b5a7e_icgraph">
-<area shape="rect" id="node2" href="geometry_8c.html#a20ca65de2d8923ecb2f37a2a042c1240" title="Creates a Line object. " alt="" coords="161,5,235,32"/>
-<area shape="rect" id="node3" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="283,5,333,32"/>
-</map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="aaa61ee47a670a94369ea4997ad043fd0"></a>
+<a class="anchor" id="a68a2a02a04aa773c46c6c87febd2a83f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -310,8 +288,8 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a>&#160;</td>
-          <td class="paramname"><em>point</em>, </td>
+          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a> *&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -327,8 +305,8 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Inserts #value at the given #index. </p>
-<p>If the index is greater than the #vector-&gt;size, this function should expand the vector until it is big enough to contain the index and set the value at that index. It should zero-fill all values in between. #vector-&gt;size should be incremented accordingly.</p>
+<p>Inserts <code>value</code> at the given <code>index</code>. </p>
+<p>If the index is greater than the <code>vector-&gt;size</code>, this function should expand the vector until it is big enough to contain the <code>index</code> and set the value at that <code>index</code>. It should zero-fill all values in between. <code>vector-&gt;size</code> should be incremented accordingly.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index[in]</td><td></td></tr>
@@ -341,10 +319,10 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="pointvector_8c_aaa61ee47a670a94369ea4997ad043fd0_cgraph.png" border="0" usemap="#pointvector_8c_aaa61ee47a670a94369ea4997ad043fd0_cgraph" alt=""/></div>
-<map name="pointvector_8c_aaa61ee47a670a94369ea4997ad043fd0_cgraph" id="pointvector_8c_aaa61ee47a670a94369ea4997ad043fd0_cgraph">
-<area shape="rect" id="node2" href="pointvector_8c.html#a98a54617776630ed1f1592ef3e9e7668" title="Inserts value at the end of the vector. " alt="" coords="176,5,311,32"/>
-<area shape="rect" id="node3" href="pointvector_8c.html#a22dd454533788ddd4468cb451578c986" title="Doubles the underlying data array capacity if #vector&#45;&gt;size &gt;= #vector&#45;&gt;capacity. ..." alt="" coords="359,5,519,32"/>
+<div class="center"><img src="pointvector_8c_a68a2a02a04aa773c46c6c87febd2a83f_cgraph.png" border="0" usemap="#pointvector_8c_a68a2a02a04aa773c46c6c87febd2a83f_cgraph" alt=""/></div>
+<map name="pointvector_8c_a68a2a02a04aa773c46c6c87febd2a83f_cgraph" id="pointvector_8c_a68a2a02a04aa773c46c6c87febd2a83f_cgraph">
+<area shape="rect" id="node2" href="pointvector_8c.html#a025f4d30fa91f30068b24142a9f52b9a" title="Inserts value at the end of the vector. " alt="" coords="176,5,311,32"/>
+<area shape="rect" id="node3" href="pointvector_8c.html#ae917fce73483b7a64f89aee1b9905178" title="VectorPointResizeIfFull" alt="" coords="359,5,519,32"/>
 </map>
 </div>
 </p>
@@ -352,9 +330,9 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="pointvector_8c_aaa61ee47a670a94369ea4997ad043fd0_icgraph.png" border="0" usemap="#pointvector_8c_aaa61ee47a670a94369ea4997ad043fd0_icgraph" alt=""/></div>
-<map name="pointvector_8c_aaa61ee47a670a94369ea4997ad043fd0_icgraph" id="pointvector_8c_aaa61ee47a670a94369ea4997ad043fd0_icgraph">
-<area shape="rect" id="node2" href="geometry_8c.html#a19aba85a5ba19f73f00f9088b27f5ee4" title="LineInsertPoint" alt="" coords="176,5,285,32"/>
+<div class="center"><img src="pointvector_8c_a68a2a02a04aa773c46c6c87febd2a83f_icgraph.png" border="0" usemap="#pointvector_8c_a68a2a02a04aa773c46c6c87febd2a83f_icgraph" alt=""/></div>
+<map name="pointvector_8c_a68a2a02a04aa773c46c6c87febd2a83f_icgraph" id="pointvector_8c_a68a2a02a04aa773c46c6c87febd2a83f_icgraph">
+<area shape="rect" id="node2" href="geometry_8c.html#a8e1c27a4824d4a9070217927ddf65aab" title="LineInsertPoint" alt="" coords="176,5,285,32"/>
 <area shape="rect" id="node3" href="transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="333,5,408,32"/>
 <area shape="rect" id="node4" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="456,5,507,32"/>
 </map>
@@ -363,40 +341,39 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a22dd454533788ddd4468cb451578c986"></a>
+<a class="anchor" id="ae917fce73483b7a64f89aee1b9905178"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void VectorPointResizeIfFull </td>
+          <td class="memname">static void VectorPointResizeIfFull </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_vector_point.html">VectorPoint</a> *&#160;</td>
           <td class="paramname"><em>vector</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-
-<p>Doubles the underlying data array capacity if #vector-&gt;size &gt;= #vector-&gt;capacity. </p>
-<p>Changing the size of the array is expensive, so in order to minimize the number of times it's resized, the capacity is doubled each time.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vector[out]</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="pointvector_8c_a22dd454533788ddd4468cb451578c986_icgraph.png" border="0" usemap="#pointvector_8c_a22dd454533788ddd4468cb451578c986_icgraph" alt=""/></div>
-<map name="pointvector_8c_a22dd454533788ddd4468cb451578c986_icgraph" id="pointvector_8c_a22dd454533788ddd4468cb451578c986_icgraph">
-<area shape="rect" id="node2" href="pointvector_8c.html#a98a54617776630ed1f1592ef3e9e7668" title="Inserts value at the end of the vector. " alt="" coords="213,31,348,57"/>
-<area shape="rect" id="node3" href="geometry_8c.html#a05c605ef5bfd265bbf08a4f5d535767e" title="Inserts a Point object at the end of Line. " alt="" coords="397,5,517,32"/>
-<area shape="rect" id="node6" href="pointvector_8c.html#aaa61ee47a670a94369ea4997ad043fd0" title="Inserts #value at the given #index. " alt="" coords="396,56,519,83"/>
-<area shape="rect" id="node4" href="geometry_8c.html#a9a8f6478385dda9f79414b3e8657f925" title="LineCreate" alt="" coords="724,5,809,32"/>
+<div class="center"><img src="pointvector_8c_ae917fce73483b7a64f89aee1b9905178_icgraph.png" border="0" usemap="#pointvector_8c_ae917fce73483b7a64f89aee1b9905178_icgraph" alt=""/></div>
+<map name="pointvector_8c_ae917fce73483b7a64f89aee1b9905178_icgraph" id="pointvector_8c_ae917fce73483b7a64f89aee1b9905178_icgraph">
+<area shape="rect" id="node2" href="pointvector_8c.html#a025f4d30fa91f30068b24142a9f52b9a" title="Inserts value at the end of the vector. " alt="" coords="213,31,348,57"/>
+<area shape="rect" id="node3" href="geometry_8c.html#ac2f94fb9c6d6fa84c54c554905f1539f" title="Inserts a Point object at the end of Line. " alt="" coords="397,5,517,32"/>
+<area shape="rect" id="node6" href="pointvector_8c.html#a68a2a02a04aa773c46c6c87febd2a83f" title="Inserts value at the given index. " alt="" coords="396,56,519,83"/>
+<area shape="rect" id="node4" href="geometry_8c.html#ac5b3c4ec56ccf6e344970c92758336a4" title="Creates the points that constitute a Line object. " alt="" coords="724,5,809,32"/>
 <area shape="rect" id="node5" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="857,31,908,57"/>
-<area shape="rect" id="node7" href="geometry_8c.html#a19aba85a5ba19f73f00f9088b27f5ee4" title="LineInsertPoint" alt="" coords="567,56,676,83"/>
+<area shape="rect" id="node7" href="geometry_8c.html#a8e1c27a4824d4a9070217927ddf65aab" title="LineInsertPoint" alt="" coords="567,56,676,83"/>
 <area shape="rect" id="node8" href="transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="729,56,804,83"/>
 </map>
 </div>
@@ -418,12 +395,21 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the number of points in the vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector[in]</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of slots used so far in the vector. </dd></dl>
+
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="pointvector_8c_a8e1a648167726b7c60a7e232d0f5003f_icgraph.png" border="0" usemap="#pointvector_8c_a8e1a648167726b7c60a7e232d0f5003f_icgraph" alt=""/></div>
 <map name="pointvector_8c_a8e1a648167726b7c60a7e232d0f5003f_icgraph" id="pointvector_8c_a8e1a648167726b7c60a7e232d0f5003f_icgraph">
-<area shape="rect" id="node2" href="geometry_8c.html#a19aba85a5ba19f73f00f9088b27f5ee4" title="LineInsertPoint" alt="" coords="169,5,279,32"/>
+<area shape="rect" id="node2" href="geometry_8c.html#a8e1c27a4824d4a9070217927ddf65aab" title="LineInsertPoint" alt="" coords="169,5,279,32"/>
 <area shape="rect" id="node3" href="transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="327,5,401,32"/>
 <area shape="rect" id="node4" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="449,5,500,32"/>
 </map>
@@ -456,8 +442,9 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Returns a value out of a vector at the given index. </p>
-<p>If the index is below 0 or greater than #vector-&gt;size - 1, this function should complain about the index being out of bounds.</p>
+<p>Returns a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a> at <code>index</code> position. </p>
+<p>Should be used when the client just wants <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a>'s value. If <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a>'s value will be modified, <a class="el" href="pointvector_8h.html#adb97b0913490b82787f448c741c7d4fb" title="Returns a reference to a Point inside VectorPoint at index position. ">VectorPointValueRef()</a> should be used instead.</p>
+<p>This function will throw an error message and exit the code if <code>index</code> &gt;= <code>vector-&gt;size</code> || <code>index</code> &lt; 0.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">index[in]</td><td></td></tr>
@@ -465,18 +452,67 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> at #index value. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of some <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>. </dd></dl>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="pointvector_8c_a5f16b9250fb1fc9ef3e20aad6c102cb7_icgraph.png" border="0" usemap="#pointvector_8c_a5f16b9250fb1fc9ef3e20aad6c102cb7_icgraph" alt=""/></div>
 <map name="pointvector_8c_a5f16b9250fb1fc9ef3e20aad6c102cb7_icgraph" id="pointvector_8c_a5f16b9250fb1fc9ef3e20aad6c102cb7_icgraph">
-<area shape="rect" id="node2" href="geometry_8c.html#acfd3f48d49e6df8353faa86e078896b8" title="LineGetPoint" alt="" coords="176,81,273,108"/>
+<area shape="rect" id="node2" href="geometry_8c.html#a7743b0f360843a568aa252301b70c327" title="Returns a Point inside Line at index position. " alt="" coords="176,56,273,83"/>
 <area shape="rect" id="node3" href="debug_8c.html#aefd85733061795a6e3180638a77bd709" title="DebugLine" alt="" coords="321,5,405,32"/>
 <area shape="rect" id="node4" href="display_8c.html#a59e4f09587028ca4495c4aafaf7c8694" title="ShowLine" alt="" coords="324,56,403,83"/>
-<area shape="rect" id="node5" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="453,107,504,133"/>
-<area shape="rect" id="node6" href="transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="326,157,401,184"/>
+<area shape="rect" id="node5" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="453,81,504,108"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="adb97b0913490b82787f448c741c7d4fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_point.html">Point</a>* VectorPointValueRef </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_vector_point.html">VectorPoint</a> *&#160;</td>
+          <td class="paramname"><em>vector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a reference to a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a> at <code>index</code> position. </p>
+<p>Should be used when the client wants to modify <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a>'s value. If <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a>'s value will NOT be modified, <a class="el" href="pointvector_8h.html#a5f16b9250fb1fc9ef3e20aad6c102cb7" title="Returns a Point inside VectorPoint at index position. ">VectorPointValue()</a> should be used instead.</p>
+<p>This function will throw an error message and exit the code if <code>index</code> &gt;= <code>vector-&gt;size</code> || <code>index</code> &lt; 0.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index[in]</td><td></td></tr>
+    <tr><td class="paramname">vector[in]</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The address of some <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_vector_point.html" title="Definition of VectorInt type. ">VectorPoint</a>. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="pointvector_8c_adb97b0913490b82787f448c741c7d4fb_icgraph.png" border="0" usemap="#pointvector_8c_adb97b0913490b82787f448c741c7d4fb_icgraph" alt=""/></div>
+<map name="pointvector_8c_adb97b0913490b82787f448c741c7d4fb_icgraph" id="pointvector_8c_adb97b0913490b82787f448c741c7d4fb_icgraph">
+<area shape="rect" id="node2" href="geometry_8c.html#a8ec807b3a25d1b4ab0e232b75d170f4a" title="Returns a reference for a Point inside Line at index position. " alt="" coords="197,5,316,32"/>
+<area shape="rect" id="node3" href="transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="364,5,439,32"/>
+<area shape="rect" id="node4" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="487,5,537,32"/>
 </map>
 </div>
 </p>

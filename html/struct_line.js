@@ -7,5 +7,5 @@ var struct_line =
     [ "minX", "struct_line.html#aaa627f9aabdb042af5e0bf358216fc3c", null ],
     [ "minY", "struct_line.html#a57dd2475ea7c04ad4dfdb926a0ae7f6e", null ],
     [ "name", "struct_line.html#ae5cb967283dbbdf75cb2032c1fa08fee", null ],
-    [ "points", "struct_line.html#a208c8e3c7580d8fee08e1b55e46434bb", null ]
+    [ "points", "struct_line.html#af6ef46abb09fae39e5ac180fce038c16", null ]
 ];

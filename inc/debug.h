@@ -3,7 +3,7 @@
 
 #include <ncursesw/ncurses.h>
 
-#include "inc/geometry.h"
+#include "inc/line.h"
 #include "inc/personages.h"
 
 void dSightBoundrypoints(Sight *sight);

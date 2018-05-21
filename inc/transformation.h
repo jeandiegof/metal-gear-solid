@@ -13,16 +13,16 @@ void Rotate45(const Point center_point, Line *line);
 //void Rotate45(const uint8_t scalar, Point *point, int16_t *angle);
 
 
-Point TranslateE(const int16_t scalar, Point *point);
+void TranslateE(const int16_t scalar, Point *point);
 
 
-Point TranslateN(const int16_t scalar, Point *point);
+void TranslateN(const int16_t scalar, Point *point);
 
 
-Point TranslateS(const int16_t scalar, Point *point);
+void TranslateS(const int16_t scalar, Point *point);
 
 
-Point TranslateW(const int16_t scalar, Point *point);
+void TranslateW(const int16_t scalar, Point *point);
 
 
 

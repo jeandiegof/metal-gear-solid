@@ -2,7 +2,7 @@
 <area shape="rect" id="node3" href="$personages_8h.html" title="inc/personages.h" alt="" coords="86,80,207,107"/>
 <area shape="rect" id="node4" href="$unicodes_8h.html" title="inc/unicodes.h" alt="" coords="93,155,200,181"/>
 <area shape="rect" id="node5" href="$angles_8h.html" title="inc/angles.h" alt="" coords="130,229,222,256"/>
-<area shape="rect" id="node6" href="$geometry_8h.html" title="inc/geometry.h" alt="" coords="275,155,383,181"/>
+<area shape="rect" id="node6" href="$geometry_8h.html" title="Code to define a Line object for terminal application enviorment. " alt="" coords="275,155,383,181"/>
 <area shape="rect" id="node7" href="$point_8h.html" title="inc/point.h" alt="" coords="297,304,380,331"/>
-<area shape="rect" id="node8" href="$pointvector_8h.html" title="inc/pointvector.h" alt="" coords="367,229,486,256"/>
+<area shape="rect" id="node8" href="$pointvector_8h.html" title="Code to define a dynamic vector to store xy coordinate points defined by the struct Point..." alt="" coords="367,229,486,256"/>
 </map>

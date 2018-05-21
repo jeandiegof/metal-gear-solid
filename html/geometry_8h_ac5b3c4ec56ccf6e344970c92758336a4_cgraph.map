@@ -1,0 +1,6 @@
+<map id="LineCreate" name="LineCreate">
+<area shape="rect" id="node2" href="$geometry_8c.html#ac2f94fb9c6d6fa84c54c554905f1539f" title="Inserts a Point object at the end of Line. " alt="" coords="139,31,259,57"/>
+<area shape="rect" id="node3" href="$pointvector_8h.html#a025f4d30fa91f30068b24142a9f52b9a" title="Inserts value at the end of the vector. " alt="" coords="325,5,459,32"/>
+<area shape="rect" id="node5" href="$geometry_8c.html#a8cefb8869a7609e60b454a508df8b990" title="LineUpdateMaxMinPoints" alt="" coords="307,56,477,83"/>
+<area shape="rect" id="node4" href="$pointvector_8c.html#ae917fce73483b7a64f89aee1b9905178" title="VectorPointResizeIfFull" alt="" coords="525,5,685,32"/>
+</map>

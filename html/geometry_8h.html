@@ -111,6 +111,9 @@ $(document).ready(function(){initNavTree('geometry_8h.html','');});
 <div class="title">geometry.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Code to define a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object for terminal application enviorment.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="point_8h_source.html">inc/point.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pointvector_8h_source.html">inc/pointvector.h</a>&quot;</code><br />
@@ -121,7 +124,7 @@ Include dependency graph for geometry.h:</div>
 <div class="center"><img src="geometry_8h__incl.png" border="0" usemap="#inc_2geometry_8h" alt=""/></div>
 <map name="inc_2geometry_8h" id="inc_2geometry_8h">
 <area shape="rect" id="node3" href="point_8h.html" title="inc/point.h" alt="" coords="20,155,103,181"/>
-<area shape="rect" id="node4" href="pointvector_8h.html" title="inc/pointvector.h" alt="" coords="90,80,209,107"/>
+<area shape="rect" id="node4" href="pointvector_8h.html" title="Code to define a dynamic vector to store xy coordinate points defined by the struct Point..." alt="" coords="90,80,209,107"/>
 <area shape="rect" id="node7" href="angles_8h.html" title="inc/angles.h" alt="" coords="233,80,325,107"/>
 </map>
 </div>
@@ -150,32 +153,49 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_line.html">Line</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> is a basic geometric object, intended to manage the mathematical representation of a line in the terminal.  <a href="struct_line.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:ac47e7d289f058d1b595ca5ec78862918"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_line.html">Line</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#ac47e7d289f058d1b595ca5ec78862918">Line</a></td></tr>
+<tr class="memdesc:ac47e7d289f058d1b595ca5ec78862918"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> is a basic geometric object, intended to manage the mathematical representation of a line in the terminal.  <a href="#ac47e7d289f058d1b595ca5ec78862918">More...</a><br /></td></tr>
 <tr class="separator:ac47e7d289f058d1b595ca5ec78862918"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a05c605ef5bfd265bbf08a4f5d535767e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#a05c605ef5bfd265bbf08a4f5d535767e">LineAppendPoint</a> (const <a class="el" href="struct_point.html">Point</a> point, <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
-<tr class="memdesc:a05c605ef5bfd265bbf08a4f5d535767e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> object at the end of <a class="el" href="struct_line.html">Line</a>.  <a href="#a05c605ef5bfd265bbf08a4f5d535767e">More...</a><br /></td></tr>
-<tr class="separator:a05c605ef5bfd265bbf08a4f5d535767e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a8f6478385dda9f79414b3e8657f925"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#a9a8f6478385dda9f79414b3e8657f925">LineCreate</a> (const <a class="el" href="struct_point.html">Point</a> origin, const int16_t angle, const int16_t lenght, <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
-<tr class="separator:a9a8f6478385dda9f79414b3e8657f925"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a934092acfdcce47ce8777035ba25a24a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#a934092acfdcce47ce8777035ba25a24a">LineDestroy</a> (<a class="el" href="struct_line.html">Line</a> *line)</td></tr>
-<tr class="memdesc:a934092acfdcce47ce8777035ba25a24a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the memory used by line.  <a href="#a934092acfdcce47ce8777035ba25a24a">More...</a><br /></td></tr>
-<tr class="separator:a934092acfdcce47ce8777035ba25a24a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfd3f48d49e6df8353faa86e078896b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_point.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#acfd3f48d49e6df8353faa86e078896b8">LineGetPoint</a> (const uint16_t index, const <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
-<tr class="separator:acfd3f48d49e6df8353faa86e078896b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19aba85a5ba19f73f00f9088b27f5ee4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#a19aba85a5ba19f73f00f9088b27f5ee4">LineInsertPoint</a> (const uint16_t index, const <a class="el" href="struct_point.html">Point</a> point, <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
-<tr class="separator:a19aba85a5ba19f73f00f9088b27f5ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2f94fb9c6d6fa84c54c554905f1539f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#ac2f94fb9c6d6fa84c54c554905f1539f">LineAppendPoint</a> (const <a class="el" href="struct_point.html">Point</a> *point, <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
+<tr class="memdesc:ac2f94fb9c6d6fa84c54c554905f1539f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> object at the end of <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>.  <a href="#ac2f94fb9c6d6fa84c54c554905f1539f">More...</a><br /></td></tr>
+<tr class="separator:ac2f94fb9c6d6fa84c54c554905f1539f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b3c4ec56ccf6e344970c92758336a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#ac5b3c4ec56ccf6e344970c92758336a4">LineCreate</a> (const <a class="el" href="struct_point.html">Point</a> *origin, const int16_t angle, const int16_t lenght, <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
+<tr class="memdesc:ac5b3c4ec56ccf6e344970c92758336a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the points that constitute a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object.  <a href="#ac5b3c4ec56ccf6e344970c92758336a4">More...</a><br /></td></tr>
+<tr class="separator:ac5b3c4ec56ccf6e344970c92758336a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfd07ecf6c410608c98ac4c5a8e37990"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#adfd07ecf6c410608c98ac4c5a8e37990">DestroyLine</a> (<a class="el" href="struct_line.html">Line</a> *line)</td></tr>
+<tr class="memdesc:adfd07ecf6c410608c98ac4c5a8e37990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the memory used by <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>.  <a href="#adfd07ecf6c410608c98ac4c5a8e37990">More...</a><br /></td></tr>
+<tr class="separator:adfd07ecf6c410608c98ac4c5a8e37990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7743b0f360843a568aa252301b70c327"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_point.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#a7743b0f360843a568aa252301b70c327">LineGetPoint</a> (const uint16_t index, const <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
+<tr class="memdesc:a7743b0f360843a568aa252301b70c327"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> at <code>index</code> position.  <a href="#a7743b0f360843a568aa252301b70c327">More...</a><br /></td></tr>
+<tr class="separator:a7743b0f360843a568aa252301b70c327"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ec807b3a25d1b4ab0e232b75d170f4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_point.html">Point</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#a8ec807b3a25d1b4ab0e232b75d170f4a">LineGetPointRef</a> (const uint16_t index, const <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
+<tr class="memdesc:a8ec807b3a25d1b4ab0e232b75d170f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference for a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> at <code>index</code> position.  <a href="#a8ec807b3a25d1b4ab0e232b75d170f4a">More...</a><br /></td></tr>
+<tr class="separator:a8ec807b3a25d1b4ab0e232b75d170f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e1c27a4824d4a9070217927ddf65aab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#a8e1c27a4824d4a9070217927ddf65aab">LineInsertPoint</a> (const uint16_t index, const <a class="el" href="struct_point.html">Point</a> *point, <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
+<tr class="separator:a8e1c27a4824d4a9070217927ddf65aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20ca65de2d8923ecb2f37a2a042c1240"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_line.html">Line</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#a20ca65de2d8923ecb2f37a2a042c1240">NewLine</a> (const char name[])</td></tr>
-<tr class="memdesc:a20ca65de2d8923ecb2f37a2a042c1240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="struct_line.html">Line</a> object.  <a href="#a20ca65de2d8923ecb2f37a2a042c1240">More...</a><br /></td></tr>
+<tr class="memdesc:a20ca65de2d8923ecb2f37a2a042c1240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object.  <a href="#a20ca65de2d8923ecb2f37a2a042c1240">More...</a><br /></td></tr>
 <tr class="separator:a20ca65de2d8923ecb2f37a2a042c1240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cefb8869a7609e60b454a508df8b990"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="geometry_8h.html#a8cefb8869a7609e60b454a508df8b990">LineUpdateMaxMinPoints</a> (const <a class="el" href="struct_point.html">Point</a> *point, <a class="el" href="struct_line.html">Line</a> *line)</td></tr>
+<tr class="memdesc:a8cefb8869a7609e60b454a508df8b990"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds if a specific point has values greater or smaller than the maximuns and minimuns stored in a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> struct.  <a href="#a8cefb8869a7609e60b454a508df8b990">More...</a><br /></td></tr>
+<tr class="separator:a8cefb8869a7609e60b454a508df8b990"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Code to define a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object for terminal application enviorment. </p>
+<dl class="section author"><dt>Author</dt><dd>Carlo Fornari and Jean Fontena </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>21 may 2018</dd></dl>
+<p>This file has a struct and functions to help a client to implement a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object in a terminal.</p>
+<p>The functions in this file don't perform any sort of graphical operation. They only manipulate the mathematical representation in an integer cartesian coordinate system, i.e., xy coordinates in terminal.</p>
+<p><a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> is allocated on the heap. The task to free the memory is left to the client. The memory is freed by calling <a class="el" href="geometry_8h.html#adfd07ecf6c410608c98ac4c5a8e37990" title="Free the memory used by Line. ">DestroyLine()</a>. </p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
 <a class="anchor" id="ac47e7d289f058d1b595ca5ec78862918"></a>
 <div class="memitem">
 <div class="memproto">
@@ -186,17 +206,63 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p><a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> is a basic geometric object, intended to manage the mathematical representation of a line in the terminal. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a05c605ef5bfd265bbf08a4f5d535767e"></a>
+<a class="anchor" id="adfd07ecf6c410608c98ac4c5a8e37990"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DestroyLine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_line.html">Line</a> *&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Free the memory used by <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line[out]</td><td>A <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="geometry_8h_adfd07ecf6c410608c98ac4c5a8e37990_cgraph.png" border="0" usemap="#geometry_8h_adfd07ecf6c410608c98ac4c5a8e37990_cgraph" alt=""/></div>
+<map name="geometry_8h_adfd07ecf6c410608c98ac4c5a8e37990_cgraph" id="geometry_8h_adfd07ecf6c410608c98ac4c5a8e37990_cgraph">
+<area shape="rect" id="node2" href="pointvector_8h.html#aedf28b5fe20acd232a70e8e4092cbbca" title="Frees the memory allocated for the VectorPoint. " alt="" coords="145,5,281,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="geometry_8h_adfd07ecf6c410608c98ac4c5a8e37990_icgraph.png" border="0" usemap="#geometry_8h_adfd07ecf6c410608c98ac4c5a8e37990_icgraph" alt=""/></div>
+<map name="geometry_8h_adfd07ecf6c410608c98ac4c5a8e37990_icgraph" id="geometry_8h_adfd07ecf6c410608c98ac4c5a8e37990_icgraph">
+<area shape="rect" id="node2" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="145,5,196,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ac2f94fb9c6d6fa84c54c554905f1539f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void LineAppendPoint </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a> *&#160;</td>
           <td class="paramname"><em>point</em>, </td>
         </tr>
         <tr>
@@ -213,11 +279,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Inserts a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> object at the end of <a class="el" href="struct_line.html">Line</a>. </p>
+<p>Inserts a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> object at the end of <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">point</td><td>A <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> object. </td></tr>
-    <tr><td class="paramname">line</td><td>A <a class="el" href="struct_line.html">Line</a> object. </td></tr>
+    <tr><td class="paramname">point[in]</td><td>A <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> object that will be appended to some <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>. </td></tr>
+    <tr><td class="paramname">line[out]</td><td>A <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object. </td></tr>
   </table>
   </dd>
 </dl>
@@ -225,10 +291,11 @@ Functions</h2></td></tr>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="geometry_8h_a05c605ef5bfd265bbf08a4f5d535767e_cgraph.png" border="0" usemap="#geometry_8h_a05c605ef5bfd265bbf08a4f5d535767e_cgraph" alt=""/></div>
-<map name="geometry_8h_a05c605ef5bfd265bbf08a4f5d535767e_cgraph" id="geometry_8h_a05c605ef5bfd265bbf08a4f5d535767e_cgraph">
-<area shape="rect" id="node2" href="pointvector_8h.html#a98a54617776630ed1f1592ef3e9e7668" title="Inserts value at the end of the vector. " alt="" coords="173,5,308,32"/>
-<area shape="rect" id="node3" href="pointvector_8c.html#a22dd454533788ddd4468cb451578c986" title="Doubles the underlying data array capacity if #vector&#45;&gt;size &gt;= #vector&#45;&gt;capacity. ..." alt="" coords="356,5,516,32"/>
+<div class="center"><img src="geometry_8h_ac2f94fb9c6d6fa84c54c554905f1539f_cgraph.png" border="0" usemap="#geometry_8h_ac2f94fb9c6d6fa84c54c554905f1539f_cgraph" alt=""/></div>
+<map name="geometry_8h_ac2f94fb9c6d6fa84c54c554905f1539f_cgraph" id="geometry_8h_ac2f94fb9c6d6fa84c54c554905f1539f_cgraph">
+<area shape="rect" id="node2" href="pointvector_8h.html#a025f4d30fa91f30068b24142a9f52b9a" title="Inserts value at the end of the vector. " alt="" coords="191,5,326,32"/>
+<area shape="rect" id="node4" href="geometry_8c.html#a8cefb8869a7609e60b454a508df8b990" title="LineUpdateMaxMinPoints" alt="" coords="173,56,344,83"/>
+<area shape="rect" id="node3" href="pointvector_8c.html#ae917fce73483b7a64f89aee1b9905178" title="VectorPointResizeIfFull" alt="" coords="392,5,552,32"/>
 </map>
 </div>
 </p>
@@ -236,9 +303,9 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="geometry_8h_a05c605ef5bfd265bbf08a4f5d535767e_icgraph.png" border="0" usemap="#geometry_8h_a05c605ef5bfd265bbf08a4f5d535767e_icgraph" alt=""/></div>
-<map name="geometry_8h_a05c605ef5bfd265bbf08a4f5d535767e_icgraph" id="geometry_8h_a05c605ef5bfd265bbf08a4f5d535767e_icgraph">
-<area shape="rect" id="node2" href="geometry_8c.html#a9a8f6478385dda9f79414b3e8657f925" title="LineCreate" alt="" coords="173,5,259,32"/>
+<div class="center"><img src="geometry_8h_ac2f94fb9c6d6fa84c54c554905f1539f_icgraph.png" border="0" usemap="#geometry_8h_ac2f94fb9c6d6fa84c54c554905f1539f_icgraph" alt=""/></div>
+<map name="geometry_8h_ac2f94fb9c6d6fa84c54c554905f1539f_icgraph" id="geometry_8h_ac2f94fb9c6d6fa84c54c554905f1539f_icgraph">
+<area shape="rect" id="node2" href="geometry_8c.html#ac5b3c4ec56ccf6e344970c92758336a4" title="Creates the points that constitute a Line object. " alt="" coords="173,5,259,32"/>
 <area shape="rect" id="node3" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="307,5,357,32"/>
 </map>
 </div>
@@ -246,14 +313,14 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a9a8f6478385dda9f79414b3e8657f925"></a>
+<a class="anchor" id="ac5b3c4ec56ccf6e344970c92758336a4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void LineCreate </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a> *&#160;</td>
           <td class="paramname"><em>origin</em>, </td>
         </tr>
         <tr>
@@ -282,14 +349,28 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Creates the points that constitute a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object. </p>
+<p>This function creates a *line that starts at the <code>origin</code> with size equals to <code>lenght</code>. The inclination of the line is determined by <code>angle</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">origin[in]</td><td>Position to the first <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> of the <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>. </td></tr>
+    <tr><td class="paramname">angle[in]</td><td>Angle of the <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>. </td></tr>
+    <tr><td class="paramname">lenght[in]</td><td><a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>'s lenght in pixels. </td></tr>
+    <tr><td class="paramname">line[out]</td><td>A pointer to a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Handle a situation where a line with pre-existing points is a parameter. Now, the function expects an empty *line. Unexpected behavior can occur if a line with pre-existing points is used. </dd></dl>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="geometry_8h_a9a8f6478385dda9f79414b3e8657f925_cgraph.png" border="0" usemap="#geometry_8h_a9a8f6478385dda9f79414b3e8657f925_cgraph" alt=""/></div>
-<map name="geometry_8h_a9a8f6478385dda9f79414b3e8657f925_cgraph" id="geometry_8h_a9a8f6478385dda9f79414b3e8657f925_cgraph">
-<area shape="rect" id="node2" href="geometry_8c.html#a05c605ef5bfd265bbf08a4f5d535767e" title="Inserts a Point object at the end of Line. " alt="" coords="139,5,259,32"/>
-<area shape="rect" id="node3" href="pointvector_8h.html#a98a54617776630ed1f1592ef3e9e7668" title="Inserts value at the end of the vector. " alt="" coords="307,5,441,32"/>
-<area shape="rect" id="node4" href="pointvector_8c.html#a22dd454533788ddd4468cb451578c986" title="Doubles the underlying data array capacity if #vector&#45;&gt;size &gt;= #vector&#45;&gt;capacity. ..." alt="" coords="489,5,649,32"/>
+<div class="center"><img src="geometry_8h_ac5b3c4ec56ccf6e344970c92758336a4_cgraph.png" border="0" usemap="#geometry_8h_ac5b3c4ec56ccf6e344970c92758336a4_cgraph" alt=""/></div>
+<map name="geometry_8h_ac5b3c4ec56ccf6e344970c92758336a4_cgraph" id="geometry_8h_ac5b3c4ec56ccf6e344970c92758336a4_cgraph">
+<area shape="rect" id="node2" href="geometry_8c.html#ac2f94fb9c6d6fa84c54c554905f1539f" title="Inserts a Point object at the end of Line. " alt="" coords="139,31,259,57"/>
+<area shape="rect" id="node3" href="pointvector_8h.html#a025f4d30fa91f30068b24142a9f52b9a" title="Inserts value at the end of the vector. " alt="" coords="325,5,459,32"/>
+<area shape="rect" id="node5" href="geometry_8c.html#a8cefb8869a7609e60b454a508df8b990" title="LineUpdateMaxMinPoints" alt="" coords="307,56,477,83"/>
+<area shape="rect" id="node4" href="pointvector_8c.html#ae917fce73483b7a64f89aee1b9905178" title="VectorPointResizeIfFull" alt="" coords="525,5,685,32"/>
 </map>
 </div>
 </p>
@@ -297,8 +378,8 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="geometry_8h_a9a8f6478385dda9f79414b3e8657f925_icgraph.png" border="0" usemap="#geometry_8h_a9a8f6478385dda9f79414b3e8657f925_icgraph" alt=""/></div>
-<map name="geometry_8h_a9a8f6478385dda9f79414b3e8657f925_icgraph" id="geometry_8h_a9a8f6478385dda9f79414b3e8657f925_icgraph">
+<div class="center"><img src="geometry_8h_ac5b3c4ec56ccf6e344970c92758336a4_icgraph.png" border="0" usemap="#geometry_8h_ac5b3c4ec56ccf6e344970c92758336a4_icgraph" alt=""/></div>
+<map name="geometry_8h_ac5b3c4ec56ccf6e344970c92758336a4_icgraph" id="geometry_8h_ac5b3c4ec56ccf6e344970c92758336a4_icgraph">
 <area shape="rect" id="node2" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="139,5,189,32"/>
 </map>
 </div>
@@ -306,56 +387,12 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="a934092acfdcce47ce8777035ba25a24a"></a>
+<a class="anchor" id="a7743b0f360843a568aa252301b70c327"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void LineDestroy </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_line.html">Line</a> *&#160;</td>
-          <td class="paramname"><em>line</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Free the memory used by line. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">line</td><td>A <a class="el" href="struct_line.html">Line</a> object. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="geometry_8h_a934092acfdcce47ce8777035ba25a24a_cgraph.png" border="0" usemap="#geometry_8h_a934092acfdcce47ce8777035ba25a24a_cgraph" alt=""/></div>
-<map name="geometry_8h_a934092acfdcce47ce8777035ba25a24a_cgraph" id="geometry_8h_a934092acfdcce47ce8777035ba25a24a_cgraph">
-<area shape="rect" id="node2" href="pointvector_8h.html#a4ce1fadd157680d46f1fadf56b89223d" title="Frees the memory allocated for the data array. " alt="" coords="145,5,261,32"/>
-</map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="geometry_8h_a934092acfdcce47ce8777035ba25a24a_icgraph.png" border="0" usemap="#geometry_8h_a934092acfdcce47ce8777035ba25a24a_icgraph" alt=""/></div>
-<map name="geometry_8h_a934092acfdcce47ce8777035ba25a24a_icgraph" id="geometry_8h_a934092acfdcce47ce8777035ba25a24a_icgraph">
-<area shape="rect" id="node2" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="145,5,196,32"/>
-</map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="acfd3f48d49e6df8353faa86e078896b8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_point.html">Point</a> LineGetPoint </td>
+          <td class="memname">const <a class="el" href="struct_point.html">Point</a> LineGetPoint </td>
           <td>(</td>
           <td class="paramtype">const uint16_t&#160;</td>
           <td class="paramname"><em>index</em>, </td>
@@ -374,12 +411,23 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> at <code>index</code> position. </p>
+<p>Should be used when the client just wants <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a>'s value. If <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a>'s value will be modified, <a class="el" href="geometry_8h.html#a8ec807b3a25d1b4ab0e232b75d170f4a" title="Returns a reference for a Point inside Line at index position. ">LineGetPointRef()</a> should be used instead.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index[in]</td><td></td></tr>
+    <tr><td class="paramname">line[in]</td><td>A <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of some <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>. </dd></dl>
+
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="geometry_8h_acfd3f48d49e6df8353faa86e078896b8_cgraph.png" border="0" usemap="#geometry_8h_acfd3f48d49e6df8353faa86e078896b8_cgraph" alt=""/></div>
-<map name="geometry_8h_acfd3f48d49e6df8353faa86e078896b8_cgraph" id="geometry_8h_acfd3f48d49e6df8353faa86e078896b8_cgraph">
-<area shape="rect" id="node2" href="pointvector_8h.html#a5f16b9250fb1fc9ef3e20aad6c102cb7" title="Returns a value out of a vector at the given index. " alt="" coords="151,5,273,32"/>
+<div class="center"><img src="geometry_8h_a7743b0f360843a568aa252301b70c327_cgraph.png" border="0" usemap="#geometry_8h_a7743b0f360843a568aa252301b70c327_cgraph" alt=""/></div>
+<map name="geometry_8h_a7743b0f360843a568aa252301b70c327_cgraph" id="geometry_8h_a7743b0f360843a568aa252301b70c327_cgraph">
+<area shape="rect" id="node2" href="pointvector_8h.html#a5f16b9250fb1fc9ef3e20aad6c102cb7" title="Returns a Point inside VectorPoint at index position. " alt="" coords="151,5,273,32"/>
 </map>
 </div>
 </p>
@@ -387,19 +435,76 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="geometry_8h_acfd3f48d49e6df8353faa86e078896b8_icgraph.png" border="0" usemap="#geometry_8h_acfd3f48d49e6df8353faa86e078896b8_icgraph" alt=""/></div>
-<map name="geometry_8h_acfd3f48d49e6df8353faa86e078896b8_icgraph" id="geometry_8h_acfd3f48d49e6df8353faa86e078896b8_icgraph">
+<div class="center"><img src="geometry_8h_a7743b0f360843a568aa252301b70c327_icgraph.png" border="0" usemap="#geometry_8h_a7743b0f360843a568aa252301b70c327_icgraph" alt=""/></div>
+<map name="geometry_8h_a7743b0f360843a568aa252301b70c327_icgraph" id="geometry_8h_a7743b0f360843a568aa252301b70c327_icgraph">
 <area shape="rect" id="node2" href="debug_8c.html#aefd85733061795a6e3180638a77bd709" title="DebugLine" alt="" coords="151,5,235,32"/>
 <area shape="rect" id="node3" href="display_8c.html#a59e4f09587028ca4495c4aafaf7c8694" title="ShowLine" alt="" coords="153,56,232,83"/>
-<area shape="rect" id="node4" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="283,107,333,133"/>
-<area shape="rect" id="node5" href="transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="155,157,230,184"/>
+<area shape="rect" id="node4" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="283,81,333,108"/>
 </map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a19aba85a5ba19f73f00f9088b27f5ee4"></a>
+<a class="anchor" id="a8ec807b3a25d1b4ab0e232b75d170f4a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_point.html">Point</a>* LineGetPointRef </td>
+          <td>(</td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_line.html">Line</a> *&#160;</td>
+          <td class="paramname"><em>line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a reference for a <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> at <code>index</code> position. </p>
+<p>Should be used when the client wants to modify <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a>'s value. If <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a>'s value will NOT be modified, <a class="el" href="geometry_8h.html#a7743b0f360843a568aa252301b70c327" title="Returns a Point inside Line at index position. ">LineGetPoint()</a> should be used instead.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index[in]</td><td></td></tr>
+    <tr><td class="paramname">line[out]</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The address of some <a class="el" href="struct_point.html" title="Abstract struct for a point in console. ">Point</a> inside <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a>. </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="geometry_8h_a8ec807b3a25d1b4ab0e232b75d170f4a_cgraph.png" border="0" usemap="#geometry_8h_a8ec807b3a25d1b4ab0e232b75d170f4a_cgraph" alt=""/></div>
+<map name="geometry_8h_a8ec807b3a25d1b4ab0e232b75d170f4a_cgraph" id="geometry_8h_a8ec807b3a25d1b4ab0e232b75d170f4a_cgraph">
+<area shape="rect" id="node2" href="pointvector_8h.html#adb97b0913490b82787f448c741c7d4fb" title="Returns a reference to a Point inside VectorPoint at index position. " alt="" coords="172,5,316,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="geometry_8h_a8ec807b3a25d1b4ab0e232b75d170f4a_icgraph.png" border="0" usemap="#geometry_8h_a8ec807b3a25d1b4ab0e232b75d170f4a_icgraph" alt=""/></div>
+<map name="geometry_8h_a8ec807b3a25d1b4ab0e232b75d170f4a_icgraph" id="geometry_8h_a8ec807b3a25d1b4ab0e232b75d170f4a_icgraph">
+<area shape="rect" id="node2" href="transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="172,5,247,32"/>
+<area shape="rect" id="node3" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="295,5,345,32"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a8e1c27a4824d4a9070217927ddf65aab"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -412,7 +517,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a> *&#160;</td>
           <td class="paramname"><em>point</em>, </td>
         </tr>
         <tr>
@@ -428,16 +533,25 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td></td></tr>
+    <tr><td class="paramname">point</td><td></td></tr>
+    <tr><td class="paramname">line</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="geometry_8h_a19aba85a5ba19f73f00f9088b27f5ee4_cgraph.png" border="0" usemap="#geometry_8h_a19aba85a5ba19f73f00f9088b27f5ee4_cgraph" alt=""/></div>
-<map name="geometry_8h_a19aba85a5ba19f73f00f9088b27f5ee4_cgraph" id="geometry_8h_a19aba85a5ba19f73f00f9088b27f5ee4_cgraph">
-<area shape="rect" id="node2" href="pointvector_8h.html#aaa61ee47a670a94369ea4997ad043fd0" title="Inserts #value at the given #index. " alt="" coords="163,5,285,32"/>
-<area shape="rect" id="node5" href="pointvector_8h.html#a8e1a648167726b7c60a7e232d0f5003f" title="VectorPointSize" alt="" coords="166,56,282,83"/>
-<area shape="rect" id="node3" href="pointvector_8c.html#a98a54617776630ed1f1592ef3e9e7668" title="Inserts value at the end of the vector. " alt="" coords="333,5,468,32"/>
-<area shape="rect" id="node4" href="pointvector_8c.html#a22dd454533788ddd4468cb451578c986" title="Doubles the underlying data array capacity if #vector&#45;&gt;size &gt;= #vector&#45;&gt;capacity. ..." alt="" coords="516,5,676,32"/>
+<div class="center"><img src="geometry_8h_a8e1c27a4824d4a9070217927ddf65aab_cgraph.png" border="0" usemap="#geometry_8h_a8e1c27a4824d4a9070217927ddf65aab_cgraph" alt=""/></div>
+<map name="geometry_8h_a8e1c27a4824d4a9070217927ddf65aab_cgraph" id="geometry_8h_a8e1c27a4824d4a9070217927ddf65aab_cgraph">
+<area shape="rect" id="node2" href="pointvector_8h.html#a68a2a02a04aa773c46c6c87febd2a83f" title="Inserts value at the given index. " alt="" coords="187,5,309,32"/>
+<area shape="rect" id="node5" href="pointvector_8h.html#a8e1a648167726b7c60a7e232d0f5003f" title="Returns the number of points in the vector. " alt="" coords="190,56,306,83"/>
+<area shape="rect" id="node6" href="geometry_8c.html#a8cefb8869a7609e60b454a508df8b990" title="LineUpdateMaxMinPoints" alt="" coords="163,107,333,133"/>
+<area shape="rect" id="node3" href="pointvector_8c.html#a025f4d30fa91f30068b24142a9f52b9a" title="Inserts value at the end of the vector. " alt="" coords="381,5,516,32"/>
+<area shape="rect" id="node4" href="pointvector_8c.html#ae917fce73483b7a64f89aee1b9905178" title="VectorPointResizeIfFull" alt="" coords="564,5,724,32"/>
 </map>
 </div>
 </p>
@@ -445,13 +559,57 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="geometry_8h_a19aba85a5ba19f73f00f9088b27f5ee4_icgraph.png" border="0" usemap="#geometry_8h_a19aba85a5ba19f73f00f9088b27f5ee4_icgraph" alt=""/></div>
-<map name="geometry_8h_a19aba85a5ba19f73f00f9088b27f5ee4_icgraph" id="geometry_8h_a19aba85a5ba19f73f00f9088b27f5ee4_icgraph">
+<div class="center"><img src="geometry_8h_a8e1c27a4824d4a9070217927ddf65aab_icgraph.png" border="0" usemap="#geometry_8h_a8e1c27a4824d4a9070217927ddf65aab_icgraph" alt=""/></div>
+<map name="geometry_8h_a8e1c27a4824d4a9070217927ddf65aab_icgraph" id="geometry_8h_a8e1c27a4824d4a9070217927ddf65aab_icgraph">
 <area shape="rect" id="node2" href="transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="163,5,237,32"/>
 <area shape="rect" id="node3" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="285,5,336,32"/>
 </map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a8cefb8869a7609e60b454a508df8b990"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void LineUpdateMaxMinPoints </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_point.html">Point</a> *&#160;</td>
+          <td class="paramname"><em>point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_line.html">Line</a> *&#160;</td>
+          <td class="paramname"><em>line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds if a specific point has values greater or smaller than the maximuns and minimuns stored in a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> struct. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point[in]</td><td></td></tr>
+    <tr><td class="paramname">line[out]</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Private Function. </dd></dl>
 
 </div>
 </div>
@@ -469,22 +627,22 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a <a class="el" href="struct_line.html">Line</a> object. </p>
-<p>Creates a <a class="el" href="struct_line.html">Line</a> object using malloc().</p>
+<p>Creates a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object. </p>
+<p>Creates a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object using malloc().</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The name of <a class="el" href="struct_line.html">Line</a> object. </td></tr>
+    <tr><td class="paramname">name[in]</td><td>The name of <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> object. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to a <a class="el" href="struct_line.html">Line</a> struct. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to a <a class="el" href="struct_line.html" title="Line is a basic geometric object, intended to manage the mathematical representation of a line in the...">Line</a> struct. </dd></dl>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="geometry_8h_a20ca65de2d8923ecb2f37a2a042c1240_cgraph.png" border="0" usemap="#geometry_8h_a20ca65de2d8923ecb2f37a2a042c1240_cgraph" alt=""/></div>
 <map name="geometry_8h_a20ca65de2d8923ecb2f37a2a042c1240_cgraph" id="geometry_8h_a20ca65de2d8923ecb2f37a2a042c1240_cgraph">
-<area shape="rect" id="node2" href="pointvector_8h.html#a3935dd90475af28d6d2a5265858b5a7e" title="Initiate VectorInt struct. " alt="" coords="127,5,235,32"/>
+<area shape="rect" id="node2" href="pointvector_8h.html#a1b0cd09e559055aaaca8ef87cd422c6a" title="Initiate VectorInt struct. " alt="" coords="127,5,244,32"/>
 </map>
 </div>
 </p>

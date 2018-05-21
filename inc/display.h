@@ -4,7 +4,7 @@
 #include <ncursesw/ncurses.h>
 #include <string.h>
 
-#include "inc/geometry.h"
+#include "inc/line.h"
 #include "inc/personages.h"
 #include "inc/transformation.h"
 

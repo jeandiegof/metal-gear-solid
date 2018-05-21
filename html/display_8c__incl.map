@@ -1,10 +1,10 @@
 <map id="src/display.c" name="src/display.c">
 <area shape="rect" id="node2" href="$display_8h.html" title="inc/display.h" alt="" coords="225,80,319,107"/>
-<area shape="rect" id="node5" href="$geometry_8h.html" title="inc/geometry.h" alt="" coords="197,304,305,331"/>
+<area shape="rect" id="node5" href="$geometry_8h.html" title="Code to define a Line object for terminal application enviorment. " alt="" coords="197,304,305,331"/>
 <area shape="rect" id="node12" href="$personages_8h.html" title="inc/personages.h" alt="" coords="339,229,461,256"/>
 <area shape="rect" id="node14" href="$transformation_8h.html" title="inc/transformation.h" alt="" coords="361,155,498,181"/>
 <area shape="rect" id="node7" href="$point_8h.html" title="inc/point.h" alt="" coords="99,453,181,480"/>
-<area shape="rect" id="node8" href="$pointvector_8h.html" title="inc/pointvector.h" alt="" coords="170,379,289,405"/>
+<area shape="rect" id="node8" href="$pointvector_8h.html" title="Code to define a dynamic vector to store xy coordinate points defined by the struct Point..." alt="" coords="170,379,289,405"/>
 <area shape="rect" id="node11" href="$angles_8h.html" title="inc/angles.h" alt="" coords="313,379,405,405"/>
 <area shape="rect" id="node13" href="$unicodes_8h.html" title="inc/unicodes.h" alt="" coords="471,304,577,331"/>
 </map>

@@ -1,17 +1,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "inc/geometry.h"
+#include "inc/line.h"
 
 
-void LineAppendPoint(const Point point, Line *line)
+void LineAppendPoint(const Point *point, Line *line)
 {
-  VectorPointAppend(point, &(line->points));
+  VectorPointAppend(point, line->points);
 
   LineUpdateMaxMinPoints(point, line);
 }
 
-void LineCreate(const Point origin,
+void LineCreate(const Point *origin,
                 const int16_t angle,
                 const int16_t lenght,
                 Line *line)
@@ -31,7 +31,7 @@ void LineCreate(const Point origin,
 
     // Bollean flag, enable or disable axis coordinate modification.
     uint8_t select;
-  }  axis_x = {0},  axis_y = {0};
+  }  axis_x={0}, axis_y={0};
 
   Point new_point;
 
@@ -168,43 +168,53 @@ void LineCreate(const Point origin,
   for(uint8_t i = 1; i < lenght; i++)
   {
     if(axis_x.select)
-      new_point.x = origin.x + ( i * axis_x.direction );
+      new_point.x = origin->x + ( i * axis_x.direction );
     else
-      new_point.x = origin.x;
+      new_point.x = origin->x;
 
     if(axis_y.select)
-      new_point.y = origin.y + ( i * axis_y.direction );
+      new_point.y = origin->y + ( i * axis_y.direction );
     else
-      new_point.y = origin.y;
+      new_point.y = origin->y;
 
     // Appends new_point to the line object.
-    LineAppendPoint(new_point, line);
+    LineAppendPoint(&new_point, line);
   }
 }
 
-void LineDestroy(Line *line)
+void DestroyLine(Line *line)
 {
   if (line != NULL)
   {
-    VectorPointFree(&(line->points));
+    DestroyVectorPoint(line->points);
     free (line);
    }
 }
 
 
-Point LineGetPoint(const uint16_t index, const Line *line)
+const Point LineGetPoint(const uint16_t index, const Line *line)
 {
-  return VectorPointValue(index, &(line->points));
-}
-
-void LineInsertPoint(const uint16_t index, const Point point, Line *line)
-{
-  VectorPointInsert(index, point, &(line->points));
-  line->lenght = VectorPointSize(&(line->points));
+  return VectorPointValue(index, line->points);
 }
 
 
-Line * NewLine(const char name[])
+Point *LineGetPointRef(const uint16_t index, const Line *line)
+{
+  return VectorPointValueRef(index, line->points);
+}
+
+
+void LineInsertPoint(const uint16_t index, const Point *point, Line *line)
+{
+  VectorPointInsert(index, point, line->points);
+
+  line->lenght = VectorPointSize(line->points);
+
+  LineUpdateMaxMinPoints(point, line);
+}
+
+
+Line *NewLine(const char name[])
 {
   Line *line = malloc(sizeof(Line));
 
@@ -219,29 +229,29 @@ Line * NewLine(const char name[])
 
   strcpy(line->name, name);
 
-  VectorPointInit(&(line->points));
+  line->points = NewVectorPoint();
 
   return line;
 }
 
 
-static void LineUpdateMaxMinPoints(const Point point, Line *line)
+static void LineUpdateMaxMinPoints(const Point *point, Line *line)
 {
-  if(point.x > line->maxX)
+  if(point->x > line->maxX)
 
-    line->maxX = point.x;
+    line->maxX = point->x;
 
-  else if(point.x < line->minY)
+  else if(point->x < line->minY)
 
-    line->minY = point.x;
+    line->minY = point->x;
 
-  if(point.y > line->maxY)
+  if(point->y > line->maxY)
 
-    line->maxY = point.y;
+    line->maxY = point->y;
 
-  else if(point.y < line->minY)
+  else if(point->y < line->minY)
 
-    line->minY = point.y;
+    line->minY = point->y;
 }
 
 

@@ -5,7 +5,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "display.c", "display_8c.html", "display_8c" ],
     [ "geometry.c", "geometry_8c.html", "geometry_8c" ],
     [ "main.c", "main_8c.html", "main_8c" ],
-    [ "map_loader.c", "map__loader_8c.html", "map__loader_8c" ],
     [ "personages.c", "personages_8c.html", "personages_8c" ],
     [ "pointvector.c", "pointvector_8c.html", "pointvector_8c" ],
     [ "transformation.c", "transformation_8c.html", "transformation_8c" ],

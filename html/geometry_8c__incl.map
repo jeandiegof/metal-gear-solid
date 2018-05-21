@@ -1,6 +1,6 @@
 <map id="src/geometry.c" name="src/geometry.c">
-<area shape="rect" id="node4" href="$geometry_8h.html" title="inc/geometry.h" alt="" coords="197,80,305,107"/>
+<area shape="rect" id="node4" href="$geometry_8h.html" title="Code to define a Line object for terminal application enviorment. " alt="" coords="197,80,305,107"/>
 <area shape="rect" id="node6" href="$point_8h.html" title="inc/point.h" alt="" coords="255,229,337,256"/>
-<area shape="rect" id="node7" href="$pointvector_8h.html" title="inc/pointvector.h" alt="" coords="62,155,181,181"/>
+<area shape="rect" id="node7" href="$pointvector_8h.html" title="Code to define a dynamic vector to store xy coordinate points defined by the struct Point..." alt="" coords="62,155,181,181"/>
 <area shape="rect" id="node9" href="$angles_8h.html" title="inc/angles.h" alt="" coords="205,155,297,181"/>
 </map>
