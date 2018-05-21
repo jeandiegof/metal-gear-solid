@@ -1,0 +1,6 @@
+<map id="Enemy" name="Enemy">
+<area shape="rect" id="node2" href="$struct_sight.html" title="Abstract struct. Gives sight to the object. " alt="" coords="5,392,75,484"/>
+<area shape="rect" id="node3" href="$struct_boundry.html" title="{Boundry\n|+ img\l+ angle\l|}" alt="" coords="15,175,86,267"/>
+<area shape="rect" id="node4" href="$struct_point.html" title="Abstract struct for a point in console. " alt="" coords="75,5,127,97"/>
+<area shape="rect" id="node5" href="$struct_personage_base.html" title="Abstract struct for personage creation. " alt="" coords="92,291,207,368"/>
+</map>

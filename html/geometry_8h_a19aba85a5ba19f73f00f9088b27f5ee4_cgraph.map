@@ -1,0 +1,6 @@
+<map id="LineInsertPoint" name="LineInsertPoint">
+<area shape="rect" id="node2" href="$pointvector_8h.html#aaa61ee47a670a94369ea4997ad043fd0" title="Inserts #value at the given #index. " alt="" coords="163,5,285,32"/>
+<area shape="rect" id="node5" href="$pointvector_8h.html#a8e1a648167726b7c60a7e232d0f5003f" title="VectorPointSize" alt="" coords="166,56,282,83"/>
+<area shape="rect" id="node3" href="$pointvector_8c.html#a98a54617776630ed1f1592ef3e9e7668" title="Inserts value at the end of the vector. " alt="" coords="333,5,468,32"/>
+<area shape="rect" id="node4" href="$pointvector_8c.html#a22dd454533788ddd4468cb451578c986" title="Doubles the underlying data array capacity if #vector&#45;&gt;size &gt;= #vector&#45;&gt;capacity. ..." alt="" coords="516,5,676,32"/>
+</map>

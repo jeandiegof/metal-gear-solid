@@ -1,0 +1,5 @@
+<map id="LineCreate" name="LineCreate">
+<area shape="rect" id="node2" href="$geometry_8c.html#a05c605ef5bfd265bbf08a4f5d535767e" title="Inserts a Point object at the end of Line. " alt="" coords="139,5,259,32"/>
+<area shape="rect" id="node3" href="$pointvector_8h.html#a98a54617776630ed1f1592ef3e9e7668" title="Inserts value at the end of the vector. " alt="" coords="307,5,441,32"/>
+<area shape="rect" id="node4" href="$pointvector_8c.html#a22dd454533788ddd4468cb451578c986" title="Doubles the underlying data array capacity if #vector&#45;&gt;size &gt;= #vector&#45;&gt;capacity. ..." alt="" coords="489,5,649,32"/>
+</map>

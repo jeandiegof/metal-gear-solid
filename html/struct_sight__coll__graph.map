@@ -1,0 +1,4 @@
+<map id="Sight" name="Sight">
+<area shape="rect" id="node2" href="$struct_boundry.html" title="{Boundry\n|+ img\l+ angle\l|}" alt="" coords="5,175,76,267"/>
+<area shape="rect" id="node3" href="$struct_point.html" title="Abstract struct for a point in console. " alt="" coords="15,5,67,97"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="inc/point.h" name="inc/point.h">
+<area shape="rect" id="node2" href="$geometry_8h.html" title="inc/geometry.h" alt="" coords="381,155,489,181"/>
+<area shape="rect" id="node15" href="$pointvector_8h.html" title="inc/pointvector.h" alt="" coords="473,80,591,107"/>
+<area shape="rect" id="node3" href="$personages_8h.html" title="inc/personages.h" alt="" coords="374,229,495,256"/>
+<area shape="rect" id="node6" href="$debug_8h.html" title="inc/debug.h" alt="" coords="295,304,385,331"/>
+<area shape="rect" id="node8" href="$main_8c.html" title="src/main.c" alt="" coords="400,453,483,480"/>
+<area shape="rect" id="node10" href="$display_8h.html" title="inc/display.h" alt="" coords="6,379,101,405"/>
+<area shape="rect" id="node14" href="$geometry_8c.html" title="src/geometry.c" alt="" coords="661,229,771,256"/>
+<area shape="rect" id="node4" href="$colision_8h.html" title="inc/colision.h" alt="" coords="661,304,760,331"/>
+<area shape="rect" id="node12" href="$transformation_8h.html" title="inc/transformation.h" alt="" coords="134,304,271,331"/>
+<area shape="rect" id="node13" href="$personages_8c.html" title="src/personages.c" alt="" coords="464,304,587,331"/>
+<area shape="rect" id="node5" href="$colision_8c.html" title="src/colision.c" alt="" coords="661,379,760,405"/>
+<area shape="rect" id="node7" href="$debug_8c.html" title="src/debug.c" alt="" coords="288,379,379,405"/>
+<area shape="rect" id="node9" href="$transformation_8c.html" title="src/transformation.c" alt="" coords="125,379,264,405"/>
+<area shape="rect" id="node11" href="$display_8c.html" title="src/display.c" alt="" coords="5,453,101,480"/>
+<area shape="rect" id="node16" href="$pointvector_8c.html" title="src/pointvector.c" alt="" coords="513,155,631,181"/>
+</map>

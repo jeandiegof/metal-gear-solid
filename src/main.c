@@ -1,21 +1,48 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <map_loader.h>
+#include <ncursesw/ncurses.h>
+#include <unistd.h>
+#include <ctype.h>
+#include <math.h>
+#include "inc/debug.h"
 
-int main() {
+#include "inc/unicodes.h"
+#include "inc/geometry.h"
+#include "inc/window.h"
+#include "inc/personages.h"
+#include "inc/display.h"
 
-  int map_matrix[MAP_HEIGHT][MAP_LENGTH] = {0};
-  
-  LoadMapFromFile(map_matrix);
-  for (int i = 0; i < MAP_HEIGHT; ++i)
-  {
-    for (int j = 0; j < MAP_LENGTH; ++j)
-    {
-      printf("%c", map_matrix[i][j]);
-    } 
-  }
+int main(void)
+{
 
-  printf("\n");
-  return 0;
+// struct Enemy enemy;
+// int x = 40, y = 10;
+
+ InitWindow();
+
+// InitEnemy(x, y, 3, &enemy);
+
+// RotateSight(ANGLE_0, &(enemy.sight));
+
+// DrawEnemy(&enemy);
+
+ Line *line = NewLine("myline");
+
+ Point origin = {40,10};
+ Point p2 = {42,10};
+
+ LineCreate(origin, ANGLE_0, 4, line);
+
+// Rotate45(LineGetPoint(0,line), line);
+// Rotate45(LineGetPoint(0,line), line);
+ Rotate45(LineGetPoint(0,line), line);
+ Rotate45(LineGetPoint(0,line), line);
+ Rotate45(LineGetPoint(0,line), line);
+
+// DebugLine(line);
+ ShowLine(line, "\\");
+
+ LineDestroy(line);
+
+ while(1);
+
+ endwin();   // Restore normal terminal behavior
 }

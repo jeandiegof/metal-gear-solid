@@ -1,0 +1,12 @@
+<map id="inc/personages.h" name="inc/personages.h">
+<area shape="rect" id="node2" href="$colision_8h.html" title="inc/colision.h" alt="" coords="5,80,104,107"/>
+<area shape="rect" id="node4" href="$debug_8h.html" title="inc/debug.h" alt="" coords="246,80,335,107"/>
+<area shape="rect" id="node6" href="$main_8c.html" title="src/main.c" alt="" coords="265,229,348,256"/>
+<area shape="rect" id="node8" href="$display_8h.html" title="inc/display.h" alt="" coords="507,155,602,181"/>
+<area shape="rect" id="node10" href="$transformation_8h.html" title="inc/transformation.h" alt="" coords="359,80,497,107"/>
+<area shape="rect" id="node11" href="$personages_8c.html" title="src/personages.c" alt="" coords="572,80,695,107"/>
+<area shape="rect" id="node3" href="$colision_8c.html" title="src/colision.c" alt="" coords="5,155,104,181"/>
+<area shape="rect" id="node5" href="$debug_8c.html" title="src/debug.c" alt="" coords="179,155,269,181"/>
+<area shape="rect" id="node7" href="$transformation_8c.html" title="src/transformation.c" alt="" coords="344,155,483,181"/>
+<area shape="rect" id="node9" href="$display_8c.html" title="src/display.c" alt="" coords="507,229,603,256"/>
+</map>

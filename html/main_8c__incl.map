@@ -1,0 +1,12 @@
+<map id="src/main.c" name="src/main.c">
+<area shape="rect" id="node6" href="$debug_8h.html" title="inc/debug.h" alt="" coords="71,80,161,107"/>
+<area shape="rect" id="node7" href="$geometry_8h.html" title="inc/geometry.h" alt="" coords="230,304,338,331"/>
+<area shape="rect" id="node14" href="$personages_8h.html" title="inc/personages.h" alt="" coords="446,229,567,256"/>
+<area shape="rect" id="node15" href="$unicodes_8h.html" title="inc/unicodes.h" alt="" coords="544,304,651,331"/>
+<area shape="rect" id="node16" href="$window_8h.html" title="inc/window.h" alt="" coords="288,80,387,107"/>
+<area shape="rect" id="node18" href="$display_8h.html" title="inc/display.h" alt="" coords="446,80,541,107"/>
+<area shape="rect" id="node9" href="$point_8h.html" title="inc/point.h" alt="" coords="5,453,88,480"/>
+<area shape="rect" id="node10" href="$pointvector_8h.html" title="inc/pointvector.h" alt="" coords="171,379,290,405"/>
+<area shape="rect" id="node13" href="$angles_8h.html" title="inc/angles.h" alt="" coords="377,379,469,405"/>
+<area shape="rect" id="node20" href="$transformation_8h.html" title="inc/transformation.h" alt="" coords="586,155,723,181"/>
+</map>
