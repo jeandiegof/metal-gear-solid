@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <map_loader.h>
+
+#include "inc/map_loader.h"
 
 void LoadMapFromFile(int map_matrix[MAP_HEIGHT][MAP_LENGTH]) {
   FILE *fp;

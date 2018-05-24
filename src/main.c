@@ -32,7 +32,7 @@ int main(void)
  LineCreate(&origin, ANGLE_0, 4, line);
 
 // Rotate45(LineGetPoint(0,line), line);
-// Rotate45(LineGetPoint(0,line), line);
+ Rotate45(LineGetPoint(0,line), line);
 // Rotate45(LineGetPoint(0,line), line);
  Rotate45(LineGetPoint(0,line), line);
  Rotate45(LineGetPoint(0,line), line);
