@@ -40,13 +40,12 @@ typedef struct Line
 
   VectorPoint *points;
 
-  int16_t maxX;
+  struct
+  {
+    int16_t x;
 
-  int16_t maxY;
-
-  int16_t minX;
-
-  int16_t minY;
+    int16_t y;
+  } max, min;
 
 }Line;
 //===================================================================

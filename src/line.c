@@ -222,10 +222,10 @@ Line *NewLine(const char name[])
 
   line->lenght = 0;
 
-  line->maxX = 0;
-  line->maxY = 0;
-  line->minX = 0;
-  line->minY = 0;
+  line->max.x = 0;
+  line->max.y = 0;
+  line->min.x = 0;
+  line->min.y = 0;
 
   strcpy(line->name, name);
 
@@ -237,21 +237,21 @@ Line *NewLine(const char name[])
 
 static void LineUpdateMaxMinPoints(const Point *point, Line *line)
 {
-  if(point->x > line->maxX)
+  if(point->x > line->max.x)
 
-    line->maxX = point->x;
+    line->max.x = point->x;
 
-  else if(point->x < line->minY)
+  else if(point->x < line->min.x)
 
-    line->minY = point->x;
+    line->min.x = point->x;
 
-  if(point->y > line->maxY)
+  if(point->y > line->max.y)
 
-    line->maxY = point->y;
+    line->max.y = point->y;
 
-  else if(point->y < line->minY)
+  else if(point->y < line->min.y)
 
-    line->minY = point->y;
+    line->min.y = point->y;
 }
 
 
