@@ -114,7 +114,7 @@ void DestroyLine(Line *line)
   if (line != NULL)
   {
     DestroyVectorPoint(line->points);
-    free (line);
+    free(line);
    }
 }
 

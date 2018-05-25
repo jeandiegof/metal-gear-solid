@@ -37,6 +37,7 @@ typedef struct VectorPoint
 
   /** Array of integers for data. */
   Point *data;
+
 } VectorPoint;
 
 

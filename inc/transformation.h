@@ -9,8 +9,10 @@
 void RotateSight(const int16_t angle, Sight *sight);
 
 
-void Rotate45(const Point center_point, Line *line);
-//void Rotate45(const uint8_t scalar, Point *point, int16_t *angle);
+void Rotate45(const Point *origin_point, Line *line);
+
+
+void Rotate180(const Point *origin_point, Line *line);
 
 
 void TranslateE(const int16_t scalar, Point *point);

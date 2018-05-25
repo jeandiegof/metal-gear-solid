@@ -42,52 +42,73 @@
 //===================================================================
 
 
-void Rotate45(const Point center_point, Line *line)
+void Rotate45(const Point *origin_point, Line *line)
 {
-//  DebugLine(line);
   Point *line_point;
 
-  int16_t magnitude;
+  // Absolute distance between the origin_point and the line point.
+  int16_t abs_distance;
 
   for(uint16_t i = 0; i < line->lenght; i++)
   {
     line_point = LineGetPointRef(i, line);
-    switch(line->angle)
+
+    switch (line->angle)
     {
       case ANGLE_0:
       case ANGLE_315:
-        magnitude = abs( line_point->x - center_point.x );
-        TranslateN(magnitude, line_point);
+        abs_distance = abs( line_point->x - origin_point->x );
+        TranslateN(abs_distance, line_point);
         LineInsertPoint( i, line_point, line );
         break;
 
       case ANGLE_45:
       case ANGLE_90:
-        magnitude = abs( line_point->y - center_point.y );
-        TranslateW(magnitude, line_point);
+        abs_distance = abs( line_point->y - origin_point->y );
+        TranslateW(abs_distance, line_point);
         LineInsertPoint( i, line_point , line );
         break;
 
       case ANGLE_135:
       case ANGLE_180:
-        magnitude = abs( line_point->x - center_point.x );
-        TranslateS(magnitude, line_point);
+        abs_distance = abs( line_point->x - origin_point->x );
+        TranslateS(abs_distance, line_point);
         LineInsertPoint( i, line_point, line );
         break;
 
       case ANGLE_225:
       case ANGLE_270:
-        magnitude = abs( line_point->y - center_point.y );
-        TranslateE(magnitude, line_point);
+        abs_distance = abs( line_point->y - origin_point->y );
+        TranslateE(abs_distance, line_point);
         LineInsertPoint( i, line_point, line );
         break;
     }
   }
   line->angle += ANGLE_45;
-//  DebugLine(line);
 }
 //===================================================================
 
+void Rotate180(const Point *origin_point, Line *line)
+{
+  Point *line_point;
+  Point new_point;
+
+  int16_t distance;
+
+  for(uint8_t i = 0; i < line->lenght; i++)
+  {
+    line_point = LineGetPointRef(i, line);
+
+    distance = origin_point->x - line_point->x;
+    new_point.x = origin_point->x + distance;
+
+    distance = origin_point->y - line_point->y;
+    new_point.y = origin_point->y + distance;
+
+    LineInsertPoint( i, &new_point, line );
+  }
+}
+//===================================================================
 
 void TranslateE(const int16_t scalar, Point *point)
 {
