@@ -1,7 +1,5 @@
-#include <ncursesw/ncurses.h>
-#include <unistd.h>
-#include <ctype.h>
 #include <math.h>
+
 #include "inc/debug.h"
 
 #include "inc/line.h"
@@ -45,7 +43,7 @@ int main(void)
  Rectangle *rec = NewRectangle();
 
  Point corn_1 = {4,4};
- Point corn_2 = {8,8};
+ Point corn_2 = {40,20};
 
  RectangleCreate(&corn_1, &corn_2, rec);
 

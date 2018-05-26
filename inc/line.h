@@ -14,6 +14,35 @@
  *
  * Line is allocated on the heap. The task to free the memory is left to the
  * client. The memory is freed by calling DestroyLine().
+ *
+ * The code below provides a simple application to print a line in the
+ * terminal using "inc/display.h" and rotating it with "inc/transformation.h":
+ * @code
+ *  #include "inc/line.h"
+ *  #include "inc/transformation.h"
+ *  #include "inc/display.h"
+ *
+ *  int main()
+ *  {
+ *    Line *line = NewLine();
+ *
+ *    Point origin = {40,10};
+ *
+ *    // The parameter 4, is the lenght of the line in pixels.
+ *    LineCreate(&origin, ANGLE_0, 4, line);
+ *
+ *    // Rotations occurs around a center of rotation, in the funtions below,
+ *    // the center is the origin point of line, which is located at index 0.
+ *
+ *    Rotate45(LineGetPointRef(0,line), line);
+ *
+ *    Rotate180(LineGetPointRef(0,line), line);
+ *
+ *    ShowLine(line, ".");
+ *
+ *    DestroyLine(line);
+ *  }
+ * @endcode
  */
 
 #ifndef GEOMETRY_H
@@ -127,7 +156,6 @@ void LineInsertPoint(const uint16_t index, const Point *point, Line *line);
  *
  * Creates a Line object using malloc().
  *
- * @param name[in] The name of Line object.
  * @return A pointer to a Line struct.
  */
 Line *NewLine();

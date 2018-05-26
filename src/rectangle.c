@@ -1,6 +1,5 @@
 #include <math.h>
 
-#include "inc/debug.h"
 #include "inc/rectangle.h"
 
 
