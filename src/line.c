@@ -3,6 +3,7 @@
 
 #include "inc/line.h"
 
+static void LineUpdateMaxMinPoints(const Point *point, Line *line);
 
 void LineAppendPoint(const Point *point, Line *line)
 {
@@ -119,7 +120,7 @@ void DestroyLine(Line *line)
 }
 
 
-const Point LineGetPoint(const uint16_t index, const Line *line)
+Point LineGetPoint(const uint16_t index, const Line *line)
 {
   return VectorPointValue(index, line->points);
 }
@@ -141,7 +142,7 @@ void LineInsertPoint(const uint16_t index, const Point *point, Line *line)
 }
 
 
-Line *NewLine(const char name[])
+Line *NewLine()
 {
   Line *line = malloc(sizeof(Line));
 
@@ -154,13 +155,21 @@ Line *NewLine(const char name[])
   line->min.x = 0;
   line->min.y = 0;
 
-  strcpy(line->name, name);
-
   line->points = NewVectorPoint();
 
   return line;
 }
 
+
+/**
+ * @brief Finds if a specific point has values greater or smaller than
+ * the maximuns and minimuns stored in a Line struct.
+ *
+ * @param point[in]
+ * @param line[out]
+ *
+ * @note Private Function.
+ */
 
 static void LineUpdateMaxMinPoints(const Point *point, Line *line)
 {

@@ -1,5 +1,0 @@
-<map id="ShowEnemy" name="ShowEnemy">
-<area shape="rect" id="node2" href="$display_8c.html#a85a8131d45d8ef50d697feb175370c7c" title="ShowPersonage" alt="" coords="154,5,271,32"/>
-<area shape="rect" id="node3" href="$display_8c.html#a029d6ac2b245767a7632d0c224847029" title="ShowEnemySight" alt="" coords="149,56,276,83"/>
-<area shape="rect" id="node4" href="$display_8c.html#af2c44f50d2ff9f35af5c15dac14145cf" title="Changes the unicode symbol for sight boundries after rotation. " alt="" coords="324,56,485,83"/>
-</map>

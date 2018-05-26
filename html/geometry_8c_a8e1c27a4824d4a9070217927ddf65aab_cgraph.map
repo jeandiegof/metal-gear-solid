@@ -1,7 +1,0 @@
-<map id="LineInsertPoint" name="LineInsertPoint">
-<area shape="rect" id="node2" href="$pointvector_8h.html#a68a2a02a04aa773c46c6c87febd2a83f" title="Inserts value at the given index. " alt="" coords="187,5,309,32"/>
-<area shape="rect" id="node5" href="$pointvector_8h.html#a8e1a648167726b7c60a7e232d0f5003f" title="Returns the number of points in the vector. " alt="" coords="190,56,306,83"/>
-<area shape="rect" id="node6" href="$geometry_8c.html#a8cefb8869a7609e60b454a508df8b990" title="LineUpdateMaxMinPoints" alt="" coords="163,107,333,133"/>
-<area shape="rect" id="node3" href="$pointvector_8c.html#a025f4d30fa91f30068b24142a9f52b9a" title="Inserts value at the end of the vector. " alt="" coords="381,5,516,32"/>
-<area shape="rect" id="node4" href="$pointvector_8c.html#ae917fce73483b7a64f89aee1b9905178" title="VectorPointResizeIfFull" alt="" coords="564,5,724,32"/>
-</map>

@@ -2,6 +2,8 @@
 
 #include "inc/pointvector.h"
 
+static void VectorPointResizeIfFull(VectorPoint *vector);
+
 
 void VectorPointAppend(const Point *value, VectorPoint *vector)
 {
@@ -87,6 +89,21 @@ Point *VectorPointValueRef(const int index, const VectorPoint *vector)
 
 
 // ---- START Private Functions.
+
+/**
+ * @brief Increase the underlying data array capacity
+ * if @p vector->size >= @p vector->capacity.
+ *
+ * This function expand data array capacity by allocating a number of slots
+ * equal to VECTOR_POINT_DEFAULT_CAPACITY.
+ *
+ * @code
+ *  vector->capacity += VECTOR_POINT_DEFAULT_CAPACITY;
+    vector->data = realloc(vector->data, sizeof(Point) * vector->capacity);
+ * @endcode
+ *
+ * @param vector[out]
+ */
 
 static void VectorPointResizeIfFull(VectorPoint *vector)
 {

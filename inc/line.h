@@ -32,8 +32,6 @@
 
 typedef struct Line
 {
-  char name[50];
-
   int16_t lenght;
 
   int16_t angle;
@@ -98,7 +96,7 @@ void DestroyLine(Line *line);
  * @return The value of some Point inside Line.
  */
 
-const Point LineGetPoint(const uint16_t index, const Line *line);
+Point LineGetPoint(const uint16_t index, const Line *line);
 
 /**
  * @brief Returns a reference for a Point inside Line at @p index position.
@@ -132,17 +130,6 @@ void LineInsertPoint(const uint16_t index, const Point *point, Line *line);
  * @param name[in] The name of Line object.
  * @return A pointer to a Line struct.
  */
-Line *NewLine(const char name[]);
-
-/**
- * @brief Finds if a specific point has values greater or smaller than
- * the maximuns and minimuns stored in a Line struct.
- *
- * @param point[in]
- * @param line[out]
- *
- * @note Private Function.
- */
-static void LineUpdateMaxMinPoints(const Point *point, Line *line);
+Line *NewLine();
 
 #endif // GEOMETRY_H

@@ -1,6 +1,0 @@
-<map id="VectorPointValue" name="VectorPointValue">
-<area shape="rect" id="node2" href="$geometry_8c.html#a7743b0f360843a568aa252301b70c327" title="Returns a Point inside Line at index position. " alt="" coords="176,56,273,83"/>
-<area shape="rect" id="node3" href="$debug_8c.html#aefd85733061795a6e3180638a77bd709" title="DebugLine" alt="" coords="321,5,405,32"/>
-<area shape="rect" id="node4" href="$display_8c.html#a59e4f09587028ca4495c4aafaf7c8694" title="ShowLine" alt="" coords="324,56,403,83"/>
-<area shape="rect" id="node5" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="453,81,504,108"/>
-</map>

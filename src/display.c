@@ -85,3 +85,13 @@ void ShowLine(const Line *line, const char img[])
   }
   refresh();
 }
+//===================================================================
+
+
+void ShowRectangle(const Rectangle *rectangle, const char img[])
+{
+  ShowLine(rectangle->bottom_line, img);
+  ShowLine(rectangle->right_line, img);
+  ShowLine(rectangle->top_line, img);
+  ShowLine(rectangle->left_line, img);
+}

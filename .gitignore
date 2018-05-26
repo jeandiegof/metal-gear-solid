@@ -6,3 +6,6 @@
 
 # Qt Creator autosave
 *.autosave*
+
+#Ignore html/doc
+ html*

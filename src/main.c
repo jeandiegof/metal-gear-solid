@@ -4,8 +4,8 @@
 #include <math.h>
 #include "inc/debug.h"
 
-#include "inc/unicodes.h"
 #include "inc/line.h"
+#include "inc/rectangle.h"
 #include "inc/window.h"
 #include "inc/personages.h"
 #include "inc/display.h"
@@ -24,23 +24,34 @@ int main(void)
 
 // DrawEnemy(&enemy);
 
- Line *line = NewLine("myline");
+// Line *line = NewLine();
 
- Point origin = {40,10};
- Point p2 = {42,10};
+// Point origin = {40,10};
+// Point p2 = {42,10};
 
- LineCreate(&origin, ANGLE_0, 4, line);
+// LineCreate(&origin, ANGLE_0, 4, line);
 
- Rotate45(LineGetPointRef(0,line), line);
- Rotate45(LineGetPointRef(0,line), line);
 // Rotate45(LineGetPointRef(0,line), line);
 // Rotate45(LineGetPointRef(0,line), line);
- Rotate180(LineGetPointRef(0,line), line);
+//// Rotate45(LineGetPointRef(0,line), line);
+//// Rotate45(LineGetPointRef(0,line), line);
+// Rotate180(LineGetPointRef(0,line), line);
 
-// DebugLine(line);
- ShowLine(line, "\\");
+//// DebugLine(line);
+// ShowLine(line, "\\");
 
- DestroyLine(line);
+// DestroyLine(line);
+
+ Rectangle *rec = NewRectangle();
+
+ Point corn_1 = {4,4};
+ Point corn_2 = {8,8};
+
+ RectangleCreate(&corn_1, &corn_2, rec);
+
+ ShowRectangle(rec, "#");
+
+ DestroyRectangle(rec);
 
  while(1);
 

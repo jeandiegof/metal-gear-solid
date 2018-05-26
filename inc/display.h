@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "inc/line.h"
+#include "inc/rectangle.h"
 #include "inc/personages.h"
 #include "inc/transformation.h"
 
@@ -12,6 +13,8 @@
 
 
 void ShowLine(const Line *line, const char img[]);
+
+void ShowRectangle(const Rectangle *rectangle, const char img[]);
 
 /**
  *

@@ -1,8 +1,0 @@
-<map id="src/personages.c" name="src/personages.c">
-<area shape="rect" id="node2" href="$personages_8h.html" title="inc/personages.h" alt="" coords="59,80,181,107"/>
-<area shape="rect" id="node4" href="$unicodes_8h.html" title="inc/unicodes.h" alt="" coords="21,155,128,181"/>
-<area shape="rect" id="node5" href="$angles_8h.html" title="inc/angles.h" alt="" coords="95,229,187,256"/>
-<area shape="rect" id="node6" href="$geometry_8h.html" title="Code to define a Line object for terminal application enviorment. " alt="" coords="203,155,311,181"/>
-<area shape="rect" id="node7" href="$point_8h.html" title="inc/point.h" alt="" coords="263,304,345,331"/>
-<area shape="rect" id="node8" href="$pointvector_8h.html" title="Code to define a dynamic vector to store xy coordinate points defined by the struct Point..." alt="" coords="323,229,442,256"/>
-</map>

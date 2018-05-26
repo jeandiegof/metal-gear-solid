@@ -1,9 +1,0 @@
-<map id="VectorPointResizeIfFull" name="VectorPointResizeIfFull">
-<area shape="rect" id="node2" href="$pointvector_8c.html#a025f4d30fa91f30068b24142a9f52b9a" title="Inserts value at the end of the vector. " alt="" coords="213,31,348,57"/>
-<area shape="rect" id="node3" href="$geometry_8c.html#ac2f94fb9c6d6fa84c54c554905f1539f" title="Inserts a Point object at the end of Line. " alt="" coords="397,5,517,32"/>
-<area shape="rect" id="node6" href="$pointvector_8c.html#a68a2a02a04aa773c46c6c87febd2a83f" title="Inserts value at the given index. " alt="" coords="396,56,519,83"/>
-<area shape="rect" id="node4" href="$geometry_8c.html#ac5b3c4ec56ccf6e344970c92758336a4" title="LineCreate. " alt="" coords="724,5,809,32"/>
-<area shape="rect" id="node5" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="main" alt="" coords="857,31,908,57"/>
-<area shape="rect" id="node7" href="$geometry_8c.html#a8e1c27a4824d4a9070217927ddf65aab" title="LineInsertPoint. " alt="" coords="567,56,676,83"/>
-<area shape="rect" id="node8" href="$transformation_8c.html#a70194d9f6dd337d6f39783caa6b5de31" title="Rotate45" alt="" coords="729,56,804,83"/>
-</map>
