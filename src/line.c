@@ -5,6 +5,8 @@
 #define LINE_LENGHT_MIN 1
 
 static void LineUpdateMaxMinPoints(const Point *point, Line *line);
+//===================================================================
+
 
 void LineAppendPoint(const Point *point, Line *line)
 {
@@ -12,6 +14,22 @@ void LineAppendPoint(const Point *point, Line *line)
 
   LineUpdateMaxMinPoints(point, line);
 }
+//===================================================================
+
+
+void LineCopy(const Line *in_line, Line *out_line)
+{
+  for(uint16_t i = 0; i < in_line->lenght; i++)
+  {
+    LineAppendPoint( LineGetPointRef(i, in_line), out_line );
+  }
+
+  out_line->angle = in_line->angle;
+
+  out_line->lenght = in_line->lenght;
+}
+//===================================================================
+
 
 void LineCreate(const Point *origin,
                 const int16_t angle,
@@ -110,6 +128,8 @@ void LineCreate(const Point *origin,
     LineAppendPoint(&new_point, line);
   }
 }
+//===================================================================
+
 
 void DestroyLine(Line *line)
 {
@@ -119,28 +139,32 @@ void DestroyLine(Line *line)
     free(line);
    }
 }
+//===================================================================
 
 
 Point LineGetPoint(const uint16_t index, const Line *line)
 {
-  return VectorPointValue(index, line->points);
+  return VectorPointGetValue(index, line->points);
 }
+//===================================================================
 
 
 Point *LineGetPointRef(const uint16_t index, const Line *line)
 {
   return VectorPointValueRef(index, line->points);
 }
+//===================================================================
 
 
 void LineInsertPoint(const uint16_t index, const Point *point, Line *line)
 {
   VectorPointInsert(index, point, line->points);
 
-  line->lenght = VectorPointSize(line->points);
+  line->lenght = VectorPointGetSize(line->points);
 
   LineUpdateMaxMinPoints(point, line);
 }
+//===================================================================
 
 
 Line *NewLine()
@@ -160,6 +184,7 @@ Line *NewLine()
 
   return line;
 }
+//===================================================================
 
 
 /**

@@ -29,7 +29,21 @@ typedef struct PersonageBase
 }PersonageBase;
 //===================================================================
 
+typedef struct SightBoundry
+{
+  char img[U_LENGHT];
 
+  uint8_t lenght;
+
+  int16_t angle;
+
+  Line *directional_line;
+
+  Line *offset_line;
+
+  Line *limit;
+
+}SightBoundry;
 //===================================================================
 
 /**
@@ -48,13 +62,9 @@ typedef struct Sight
   /** Triangle's height lenght. */
   uint8_t lenght;
 
-  struct Line *bound1;
+  struct SightBoundry *bound1;
 
-  char bound1_img[U_LENGHT];
-
-  struct Line *bound2;
-
-  char bound2_img[U_LENGHT];
+  struct SightBoundry *bound2;
 
   /** Its not displayed, just for colision algorithm. */
   struct Line bound3;
@@ -134,11 +144,5 @@ void InitSight(Sight *sight, uint8_t sightLenght);
 
 
 // ------ END Private Functions
-
-
-
-
-
-
 
 #endif // STRUCTPERSONAGE_H

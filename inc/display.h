@@ -8,6 +8,7 @@
 
 // ---- START Drawing Functions.
 
+void ShowPoint(const Point *point, const char img[]);
 
 void ShowLine(const Line *line, const char img[]);
 

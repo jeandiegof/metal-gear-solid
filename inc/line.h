@@ -85,6 +85,15 @@ typedef struct Line
  */
 
 void LineAppendPoint(const Point *point, Line *line);
+//===================================================================
+
+/**
+ * @brief LineCopy
+ * @param in_line
+ * @param out_line
+ */
+void LineCopy(const Line *in_line, Line *out_line);
+//===================================================================
 
 /**
  * @brief Creates the points that constitute a Line object.
@@ -105,13 +114,14 @@ void LineCreate(const Point *origin,
                 const int16_t angle,
                 const int16_t lenght,
                 Line *line);
+//===================================================================
 
 /**
  * @brief Free the memory used by Line.
  * @param line[out] A Line object.
  */
-
 void DestroyLine(Line *line);
+//===================================================================
 
 /**
  * @brief Returns a Point inside Line at @p index position.
@@ -126,6 +136,7 @@ void DestroyLine(Line *line);
  */
 
 Point LineGetPoint(const uint16_t index, const Line *line);
+//===================================================================
 
 /**
  * @brief Returns a reference for a Point inside Line at @p index position.
@@ -138,8 +149,8 @@ Point LineGetPoint(const uint16_t index, const Line *line);
  * @param line[out]
  * @return The address of some Point inside Line.
  */
-
 Point *LineGetPointRef(const uint16_t index, const Line *line);
+//===================================================================
 
 /**
  * @brief
@@ -148,8 +159,8 @@ Point *LineGetPointRef(const uint16_t index, const Line *line);
  * @param point
  * @param line
  */
-
 void LineInsertPoint(const uint16_t index, const Point *point, Line *line);
+//===================================================================
 
 /**
  * @brief Creates a Line object.
@@ -159,5 +170,6 @@ void LineInsertPoint(const uint16_t index, const Point *point, Line *line);
  * @return A pointer to a Line struct.
  */
 Line *NewLine();
+//===================================================================
 
 #endif // GEOMETRY_H

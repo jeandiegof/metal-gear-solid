@@ -64,12 +64,12 @@ void VectorPointInsert(const uint16_t index,
   vector->data[index] = *value;
 }
 
-uint16_t VectorPointSize(const VectorPoint *vector)
+uint16_t VectorPointGetSize(const VectorPoint *vector)
 {
   return vector->size;
 }
 
-Point VectorPointValue(const int index, const VectorPoint *vector)
+Point VectorPointGetValue(const int index, const VectorPoint *vector)
 {
   if (index >= vector->size || index < 0)
   {

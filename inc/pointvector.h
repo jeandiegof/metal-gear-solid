@@ -101,7 +101,7 @@ void VectorPointInsert(const uint16_t index,
  * @return The number of slots used so far in the vector.
  */
 
-uint16_t VectorPointSize(const VectorPoint *vector);
+uint16_t VectorPointGetSize(const VectorPoint *vector);
 
 /**
  * @brief Returns a Point inside VectorPoint at @p index position.
@@ -118,7 +118,7 @@ uint16_t VectorPointSize(const VectorPoint *vector);
  * @return The value of some Point inside Line.
  */
 
-Point VectorPointValue(const int index, const VectorPoint *vector);
+Point VectorPointGetValue(const int index, const VectorPoint *vector);
 
 /**
  * @brief Returns a reference to a Point inside VectorPoint at @p index position.
