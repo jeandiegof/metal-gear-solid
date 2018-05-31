@@ -6,6 +6,7 @@
 #include "inc/unicodes.h"
 #include "inc/angles.h"
 #include "inc/line.h"
+#include "inc/rectangle.h"
 
 #define SIGHT_LENGHT_MAX_SIZE 5
 
@@ -80,16 +81,22 @@ typedef struct Sight
 
 typedef struct Hostage
 {
-  struct PersonageBase base;
+  struct PersonageBase icon;
 
 }Hostage;
 //===================================================================
 
 typedef struct Enemy
 {
-  struct PersonageBase base;
+  /** Image and its position at the terminal.*/
+  struct PersonageBase icon;
 
   struct Sight sight;
+
+  /** @brief A box around the enemy used for detection algorith and limits
+   *  for translation.
+   */
+  struct Rectangle box;
 
 }Enemy;
 //===================================================================

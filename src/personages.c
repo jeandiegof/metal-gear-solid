@@ -17,11 +17,11 @@ void InitEnemy(const uint8_t x,
                Enemy *enemy)
 {
 	// Init enemy position.
-	enemy->base.point.x = x;
-	enemy->base.point.y = y;
+  enemy->icon.point.x = x;
+  enemy->icon.point.y = y;
 
 	// Init enemy image;
-	strcpy(enemy->base.img, U_ENEMY);
+  strcpy(enemy->icon.img, U_ENEMY);
 
 	// Validates Sight lenght. Should be at least 1.
   if(sight_lenght < 1)
@@ -49,11 +49,11 @@ void InitEnemy(const uint8_t x,
 	// Create sight boundries for an angle of 0 degrees.
 	for(uint8_t i = 1; i <= enemy->sight.lenght; i++)
 	{
-    enemy->sight.bound1.points[i-1].x = enemy->base.point.x + i;
-    enemy->sight.bound1.points[i-1].y = enemy->base.point.y - i;
+    enemy->sight.bound1.points[i-1].x = enemy->icon.point.x + i;
+    enemy->sight.bound1.points[i-1].y = enemy->icon.point.y - i;
 
-    enemy->sight.bound2.points[i-1].x = enemy->base.point.x + i;
-    enemy->sight.bound2.points[i-1].y = enemy->base.point.y + i;
+    enemy->sight.bound2.points[i-1].x = enemy->icon.point.x + i;
+    enemy->sight.bound2.points[i-1].y = enemy->icon.point.y + i;
 	}
 
 

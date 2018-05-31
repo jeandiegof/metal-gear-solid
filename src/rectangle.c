@@ -1,3 +1,4 @@
+#include <ncursesw/ncurses.h>
 #include <math.h>
 
 #include "inc/rectangle.h"
@@ -47,9 +48,8 @@ void RectangleCreate(const Point *corner_1,
                      const Point *corner_2,
                      Rectangle *rectangle)
 {
-
-  rectangle->width  = abs ( corner_2->x - corner_1->x );
-  rectangle->height = abs ( corner_2->y - corner_1->y );
+  rectangle->width  = abs ( corner_2->x - corner_1->x ) + 1;
+  rectangle->height = abs ( corner_2->y - corner_1->y ) + 1;
 
   ValidateCornersInput(corner_1, corner_2, rectangle);
 
@@ -125,8 +125,14 @@ static void ValidateCornersInput(const Point *corner_1,
   // Is a rectangle?
   if(corner_1->x == corner_2->x ||
      corner_1->y == corner_2->y)
-    exit(1);
+  {
 
+    printf("\n\nYou are trying to create some rectangle with invalid parameters.");
+    printf("\n\n\n");
+    exit(1);
+  }
+
+  // IF the corners do make a rectangle THEN:
   // Organize the points, so the rectangle->corner_1 will be in the bottom-left,
   // and the rectangle->corner_2 in the top-right.
 

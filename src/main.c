@@ -43,7 +43,7 @@ int main(void)
  Rectangle *rec = NewRectangle();
 
  Point corn_1 = {4,4};
- Point corn_2 = {40,20};
+ Point corn_2 = {7,7};
 
  RectangleCreate(&corn_1, &corn_2, rec);
 

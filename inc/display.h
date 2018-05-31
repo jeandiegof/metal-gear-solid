@@ -1,9 +1,6 @@
 #ifndef DRAWING_H
 #define DRAWING_H
 
-#include <ncursesw/ncurses.h>
-#include <string.h>
-
 #include "inc/line.h"
 #include "inc/rectangle.h"
 #include "inc/personages.h"

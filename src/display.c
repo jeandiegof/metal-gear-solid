@@ -1,9 +1,12 @@
+#include <ncursesw/ncurses.h>
+#include <string.h>
+
 #include "inc/display.h"
 
 
 void ShowEnemy(Enemy *enemy)
 {
-  ShowPersonage(&(enemy->base));
+  ShowPersonage(&(enemy->icon));
   ShowEnemySight(&(enemy->sight));
   refresh();
 }

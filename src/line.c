@@ -2,6 +2,8 @@
 
 #include "inc/line.h"
 
+#define LINE_LENGHT_MIN 1
+
 static void LineUpdateMaxMinPoints(const Point *point, Line *line);
 
 void LineAppendPoint(const Point *point, Line *line)
@@ -31,14 +33,14 @@ void LineCreate(const Point *origin,
   Point new_point;
 
   // Validates and set line->lenght.
-  // Lenght should be greater or equal to 2.
-  if(lenght >= 2)
+  // Lenght should be greater or equal to 1.
+  if(lenght >= LINE_LENGHT_MIN)
 
     line->lenght = lenght;
 
   else
 
-    line->lenght = 2;
+    line->lenght = LINE_LENGHT_MIN;
 
   // The first point is created based on the 'origin' argument.
   LineAppendPoint(origin, line);
@@ -99,7 +101,7 @@ void LineCreate(const Point *origin,
   }
 
   // Builds the Line point by point, based on the parametric equation.
-  for(uint8_t i = 1; i < lenght; i++)
+  for(uint8_t i = 1; i < line->lenght; i++)
   {
     new_point.x = origin->x + ( i * directional_vector.x );
     new_point.y = origin->y + ( i * directional_vector.y );
