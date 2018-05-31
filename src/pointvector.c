@@ -2,8 +2,21 @@
 
 #include "inc/pointvector.h"
 
+/**
+ * @brief Increase the underlying data array capacity
+ * if @p vector->size >= @p vector->capacity.
+ *
+ * This function expand data array capacity by allocating a number of slots
+ * equal to VECTOR_POINT_DEFAULT_CAPACITY.
+ *
+ * @code
+ *  vector->capacity += VECTOR_POINT_DEFAULT_CAPACITY;
+    vector->data = realloc(vector->data, sizeof(Point) * vector->capacity);
+ * @endcode
+ *
+ * @param vector[out]
+ */
 static void VectorPointResizeIfFull(VectorPoint *vector);
-
 
 void VectorPointAppend(const Point *value, VectorPoint *vector)
 {
@@ -14,12 +27,10 @@ void VectorPointAppend(const Point *value, VectorPoint *vector)
   vector->data[vector->size++] = *value;
 }
 
-
 void DestroyVectorPoint(VectorPoint *vector)
 {
   free(vector->data);
 }
-
 
 VectorPoint *NewVectorPoint()
 {
@@ -35,7 +46,6 @@ VectorPoint *NewVectorPoint()
 
   return vector;
 }
-
 
 void VectorPointInsert(const uint16_t index,
                        const Point *value,
@@ -54,12 +64,10 @@ void VectorPointInsert(const uint16_t index,
   vector->data[index] = *value;
 }
 
-
 uint16_t VectorPointSize(const VectorPoint *vector)
 {
   return vector->size;
 }
-
 
 Point VectorPointValue(const int index, const VectorPoint *vector)
 {
@@ -72,7 +80,6 @@ Point VectorPointValue(const int index, const VectorPoint *vector)
   return vector->data[index];
 }
 
-
 Point *VectorPointValueRef(const int index, const VectorPoint *vector)
 {
   if (index >= vector->size || index < 0)
@@ -84,27 +91,7 @@ Point *VectorPointValueRef(const int index, const VectorPoint *vector)
   return vector->data+index;
 }
 
-
-
-
-
 // ---- START Private Functions.
-
-/**
- * @brief Increase the underlying data array capacity
- * if @p vector->size >= @p vector->capacity.
- *
- * This function expand data array capacity by allocating a number of slots
- * equal to VECTOR_POINT_DEFAULT_CAPACITY.
- *
- * @code
- *  vector->capacity += VECTOR_POINT_DEFAULT_CAPACITY;
-    vector->data = realloc(vector->data, sizeof(Point) * vector->capacity);
- * @endcode
- *
- * @param vector[out]
- */
-
 static void VectorPointResizeIfFull(VectorPoint *vector)
 {
   if (vector->size >= vector->capacity)
@@ -113,8 +100,4 @@ static void VectorPointResizeIfFull(VectorPoint *vector)
     vector->data = realloc(vector->data, sizeof(Point) * vector->capacity);
   }
 }
-
 // ---- END Private Functions.
-
-
-

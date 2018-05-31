@@ -17,6 +17,7 @@ void DestroyRectangle(Rectangle *rectangle)
   DestroyLine(rectangle->right_line);
   DestroyLine(rectangle->top_line);
   DestroyLine(rectangle->left_line);
+  free(rectangle);
 }
 
 Rectangle *NewRectangle()
@@ -86,8 +87,6 @@ void RectangleCreate(const Point *corner_1,
 
   RectangleUpdateMaxMinPoints(rectangle->left_line, rectangle);
 }
-
-
 
 /**
  * @brief Finds if a specific point has values greater or smaller than

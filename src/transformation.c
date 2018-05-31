@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <math.h>
 
 #include "inc/debug.h"
@@ -140,69 +141,69 @@ void TranslateW(const int16_t scalar, Point *point)
 
 void SetBoundryOffset(Sight *sight)
 {
-	// Make tweaks in x position, by changing offset value based on angle.
-	switch(sight->angle)
-	{
-  case ANGLE_0:
-		for(uint8_t i=0; i < sight->lenght; i++)
-		{
-			sight->bound1.offset[i].x = i;
-			sight->bound2.offset[i].x = i;
-		}
-		break;
+//	// Make tweaks in x position, by changing offset value based on angle.
+//	switch(sight->angle)
+//	{
+//  case ANGLE_0:
+//		for(uint8_t i=0; i < sight->lenght; i++)
+//		{
+//			sight->bound1.offset[i].x = i;
+//			sight->bound2.offset[i].x = i;
+//		}
+//		break;
 
-  case ANGLE_45:
-		for(uint8_t i=0; i < sight->lenght; i++)
-		{
-			sight->bound2.offset[i].x = i+1;
-		}
-		break;
+//  case ANGLE_45:
+//		for(uint8_t i=0; i < sight->lenght; i++)
+//		{
+//			sight->bound2.offset[i].x = i+1;
+//		}
+//		break;
 
-  case ANGLE_90:
-		for(uint8_t i=0; i < sight->lenght; i++)
-		{
-			sight->bound1.offset[i].x = -i;
-			sight->bound2.offset[i].x =  i;
-		}
-		break;
+//  case ANGLE_90:
+//		for(uint8_t i=0; i < sight->lenght; i++)
+//		{
+//			sight->bound1.offset[i].x = -i;
+//			sight->bound2.offset[i].x =  i;
+//		}
+//		break;
 
-  case ANGLE_135:
-		for(uint8_t i=0; i < sight->lenght; i++)
-		{
-			sight->bound1.offset[i].x = -i-1;
-		}
-		break;
+//  case ANGLE_135:
+//		for(uint8_t i=0; i < sight->lenght; i++)
+//		{
+//			sight->bound1.offset[i].x = -i-1;
+//		}
+//		break;
 
-  case ANGLE_180:
-		for(uint8_t i=0; i < sight->lenght; i++)
-		{
-			sight->bound1.offset[i].x = -i;
-			sight->bound2.offset[i].x = -i;
-		}
-		break;
+//  case ANGLE_180:
+//		for(uint8_t i=0; i < sight->lenght; i++)
+//		{
+//			sight->bound1.offset[i].x = -i;
+//			sight->bound2.offset[i].x = -i;
+//		}
+//		break;
 
-  case ANGLE_225:
-		for(uint8_t i=0; i < sight->lenght; i++)
-		{
-			sight->bound2.offset[i].x = -i-1;
-		}
-		break;
+//  case ANGLE_225:
+//		for(uint8_t i=0; i < sight->lenght; i++)
+//		{
+//			sight->bound2.offset[i].x = -i-1;
+//		}
+//		break;
 
-  case ANGLE_270:
-		for(uint8_t i=0; i < sight->lenght; i++)
-		{
-			sight->bound1.offset[i].x =  i;
-			sight->bound2.offset[i].x = -i;
-		}
-		break;
+//  case ANGLE_270:
+//		for(uint8_t i=0; i < sight->lenght; i++)
+//		{
+//			sight->bound1.offset[i].x =  i;
+//			sight->bound2.offset[i].x = -i;
+//		}
+//		break;
 
-  case ANGLE_315:
-		for(uint8_t i=0; i < sight->lenght; i++)
-		{
-			sight->bound1.offset[i].x = i+1;
-		}
-		break;
-	}
+//  case ANGLE_315:
+//		for(uint8_t i=0; i < sight->lenght; i++)
+//		{
+//			sight->bound1.offset[i].x = i+1;
+//		}
+//		break;
+//	}
 }
 //===================================================================
 

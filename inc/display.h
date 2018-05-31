@@ -13,23 +13,12 @@ void ShowLine(const Line *line, const char img[]);
 
 void ShowRectangle(const Rectangle *rectangle, const char img[]);
 
-/**
- *
- */
 void ShowEnemy(Enemy *enemy);
 //===================================================================
 
-
-/**
- *
- */
-void ShowPersonage(PersonageBase *personage);
+void ShowPersonageBase(PersonageBase *personage);
 //===================================================================
 
-
-/**
- *
- */
 void ShowEnemySight(Sight *sight);
 //===================================================================
 

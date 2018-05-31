@@ -6,10 +6,6 @@
 #include "inc/line.h"
 #include "inc/personages.h"
 
-void dSightBoundrypoints(Sight *sight);
-
-void DebugSightBoundryPointsOffset(Sight *sight);
-
 void dFlag();
 
 void DebugInt(int input);

@@ -1,8 +1,6 @@
 #ifndef MATRIXMATH_H
 #define MATRIXMATH_H
 
-#include <stdint.h>
-
 #include "inc/personages.h"
 
 
@@ -26,16 +24,5 @@ void TranslateS(const int16_t scalar, Point *point);
 
 void TranslateW(const int16_t scalar, Point *point);
 
-
-
-
-
-// ---- START Private Functions
-
-void SetBoundryOffset(Sight *sight);
-
-void FillAreaPoints(Sight *sight);
-
-// ---- END Private Functions
 
 #endif // MATRIXMATH_H

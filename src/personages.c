@@ -8,62 +8,146 @@
  * the same spot as the enemy. The return should be a boolean type.
 */
 
-#include "inc/personages.h"
+#include <stdlib.h>
 #include <string.h>
 
-void InitEnemy(const uint8_t x,
-               const uint8_t y,
-               const uint8_t sight_lenght,
-               Enemy *enemy)
-{
-	// Init enemy position.
-  enemy->icon.point.x = x;
-  enemy->icon.point.y = y;
+#include "inc/personages.h"
 
-	// Init enemy image;
+#define SIGHT_LENGHT_MIN_SIZE 1
+#define SIGHT_LENGHT_MAX_SIZE 5
+
+/**
+ * @brief Creates a Sight object.
+ *
+ * Creates a Sight object using malloc().
+ *
+ * @return A pointer to a Sight struct.
+ */
+static Sight *NewSight();
+
+static void DestroySight(Sight *sight);
+/**
+ * @brief Validates sight's lenght.
+ *
+ * Checks if sight's lenght is within the range set by the macros in the
+ * begining of this file. If not, set the value of sight lenght so it don't
+ * violates the range.
+ *
+ * @param sight_lenght[in]
+ * @param sight[out]
+ */
+static void SightLenghtPolicy(const uint8_t sight_lenght, Sight *sight);
+
+/**
+ * @brief SightCreateBoundryLines
+ *
+ * @param origin[in]
+ */
+static void SightCreateBoundries(const Point *origin, Sight *sight);
+
+
+
+
+Enemy *NewEnemy(const Point *origin, const uint8_t sight_lenght)
+{
+  // Create Enemy object.
+  Enemy *enemy = malloc(sizeof(Enemy));
+
+	// Init enemy position.
+  enemy->icon.point = *origin;
+
+  // Init enemy image.
   strcpy(enemy->icon.img, U_ENEMY);
 
-	// Validates Sight lenght. Should be at least 1.
-  if(sight_lenght < 1)
-		enemy->sight.lenght = 1;
-	else
-    enemy->sight.lenght = sight_lenght;
+  // Create Enemy's Sight object.
+  enemy->sight = NewSight();
 
-  enemy->sight.angle = ANGLE_0;
+  // Set Boundries with characters for an angle = 0°.
+  strcpy(enemy->sight->bound1_img, U_DOTLINE_NE);
+  strcpy(enemy->sight->bound2_img, U_DOTLINE_NW);
 
-	// Set each boundry's angle to +- 45° from main angle, 0° in this case.
-  enemy->sight.bound1.angle = ANGLE_45;
-  enemy->sight.bound2.angle = ANGLE_315;
-	//
-  enemy->sight.bound3.angle = ANGLE_90;
+  // Validates sight's lenght.
+  SightLenghtPolicy(sight_lenght, enemy->sight);
 
-	// Init boundries offset with 0.
-	for(uint8_t i = 0; i < SIGHT_LENGHT_MAX_SIZE; i++)
-	{
-    enemy->sight.bound1.offset[i].x = 0;
-    enemy->sight.bound1.offset[i].y = 0;
-    enemy->sight.bound2.offset[i].x = 0;
-    enemy->sight.bound2.offset[i].y = 0;
-	}
+  // Create a Line object for both sight's boundries.
+  SightCreateBoundries(&(enemy->icon.point), enemy->sight);
 
-	// Create sight boundries for an angle of 0 degrees.
-	for(uint8_t i = 1; i <= enemy->sight.lenght; i++)
-	{
-    enemy->sight.bound1.points[i-1].x = enemy->icon.point.x + i;
-    enemy->sight.bound1.points[i-1].y = enemy->icon.point.y - i;
-
-    enemy->sight.bound2.points[i-1].x = enemy->icon.point.x + i;
-    enemy->sight.bound2.points[i-1].y = enemy->icon.point.y + i;
-	}
-
-
-	// TODO: Create sight boundry 3 for an angle of 0°.
-//	for(uint8_t i = 0; i <= enemy; i++)
-//	{
-//		enemy->sight.boundry3.
-//	}
-
-  strcpy(enemy->sight.bound1.img, U_DOTLINE_NE);
-  strcpy(enemy->sight.bound2.img, U_DOTLINE_NW);
+  return enemy;
 }
 
+void DestroyEnemy(Enemy *enemy)
+{
+  DestroySight(enemy->sight);
+  free(enemy);
+}
+
+static Sight *NewSight()
+{
+  Sight *sight = malloc(sizeof(Sight));
+
+  // Create Sight's Boundry 1 object;
+  sight->bound1 = NewLine();
+
+  // Create Sight's Boundry 2 object;
+  sight->bound2 = NewLine();
+
+  sight->angle = ANGLE_0;
+
+  sight->bound1->angle = ANGLE_45;
+
+  sight->bound2->angle = ANGLE_315;
+
+  sight->lenght = 0;
+
+  return sight;
+}
+
+static void DestroySight(Sight *sight)
+{
+  DestroyLine(sight->bound1);
+  DestroyLine(sight->bound2);
+  free(sight);
+}
+
+static void SightLenghtPolicy(const uint8_t sight_lenght, Sight *sight)
+{
+  if(sight_lenght >= SIGHT_LENGHT_MAX_SIZE)
+
+    sight->lenght = SIGHT_LENGHT_MAX_SIZE;
+
+  else if(sight_lenght <= SIGHT_LENGHT_MIN_SIZE)
+
+    sight->lenght = SIGHT_LENGHT_MIN_SIZE;
+
+  else
+
+    sight->lenght = sight_lenght;
+}
+
+
+static void SightCreateBoundries(const Point *origin, Sight *sight)
+{
+  // Auxiliar variable to place points in the proper position.
+  Point aux_point;
+
+  // Set X coordinate for both boundries.
+  aux_point.x = origin->x + 1;
+
+  // Set Y for Boundry 1.
+  aux_point.y = origin->y - 1;
+
+  // Create Line object for Boundry 1.
+  LineCreate(&aux_point,
+             sight->bound1->angle,
+             sight->lenght,
+             sight->bound1);
+
+  // Set Y for Boundry 2.
+  aux_point.y = origin->y + 1;
+
+  // Create Line object for Boundry 2.
+  LineCreate(&aux_point,
+             sight->bound2->angle,
+             sight->lenght,
+             sight->bound2);
+}

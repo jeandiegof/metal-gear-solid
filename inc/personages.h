@@ -8,9 +8,6 @@
 #include "inc/line.h"
 #include "inc/rectangle.h"
 
-#define SIGHT_LENGHT_MAX_SIZE 5
-
-
 // ---- START Abstract Structs.
 
 /**
@@ -32,17 +29,7 @@ typedef struct PersonageBase
 }PersonageBase;
 //===================================================================
 
-typedef struct Boundry
-{
-	char img[U_LENGHT];
 
-  Point points[SIGHT_LENGHT_MAX_SIZE];
-
-  struct Point offset[SIGHT_LENGHT_MAX_SIZE]; /**< Hack, magical numbers.*/
-
-  int16_t angle;
-
-}Boundry;
 //===================================================================
 
 /**
@@ -61,12 +48,16 @@ typedef struct Sight
   /** Triangle's height lenght. */
   uint8_t lenght;
 
-  struct Boundry bound1;
+  struct Line *bound1;
 
-  struct Boundry bound2;
+  char bound1_img[U_LENGHT];
+
+  struct Line *bound2;
+
+  char bound2_img[U_LENGHT];
 
   /** Its not displayed, just for colision algorithm. */
-  struct Boundry bound3;
+  struct Line bound3;
 
 }Sight;
 //===================================================================
@@ -91,7 +82,7 @@ typedef struct Enemy
   /** Image and its position at the terminal.*/
   struct PersonageBase icon;
 
-  struct Sight sight;
+  struct Sight *sight;
 
   /** @brief A box around the enemy used for detection algorith and limits
    *  for translation.
@@ -125,17 +116,9 @@ typedef struct Hero
 
 void InitBase();
 
-/**
- * @brief
- * @param[in]  x
- * @param[in]  y
- * @param[in]  sight_lenght
- * @param[out] enemy
- */
-void InitEnemy(const uint8_t x,
-               const uint8_t y,
-               const uint8_t sight_lenght,
-               Enemy *enemy);
+Enemy *NewEnemy(const Point *origin, const uint8_t sight_lenght);
+
+void DestroyEnemy(Enemy *enemy);
 
 void InitHero();
 

@@ -11,13 +11,15 @@
 int main(void)
 {
 
-// struct Enemy enemy;
-// int x = 40, y = 10;
+  InitWindow();
 
- InitWindow();
+  Point origin = {40,10};
 
-// InitEnemy(x, y, 3, &enemy);
+  Enemy *enemy = NewEnemy(&origin, 3);
 
+  ShowEnemy(enemy);
+
+  DestroyEnemy(enemy);
 // RotateSight(ANGLE_0, &(enemy.sight));
 
 // DrawEnemy(&enemy);
@@ -35,21 +37,16 @@ int main(void)
 //// Rotate45(LineGetPointRef(0,line), line);
 // Rotate180(LineGetPointRef(0,line), line);
 
-//// DebugLine(line);
-// ShowLine(line, "\\");
+// Rectangle *rec = NewRectangle();
 
-// DestroyLine(line);
+// Point corn_1 = {4,4};
+// Point corn_2 = {7,7};
 
- Rectangle *rec = NewRectangle();
+// RectangleCreate(&corn_1, &corn_2, rec);
 
- Point corn_1 = {4,4};
- Point corn_2 = {7,7};
+// ShowRectangle(rec, "#");
 
- RectangleCreate(&corn_1, &corn_2, rec);
-
- ShowRectangle(rec, "#");
-
- DestroyRectangle(rec);
+// DestroyRectangle(rec);
 
  while(1);
 
