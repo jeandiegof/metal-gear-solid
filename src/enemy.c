@@ -11,7 +11,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "inc/personages.h"
+#include "inc/angles.h"
+#include "inc/enemy.h"
+#include "inc/transformation.h"
 
 #define SIGHT_LENGHT_MIN_SIZE 1
 #define SIGHT_LENGHT_MAX_SIZE 5
@@ -26,14 +28,14 @@
  * @return A pointer to a SightBoundry struct.
  */
 static SightBoundry *NewSightBoundry();
-//===================================================================
+
 
 /**
  * @brief Free the memory used by SightBoundry.
  * @param sight[out] A SightBoundry object.
  */
 static void DestroySightBoundry(SightBoundry *boundry);
-//===================================================================
+
 
 /**
  * @brief Creates a Sight object.
@@ -43,14 +45,14 @@ static void DestroySightBoundry(SightBoundry *boundry);
  * @return A pointer to a Sight struct.
  */
 static Sight *NewSight();
-//===================================================================
+
 
 /**
  * @brief Free the memory used by Sight.
  * @param sight[out] A Sight object.
  */
 static void DestroySight(Sight *sight);
-//===================================================================
+
 
 /**
  * @brief SightBoundryCreateDirectionalLine
@@ -59,10 +61,14 @@ static void DestroySight(Sight *sight);
  */
 static void SightBoundryCreateDirectionalLine(const Point *origin,
                                               SightBoundry *boundry);
-//===================================================================
 
+
+/**
+ * @brief SightBoundryCreateOffsetLine
+ * @param boundry
+ */
 static void SightBoundryCreateOffsetLine(SightBoundry *boundry);
-//===================================================================
+
 
 /**
  * @brief Validates sight's lenght.
@@ -75,7 +81,7 @@ static void SightBoundryCreateOffsetLine(SightBoundry *boundry);
  * @param sight[out]
  */
 static void SightLenghtPolicy(const uint8_t sight_lenght, Sight *sight);
-//===================================================================
+
 
 /**
  * @brief SightCreateBoundryLines
@@ -83,7 +89,9 @@ static void SightLenghtPolicy(const uint8_t sight_lenght, Sight *sight);
  * @param origin[in]
  */
 static void SightCreateBoundries(const Point *origin, Sight *sight);
-//===================================================================
+
+
+static void SightBoundrytSetOffsetLine(SightBoundry *boundry);
 
 // ----- END Static Functions Prototypes
 
@@ -112,14 +120,67 @@ Enemy *NewEnemy(const Point *origin, const uint8_t sight_lenght)
   // Create a Line object for both sight's boundries.
   SightCreateBoundries(&(enemy->icon.point), enemy->sight);
 
+  // Create Enemy's box.
+  enemy->box = NewRectangle();
+
+  Point corner_1;
+  Point corner_2;
+
+  corner_1.x = enemy->icon.point.x - enemy->sight->lenght*2;
+  corner_1.y = enemy->icon.point.y + enemy->sight->lenght;
+
+  corner_2.x = enemy->icon.point.x + enemy->sight->lenght*2;
+  corner_2.y = enemy->icon.point.y - enemy->sight->lenght;
+
+  RectangleCreate(&corner_1, &corner_2, enemy->box);
+
   return enemy;
 }
 //===================================================================
 
+
 void DestroyEnemy(Enemy *enemy)
 {
   DestroySight(enemy->sight);
+  DestroyRectangle(enemy->box);
   free(enemy);
+}
+//===================================================================
+
+
+void SightUpdate(Sight *sight)
+{
+  // Update offset_line coordinates for given orientation.
+  SightBoundrytSetOffsetLine(sight->bound1);
+  SightBoundrytSetOffsetLine(sight->bound2);
+
+  // Display boundries with proper image for given orientation.
+  switch (sight->angle)
+  {
+  case ANGLE_0:
+  case ANGLE_180:
+    strcpy(sight->bound1->img, U_DOTLINE_NE);
+    strcpy(sight->bound2->img, U_DOTLINE_NW);
+    break;
+
+  case ANGLE_45:
+  case ANGLE_225:
+    strcpy(sight->bound1->img, U_DOTLINE_V);
+    strcpy(sight->bound2->img, U_DOTLINE_H);
+    break;
+
+  case ANGLE_90:
+  case ANGLE_270:
+    strcpy(sight->bound1->img, U_DOTLINE_NW);
+    strcpy(sight->bound2->img, U_DOTLINE_NE);
+    break;
+
+  case ANGLE_135:
+  case ANGLE_315:
+    strcpy(sight->bound1->img, U_DOTLINE_H);
+    strcpy(sight->bound2->img, U_DOTLINE_V);
+    break;
+  }
 }
 //===================================================================
 
@@ -139,20 +200,19 @@ static SightBoundry *NewSightBoundry()
 
   boundry->offset_line = NewLine();
 
-  boundry->limit = NewLine();
-
   return boundry;
 }
 //===================================================================
+
 
 static void DestroySightBoundry(SightBoundry *boundry)
 {
   DestroyLine(boundry->directional_line);
   DestroyLine(boundry->offset_line);
-  DestroyLine(boundry->limit);
   free(boundry);
 }
 //===================================================================
+
 
 static Sight *NewSight()
 {
@@ -179,6 +239,7 @@ static Sight *NewSight()
 }
 //===================================================================
 
+
 static void DestroySight(Sight *sight)
 {
   DestroySightBoundry(sight->bound1);
@@ -186,6 +247,7 @@ static void DestroySight(Sight *sight)
   free(sight);
 }
 //===================================================================
+
 
 static void SightBoundryCreateDirectionalLine(const Point *origin,
                                               SightBoundry *boundry)
@@ -197,20 +259,15 @@ static void SightBoundryCreateDirectionalLine(const Point *origin,
 }
 //===================================================================
 
+
 static void SightBoundryCreateOffsetLine(SightBoundry *boundry)
 {
   LineCopy(boundry->directional_line, boundry->offset_line);
 
-  Point *aux_point;
-
-  for(uint16_t i = 1; i < boundry->lenght; i++)
-  {
-    aux_point = LineGetPointRef(i, boundry->offset_line);
-    aux_point->x += i;
-    LineInsertPoint(i, aux_point, boundry->offset_line);
-  }
+  SightBoundrytSetOffsetLine(boundry);
 }
 //===================================================================
+
 
 static void SightLenghtPolicy(const uint8_t sight_lenght, Sight *sight)
 {
@@ -231,6 +288,7 @@ static void SightLenghtPolicy(const uint8_t sight_lenght, Sight *sight)
   sight->bound2->lenght= sight->lenght;
 }
 //===================================================================
+
 
 static void SightCreateBoundries(const Point *origin, Sight *sight)
 {
@@ -257,6 +315,66 @@ static void SightCreateBoundries(const Point *origin, Sight *sight)
 
   // Create offset_line object for Boundry 2.
   SightBoundryCreateOffsetLine(sight->bound2);
+
+
+}
+//===================================================================
+
+
+static void SightBoundrytSetOffsetLine(SightBoundry *boundry)
+{
+  Point aux_point;
+
+  // Make tweaks in x position, by changing offset value based on angle.
+  switch (boundry->angle)
+  {
+    case ANGLE_0:
+      for(uint8_t i = 0; i < boundry->lenght; i++)
+      {
+        aux_point = LineGetPoint(i, boundry->directional_line);
+        TranslateE(i+1, &aux_point);
+        LineInsertPoint(i, &aux_point, boundry->offset_line);
+      }
+      break;
+
+    case ANGLE_180:
+      for(uint8_t i = 0; i < boundry->lenght; i++)
+      {
+        aux_point = LineGetPoint(i, boundry->directional_line);
+        TranslateE(-i-1, &aux_point);
+        LineInsertPoint(i, &aux_point, boundry->offset_line);
+      }
+      break;
+
+    case ANGLE_90:
+    case ANGLE_270:
+      for(uint8_t i = 0; i < boundry->lenght; i++)
+      {
+        aux_point = LineGetPoint(i, boundry->directional_line);
+        LineInsertPoint(i, &aux_point, boundry->offset_line);
+      }
+      break;
+
+    case ANGLE_45:
+    case ANGLE_315:
+      for(uint8_t i = 0; i < boundry->lenght; i++)
+      {
+        aux_point = LineGetPoint(i, boundry->directional_line);
+        TranslateE(i, &aux_point);
+        LineInsertPoint(i, &aux_point, boundry->offset_line);
+      }
+      break;
+
+    case ANGLE_135:
+    case ANGLE_225:
+      for(uint8_t i = 0; i < boundry->lenght; i++)
+      {
+        aux_point = LineGetPoint(i, boundry->directional_line);
+        TranslateW(i, &aux_point);
+        LineInsertPoint(i, &aux_point, boundry->offset_line);
+      }
+      break;
+  }
 }
 //===================================================================
 

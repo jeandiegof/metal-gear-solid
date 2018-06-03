@@ -1,6 +1,6 @@
 // vector.c
 
-#include "inc/pointvector.h"
+#include "inc/point_vector.h"
 
 /**
  * @brief Increase the underlying data array capacity

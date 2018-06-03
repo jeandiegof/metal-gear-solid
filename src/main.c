@@ -5,7 +5,7 @@
 #include "inc/line.h"
 #include "inc/rectangle.h"
 #include "inc/window.h"
-#include "inc/personages.h"
+#include "inc/enemy.h"
 #include "inc/display.h"
 
 int main(void)
@@ -17,36 +17,16 @@ int main(void)
 
   Enemy *enemy = NewEnemy(&origin, 3);
 
+  RotateEnemy(ANGLE_0, enemy);
+
+  TranslateEnemy(kEast, 10, enemy);
+  TranslateEnemy(kNorth, 5, enemy);
+
   ShowEnemy(enemy);
 
+//  ShowRectangle(enemy->box, "#");
+
   DestroyEnemy(enemy);
-// RotateSight(ANGLE_0, &(enemy.sight));
-
-// DrawEnemy(&enemy);
-
-// Line *line = NewLine();
-
-// Point origin = {40,10};
-// Point p2 = {42,10};
-
-// LineCreate(&origin, ANGLE_0, 4, line);
-
-// Rotate45(LineGetPointRef(0,line), line);
-// Rotate45(LineGetPointRef(0,line), line);
-//// Rotate45(LineGetPointRef(0,line), line);
-//// Rotate45(LineGetPointRef(0,line), line);
-// Rotate180(LineGetPointRef(0,line), line);
-
-// Rectangle *rec = NewRectangle();
-
-// Point corn_1 = {4,4};
-// Point corn_2 = {7,7};
-
-// RectangleCreate(&corn_1, &corn_2, rec);
-
-// ShowRectangle(rec, "#");
-
-// DestroyRectangle(rec);
 
  while(1);
 

@@ -42,13 +42,14 @@ void ShowPersonageBase(PersonageBase *personage)
 
 void ShowEnemySight(Sight *sight)
 {
+  // Print in blue color.
+  attron(COLOR_PAIR(2));
   ShowLine(sight->bound1->offset_line, sight->bound1->img);
   ShowLine(sight->bound2->offset_line, sight->bound2->img);
 
-//  ShowPoint(LineGetPointRef(1, sight->bound1->directional_line), "8");
-//  refresh();
-//  ShowLine(sight->bound1->directional_line, "8");
-//  ShowLine(sight->bound2->directional_line, "8");
+//  attron(COLOR_PAIR(1));
+//  ShowLine(sight->bound1->directional_line, sight->bound1->img);
+//  ShowLine(sight->bound2->directional_line, sight->bound2->img);
 }
 //===================================================================
 
@@ -57,45 +58,6 @@ void ShowEnemy(Enemy *enemy)
 {
   ShowPersonageBase(&(enemy->icon));
   ShowEnemySight(enemy->sight);
-}
-//===================================================================
-
-
-void UpdateDotLineSightImg(Sight *sight)
-{
-//	// Display boundries with proper orientation.
-//	switch (sight->angle)
-//	{
-//  case ANGLE_0:
-//  case ANGLE_180:
-//    strcpy(sight->bound1_img, U_DOTLINE_NE);
-//    strcpy(sight->bound2_img, U_DOTLINE_NW);
-//		break;
-
-//  case ANGLE_45:
-//  case ANGLE_225:
-//    strcpy(sight->bound1_img, U_DOTLINE_V);
-//    strcpy(sight->bound2_img, U_DOTLINE_H);
-//		break;
-
-//  case ANGLE_90:
-//  case ANGLE_270:
-//    strcpy(sight->bound1_img, U_DOTLINE_NW);
-//    strcpy(sight->bound2_img, U_DOTLINE_NE);
-//		break;
-
-//  case ANGLE_135:
-//  case ANGLE_315:
-//    strcpy(sight->bound1_img, U_DOTLINE_H);
-//    strcpy(sight->bound2_img, U_DOTLINE_V);
-//		break;
-
-//	default:
-//		printw("\n\nError in drawing.c -> updateDotLineSightImg() -> switch()\n\n");
-//		refresh();
-//		while (1);
-//		break;
-//	}
 }
 //===================================================================
 

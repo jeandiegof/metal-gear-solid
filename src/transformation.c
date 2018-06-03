@@ -1,46 +1,9 @@
 #include <stdint.h>
 #include <math.h>
 
+#include "inc/log.h"
 #include "inc/debug.h"
 #include "inc/transformation.h"
-
-//void RotateSight(const int16_t angle, Sight *sight)
-//{
-//	uint8_t repeats;
-
-//  repeats = angle / ANGLE_45;
-
-//	for(uint8_t j = 0; j < repeats; j++)
-//	{
-//		for(uint8_t i = 0; i < sight->lenght; i++)
-//		{
-//      Rotate45(i+1,
-//           &(sight->bound1.points[i]),
-//           &(sight->bound1.angle));
-
-//      Rotate45(i+1,
-//           &(sight->bound2.points[i]),
-//           &(sight->bound2.angle));
-//		}
-
-//    sight->angle += ANGLE_45;
-//    sight->bound1.angle += ANGLE_45;
-//    sight->bound2.angle += ANGLE_45;
-
-
-//    if(sight->angle > ANGLE_315)
-//      sight->angle = ANGLE_0;
-
-//    if(sight->bound1.angle > ANGLE_315)
-//      sight->bound1.angle = ANGLE_0;
-
-//    if(sight->bound2.angle > ANGLE_315)
-//      sight->bound2.angle = ANGLE_0;
-//	}
-
-//  SetBoundryOffset(sight);
-//}
-//===================================================================
 
 
 void Rotate45(const Point *origin_point, Line *line)
@@ -85,7 +48,11 @@ void Rotate45(const Point *origin_point, Line *line)
         break;
     }
   }
-  line->angle += ANGLE_45;
+
+  if(line->angle == ANGLE_315)
+    line->angle = ANGLE_0;
+  else
+    line->angle += ANGLE_45;
 }
 //===================================================================
 
@@ -108,103 +75,155 @@ void Rotate180(const Point *origin_point, Line *line)
 
     LineInsertPoint( i, &new_point, line );
   }
+
+  line->angle += ANGLE_180;
+  if(line->angle > ANGLE_315)
+    line->angle -= 360;
 }
 //===================================================================
 
-void TranslateE(const int16_t scalar, Point *point)
+void RotateEnemy(const uint16_t rotation_angle, Enemy *enemy)
+{
+  // Validates rotation_angle
+  switch (rotation_angle)
+  {
+    case ANGLE_0:
+    case ANGLE_45:
+    case ANGLE_90:
+    case ANGLE_135:
+    case ANGLE_180:
+    case ANGLE_225:
+    case ANGLE_270:
+    case ANGLE_315:
+      break;
+    default:
+      exit(1);
+      break;
+  }
+
+  int16_t counter_angle = rotation_angle;
+
+  if( counter_angle >= ANGLE_180 )
+  {
+    Rotate180(&(enemy->icon.point), enemy->sight->bound1->directional_line);
+    Rotate180(&(enemy->icon.point), enemy->sight->bound2->directional_line);
+
+    counter_angle -= ANGLE_180;
+  }
+
+  for(uint8_t i = 0; counter_angle > 0; i++)
+  {
+    Rotate45(&(enemy->icon.point), enemy->sight->bound1->directional_line);
+    Rotate45(&(enemy->icon.point), enemy->sight->bound2->directional_line);
+
+    counter_angle -= ANGLE_45;
+  }
+
+  // Update sight's angle variable.
+  enemy->sight->angle += rotation_angle;
+
+  // Update boundries's angle variables.
+  enemy->sight->bound1->angle = enemy->sight->bound1->directional_line->angle;
+  enemy->sight->bound2->angle = enemy->sight->bound2->directional_line->angle;
+
+  SightUpdate(enemy->sight);
+}
+//===================================================================
+
+void TranslateE(const uint16_t scalar, Point *point)
 {
   point->x = point->x + scalar;
 }
 //===================================================================
 
 
-void TranslateN(const int16_t scalar, Point *point)
+void TranslateN(const uint16_t scalar, Point *point)
 {
   point->y = point->y - scalar;
 }
 //===================================================================
 
 
-void TranslateS(const int16_t scalar, Point *point)
+void TranslateS(const uint16_t scalar, Point *point)
 {
   point->y = point->y + scalar;
 }
 //===================================================================
 
 
-void TranslateW(const int16_t scalar, Point *point)
+void TranslateW(const uint16_t scalar, Point *point)
 {
 	point->x = point->x - scalar;
 }
 //===================================================================
 
 
-void SetBoundryOffset(Sight *sight)
+void TranslatePoint(const Translation direction,
+                    const uint16_t scalar,
+                    Point *point)
 {
-//	// Make tweaks in x position, by changing offset value based on angle.
-//	switch(sight->angle)
-//	{
-//  case ANGLE_0:
-//		for(uint8_t i=0; i < sight->lenght; i++)
-//		{
-//			sight->bound1.offset[i].x = i;
-//			sight->bound2.offset[i].x = i;
-//		}
-//		break;
+  switch (direction)
+  {
+    case kEast:
+      TranslateE(scalar, point);
+      break;
 
-//  case ANGLE_45:
-//		for(uint8_t i=0; i < sight->lenght; i++)
-//		{
-//			sight->bound2.offset[i].x = i+1;
-//		}
-//		break;
+    case kNorth:
+      TranslateN(scalar, point);
+      break;
 
-//  case ANGLE_90:
-//		for(uint8_t i=0; i < sight->lenght; i++)
-//		{
-//			sight->bound1.offset[i].x = -i;
-//			sight->bound2.offset[i].x =  i;
-//		}
-//		break;
+    case kSouth:
+      TranslateS(scalar, point);
+      break;
 
-//  case ANGLE_135:
-//		for(uint8_t i=0; i < sight->lenght; i++)
-//		{
-//			sight->bound1.offset[i].x = -i-1;
-//		}
-//		break;
-
-//  case ANGLE_180:
-//		for(uint8_t i=0; i < sight->lenght; i++)
-//		{
-//			sight->bound1.offset[i].x = -i;
-//			sight->bound2.offset[i].x = -i;
-//		}
-//		break;
-
-//  case ANGLE_225:
-//		for(uint8_t i=0; i < sight->lenght; i++)
-//		{
-//			sight->bound2.offset[i].x = -i-1;
-//		}
-//		break;
-
-//  case ANGLE_270:
-//		for(uint8_t i=0; i < sight->lenght; i++)
-//		{
-//			sight->bound1.offset[i].x =  i;
-//			sight->bound2.offset[i].x = -i;
-//		}
-//		break;
-
-//  case ANGLE_315:
-//		for(uint8_t i=0; i < sight->lenght; i++)
-//		{
-//			sight->bound1.offset[i].x = i+1;
-//		}
-//		break;
-//	}
+    case kWest:
+      TranslateW(scalar, point);
+      break;
+  }
 }
 //===================================================================
 
 
+void TranslateLine(const Translation direction,
+                   const uint16_t scalar,
+                   Line *line)
+{
+  for(uint16_t i = 0; i < line->lenght; i++)
+    TranslatePoint(direction, scalar, LineGetPointRef(i, line) );
+}
+//===================================================================
+
+
+void TranslateRectangle(const Translation direction,
+                        const uint16_t scalar,
+                        Rectangle *rectangle)
+{
+  TranslateLine(direction, scalar, rectangle->bottom_line);
+  TranslateLine(direction, scalar, rectangle->right_line);
+  TranslateLine(direction, scalar, rectangle->top_line);
+  TranslateLine(direction, scalar, rectangle->left_line);
+}
+//===================================================================
+
+
+void TranslateEnemy(const Translation direction,
+                    const uint16_t scalar,
+                    Enemy *enemy)
+{
+  // Translate Icon.
+  TranslatePoint(direction, scalar, &enemy->icon.point);
+
+  // Translate Box.
+  TranslateRectangle(direction, scalar, enemy->box);
+
+  // Translate Sight.
+
+  // Boundry 1
+  TranslateLine(direction, scalar, enemy->sight->bound1->directional_line);
+  TranslateLine(direction, scalar, enemy->sight->bound1->offset_line);
+
+  // Boundry 2
+  TranslateLine(direction, scalar, enemy->sight->bound2->directional_line);
+  TranslateLine(direction, scalar, enemy->sight->bound2->offset_line);
+}
+//===================================================================

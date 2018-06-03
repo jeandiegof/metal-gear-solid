@@ -51,7 +51,7 @@
 #include <stdint.h>
 
 #include "inc/point.h"
-#include "inc/pointvector.h"
+#include "inc/point_vector.h"
 #include "inc/angles.h"
 
 /**

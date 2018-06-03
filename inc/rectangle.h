@@ -44,7 +44,7 @@
 
 #include <stdint.h>
 
-#include "inc/pointvector.h"
+#include "inc/point_vector.h"
 #include "inc/line.h"
 
 

@@ -1,3 +1,7 @@
+#Folders for objects and executables
+obj/
+bin/
+
 # Description files
 *.pdf
 
@@ -7,5 +11,9 @@
 # Qt Creator autosave
 *.autosave*
 
-#Ignore html folder
+# Documentation folder
  html/
+ 
+ # Game Log file
+ *.log
+ 

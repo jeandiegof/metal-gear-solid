@@ -4,7 +4,8 @@
 #include <ncursesw/ncurses.h>
 
 #include "inc/line.h"
-#include "inc/personages.h"
+#include "inc/personage_base.h"
+#include "inc/enemy.h"
 
 void dFlag();
 

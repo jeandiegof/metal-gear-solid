@@ -2,7 +2,7 @@
 #define COLISION_H
 
 
-#include "inc/personages.h"
+#include "inc/enemy.h"
 
 // TODO Implement isPointInEnemy.
 uint8_t IsPointInEnemy(const Enemy *enemy, const Point *point);

@@ -30,5 +30,4 @@
 #define U_DOTLINE_NE   "\U000022F0"
 #define U_DOTLINE_NW   "\U000022F1"
 
-
 #endif // UNICODES_H
