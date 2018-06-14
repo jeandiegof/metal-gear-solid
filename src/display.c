@@ -1,7 +1,9 @@
+#include "inc/display.h"
+
 #include <ncursesw/ncurses.h>
 #include <string.h>
 
-#include "inc/display.h"
+
 
 void ShowPoint(const Point *point, const char img[])
 {
@@ -11,7 +13,7 @@ void ShowPoint(const Point *point, const char img[])
 
 void ShowLine(const Line *line, const char img[])
 {
-  for(uint8_t i = 0; i < line->lenght; i++)
+  for(uint8_t i = 0; i < line->length; i++)
   {
     ShowPoint( LineGetPointRef(i,line), img);
   }
@@ -30,11 +32,14 @@ void ShowRectangle(const Rectangle *rectangle, const char img[])
 //===================================================================
 
 
-void ShowPersonageBase(PersonageBase *personage)
+void ShowPersonageIcon(PersonageBase *personage)
 {
   mvprintw(personage->point.y,
            personage->point.x,
            "%s", personage->img); /**< Print personage in x,y position */
+  mvprintw(personage->point.y,
+           personage->point.x,
+           "x"); /**< Print personage in x,y position */
   refresh();
 }
 //===================================================================
@@ -44,19 +49,26 @@ void ShowEnemySight(Sight *sight)
 {
   // Print in blue color.
   attron(COLOR_PAIR(2));
-  ShowLine(sight->bound1->offset_line, sight->bound1->img);
-  ShowLine(sight->bound2->offset_line, sight->bound2->img);
+  ShowLine(sight->bound_1->visible_line, sight->bound_1->img);
+  ShowLine(sight->bound_2->visible_line, sight->bound_2->img);
+  ShowLine(sight->bound_3->visible_line, sight->bound_3->img);
 
-//  attron(COLOR_PAIR(1));
-//  ShowLine(sight->bound1->directional_line, sight->bound1->img);
-//  ShowLine(sight->bound2->directional_line, sight->bound2->img);
+//  attron(COLOR_PAIR(2));
+//  ShowLine(sight->bound_1->visible_line, "v");
+//  ShowLine(sight->bound_2->visible_line, "h");
+//  ShowLine(sight->bound_3->visible_line, "o");
+
+  attron(COLOR_PAIR(1));
+//  ShowLine(sight->bound_1->limit_line, "v");
+//  ShowLine(sight->bound_2->limit_line, "h");
+//  ShowLine(sight->bound_3->limit_line, "o");
 }
 //===================================================================
 
 
 void ShowEnemy(Enemy *enemy)
 {
-  ShowPersonageBase(&(enemy->icon));
+  ShowPersonageIcon(&(enemy->icon));
   ShowEnemySight(enemy->sight);
 }
 //===================================================================

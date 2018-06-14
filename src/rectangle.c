@@ -3,13 +3,21 @@
 
 #include "inc/rectangle.h"
 
+#define REC_POINT_MAX_INIT_VALUE -32768
+#define REC_POINT_MIN_INIT_VALUE  32767
+
+static void RectangleInitMaxMinPoints(Rectangle *rectangle);
+//===================================================================
 
 static void RectangleUpdateMaxMinPoints(const Line *line,
                                         Rectangle *rectangle);
+//===================================================================
 
 static void ValidateCornersInput(const Point *corner_1,
                                  const Point *corner_2,
                                  Rectangle *rectangle);
+//===================================================================
+
 
 void DestroyRectangle(Rectangle *rectangle)
 {
@@ -19,6 +27,8 @@ void DestroyRectangle(Rectangle *rectangle)
   DestroyLine(rectangle->left_line);
   free(rectangle);
 }
+//===================================================================
+
 
 Rectangle *NewRectangle()
 {
@@ -29,10 +39,7 @@ Rectangle *NewRectangle()
   rectangle->corner_2.x = 0;
   rectangle->corner_2.y = 0;
 
-  rectangle->max.x = 0;
-  rectangle->max.y = 0;
-  rectangle->min.x = 0;
-  rectangle->min.y = 0;
+  RectangleInitMaxMinPoints(rectangle);
 
   rectangle->width = 0;
   rectangle->height = 0;
@@ -44,6 +51,8 @@ Rectangle *NewRectangle()
 
   return rectangle;
 }
+//===================================================================
+
 
 void RectangleCreate(const Point *corner_1,
                      const Point *corner_2,
@@ -63,7 +72,6 @@ void RectangleCreate(const Point *corner_1,
   RectangleUpdateMaxMinPoints(rectangle->bottom_line, rectangle);
 
   // Right line.
-
   LineCreate(&(rectangle->corner_2),
              ANGLE_270,
              rectangle->height,
@@ -87,6 +95,19 @@ void RectangleCreate(const Point *corner_1,
 
   RectangleUpdateMaxMinPoints(rectangle->left_line, rectangle);
 }
+//===================================================================
+
+
+static void RectangleInitMaxMinPoints(Rectangle *rectangle)
+{
+  rectangle->max.x = REC_POINT_MAX_INIT_VALUE;
+  rectangle->max.y = REC_POINT_MAX_INIT_VALUE;
+
+  rectangle->min.x = REC_POINT_MIN_INIT_VALUE;
+  rectangle->min.y = REC_POINT_MIN_INIT_VALUE;
+}
+//===================================================================
+
 
 /**
  * @brief Finds if a specific point has values greater or smaller than
@@ -115,6 +136,7 @@ static void RectangleUpdateMaxMinPoints(const Line *line,
 
     rectangle->min.y = line->min.y;
 }
+//===================================================================
 
 
 static void ValidateCornersInput(const Point *corner_1,

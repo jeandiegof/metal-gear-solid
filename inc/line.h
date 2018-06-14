@@ -28,7 +28,7 @@
  *
  *    Point origin = {40,10};
  *
- *    // The parameter 4, is the lenght of the line in pixels.
+ *    // The parameter 4, is the length of the line in pixels.
  *    LineCreate(&origin, ANGLE_0, 4, line);
  *
  *    // Rotations occurs around a center of rotation, in the funtions below,
@@ -51,30 +51,34 @@
 #include <stdint.h>
 
 #include "inc/point.h"
-#include "inc/point_vector.h"
+#include "inc/vector_point.h"
 #include "inc/angles.h"
 
 /**
-  * @brief Line is a basic geometric object, intended to manage the mathematical
-  * representation of a line in the terminal.
-  */
-
+ * @brief Line is a basic geometric object, intended to manage the mathematical
+ * representation of a line in the terminal.
+ */
 typedef struct Line
 {
-  int16_t lenght;
+  int16_t length;
 
   int16_t angle;
 
   VectorPoint *points;
 
-  struct
-  {
-    int16_t x;
+  Point direction_vector;
 
-    int16_t y;
-  } max, min;
+  Point max;
+  Point min;
 
 }Line;
+//===================================================================
+
+/**
+ * @brief Free the memory used by Line.
+ * @param line[out] A Line object.
+ */
+void DestroyLine(Line *line);
 //===================================================================
 
 /**
@@ -83,7 +87,6 @@ typedef struct Line
  * @param point[in] A Point object that will be appended to some Line.
  * @param line[out] A Line object.
  */
-
 void LineAppendPoint(const Point *point, Line *line);
 //===================================================================
 
@@ -99,11 +102,11 @@ void LineCopy(const Line *in_line, Line *out_line);
  * @brief Creates the points that constitute a Line object.
  *
  * This function creates a *line that starts at the @p origin with size equals
- * to @p lenght. The inclination of the line is determined by @p angle.
+ * to @p length. The inclination of the line is determined by @p angle.
  *
  * @param origin[in] Position to the first Point of the Line.
  * @param angle[in] Angle of the Line.
- * @param lenght[in] Line's lenght in pixels.
+ * @param length[in] Line's length in pixels.
  * @param line[out] A pointer to a Line.
  *
  * @todo Handle a situation where a line with pre-existing points is a parameter.
@@ -112,15 +115,16 @@ void LineCopy(const Line *in_line, Line *out_line);
  */
 void LineCreate(const Point *origin,
                 const int16_t angle,
-                const int16_t lenght,
+                const int16_t input_length,
                 Line *line);
 //===================================================================
 
 /**
- * @brief Free the memory used by Line.
- * @param line[out] A Line object.
+ * @brief LineGetLastPoint
+ * @param line[out]
+ * @return
  */
-void DestroyLine(Line *line);
+Point LineGetLastPoint(const Line *line);
 //===================================================================
 
 /**
@@ -134,7 +138,6 @@ void DestroyLine(Line *line);
  * @param line[in] A Line object.
  * @return The value of some Point inside Line.
  */
-
 Point LineGetPoint(const uint16_t index, const Line *line);
 //===================================================================
 
@@ -163,6 +166,33 @@ void LineInsertPoint(const uint16_t index, const Point *point, Line *line);
 //===================================================================
 
 /**
+ * @brief LineRemoveLastPoint
+ * @param line
+ */
+void LineRemoveLastPoint(Line *line);
+
+/**
+ * @brief LineRemoveAllPoints
+ * @param line
+ */
+void LineReset(Line *line);
+//===================================================================
+
+/**
+ * @brief LineSetAngle
+ */
+void LineSetAngle(const int16_t angle, Line *line);
+//===================================================================
+
+/**
+ * @brief LineSetLength
+ * @param length
+ * @param line
+ */
+void LineSetLength(const int16_t length, Line *line);
+//===================================================================
+
+/**
  * @brief Creates a Line object.
  *
  * Creates a Line object using malloc().
@@ -171,5 +201,6 @@ void LineInsertPoint(const uint16_t index, const Point *point, Line *line);
  */
 Line *NewLine();
 //===================================================================
+
 
 #endif // GEOMETRY_H

@@ -20,9 +20,9 @@ void DebugInt(int input)
 void DebugLine(Line *line)
 {
   mvprintw(0,0,"Line Debug:\n");
-  printw("Angle: %d \t Lenght: %d\n",line->angle, line->lenght);
+  printw("Angle: %d \t length: %d\n",line->angle, line->length);
   printw("Line Points:\n");
-  for(uint8_t i = 0; i < line->lenght; i++)
+  for(uint8_t i = 0; i < line->length; i++)
   {
     printw("Index: %d \t X = %d \t Y = %d\n", i, LineGetPoint(i, line).x, LineGetPoint(i, line).y);
   }

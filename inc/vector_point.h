@@ -19,7 +19,7 @@
 
 #include "inc/point.h"
 
-#define VECTOR_POINT_DEFAULT_CAPACITY 5
+#define VECTOR_POINT_DEFAULT_CAPACITY 4
 
 /**
  * @brief Definition of VectorInt type.

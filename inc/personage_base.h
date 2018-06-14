@@ -16,7 +16,7 @@
 typedef struct PersonageBase
 {
   /** @brief 11 characters for unicode string. */
-  char img[U_LENGHT];
+  char img[U_length];
 
   struct Point point;
 

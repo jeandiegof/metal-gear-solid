@@ -44,7 +44,7 @@
 
 #include <stdint.h>
 
-#include "inc/point_vector.h"
+#include "inc/vector_point.h"
 #include "inc/line.h"
 
 
@@ -61,11 +61,8 @@ typedef struct Rectangle
   int16_t width;
   int16_t height;
 
-  struct
-  {
-    int16_t x;
-    int16_t y;
-  } max, min;
+  Point max;
+  Point min;
 
 }Rectangle;
 

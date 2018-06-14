@@ -3,46 +3,10 @@
 
 #include <stdint.h>
 
-#include "inc/line.h"
-#include "inc/rectangle.h"
 #include "inc/personage_base.h"
+#include "inc/sight.h"
+#include "inc/translation.h"
 
-typedef struct SightBoundry
-{
-  char img[U_LENGHT];
-
-  uint8_t lenght;
-
-  int16_t angle;
-
-  Line *directional_line;
-
-  Line *offset_line;
-
-}SightBoundry;
-//===================================================================
-
-/**
- * @brief Abstract struct. Gives sight to the object.
- *
- *
- * Sight is a triangle which origin's at personage position.
- * The orientation is related to personage's angle, the height of this
- * triangle has its size determined by #lenght.
- *
- */
-typedef struct Sight
-{
-  int16_t angle;
-
-  uint8_t lenght;
-
-  struct SightBoundry *bound1;
-
-  struct SightBoundry *bound2;
-
-}Sight;
-//===================================================================
 
 typedef struct Enemy
 {
@@ -50,20 +14,45 @@ typedef struct Enemy
   struct PersonageBase icon;
 
   struct Sight *sight;
-
-  /** @brief A box around the enemy used for detection algorith and limits
-   *  for translation.
-   */
-  struct Rectangle *box;
-
 }Enemy;
 //===================================================================
 
+/**
+ * @brief NewEnemy
+ * @param angle
+ * @param sight_length
+ * @param origin
+ * @return
+ */
+Enemy *NewEnemy(const int16_t angle,
+                const int16_t sight_length,
+                const Point *origin);
+//===================================================================
 
-Enemy *NewEnemy(const Point *origin, const uint8_t sight_lenght);
-
+/**
+ * @brief DestroyEnemy
+ * @param enemy
+ */
 void DestroyEnemy(Enemy *enemy);
+//===================================================================
 
-void SightUpdate(Sight *sight);
+/**
+ * @brief TranslateEnemy
+ * @param direction
+ * @param scalar
+ * @param enemy
+ */
+void TranslateEnemy(const Translation direction,
+                    const uint16_t scalar,
+                    Enemy *enemy);
+//===================================================================
+
+/**
+ * @brief RotateEnemy
+ * @param rotation_angle
+ * @param enemy
+ */
+void EnemyRotate(const uint16_t rotation_angle, Enemy *enemy);
+//===================================================================
 
 #endif // STRUCTPERSONAGE_H
