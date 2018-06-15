@@ -3,8 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "inc/sight_private.h"
 #include "inc/angles.h"
 #include "inc/line.h"
+
+static void EnemyGetMaxMinPoints(Enemy *enemy);
+//===================================================================
 
 
 Enemy *NewEnemy(const int16_t angle,
@@ -27,6 +31,8 @@ Enemy *NewEnemy(const int16_t angle,
                        sight_length,
                        &enemy->icon.point,
                        enemy->sight);
+
+  EnemyGetMaxMinPoints(enemy);
 
   return enemy;
 }
@@ -61,19 +67,41 @@ void TranslateEnemy(const Translation direction,
 //===================================================================
 
 
-void EnemyRotate(const uint16_t rotation_angle, Enemy *enemy)
+void EnemyRotate(const int16_t rotation_angle, Enemy *enemy)
 {
-  // Validates rotation_angle
-  if(!AngleIsValid(rotation_angle))
-  {
-    exit(1);
-  }
+  int16_t new_angle = AngleCorrection(rotation_angle + enemy->sight->angle);
 
-  SightCreateBoundries(rotation_angle,
+  SightCreateBoundries(new_angle,
                        enemy->sight->length,
                        &enemy->icon.point,
                        enemy->sight);
 
+  EnemyGetMaxMinPoints(enemy);
+}
+//===================================================================
+
+
+static void EnemyGetMaxMinPoints(Enemy *enemy)
+{
+  // Temporary arrays.
+  Point max_array[4];
+  Point min_array[4];
+
+  // Finds which is the greatest values for y and x.
+  max_array[0] = enemy->sight->bound_1->line->max;
+  max_array[1] = enemy->sight->bound_2->line->max;
+  max_array[2] = enemy->sight->bound_3->line->max;
+  max_array[3] = enemy->icon.point;
+
+  enemy->max_point = PointGetArrayMaxValues(max_array,4);
+
+  // Finds which is the smallest values for y and x.
+  min_array[0] = enemy->sight->bound_1->line->min;
+  min_array[1] = enemy->sight->bound_2->line->min;
+  min_array[2] = enemy->sight->bound_3->line->min;
+  min_array[3] = enemy->icon.point;
+
+  enemy->min_point = PointGetArrayMinValues(min_array,4);
 }
 //===================================================================
 

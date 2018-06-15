@@ -200,3 +200,4 @@ static void ValidateCornersInput(const Point *corner_1,
     rectangle->corner_2.y = corner_1->y;
   }
 }
+//===================================================================

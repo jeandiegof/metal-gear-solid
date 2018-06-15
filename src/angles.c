@@ -1,5 +1,6 @@
 #include "inc/angles.h"
 
+#include <stdlib.h>
 
 int16_t AngleCorrection(const int16_t input_angle)
 {

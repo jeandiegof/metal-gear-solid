@@ -4,7 +4,6 @@
 #include <string.h>
 
 
-
 void ShowPoint(const Point *point, const char img[])
 {
   mvprintw(point->y, point->x, "%s", img);
@@ -17,7 +16,6 @@ void ShowLine(const Line *line, const char img[])
   {
     ShowPoint( LineGetPointRef(i,line), img);
   }
-  refresh();
 }
 //===================================================================
 
@@ -37,10 +35,6 @@ void ShowPersonageIcon(PersonageBase *personage)
   mvprintw(personage->point.y,
            personage->point.x,
            "%s", personage->img); /**< Print personage in x,y position */
-  mvprintw(personage->point.y,
-           personage->point.x,
-           "x"); /**< Print personage in x,y position */
-  refresh();
 }
 //===================================================================
 
@@ -48,20 +42,22 @@ void ShowPersonageIcon(PersonageBase *personage)
 void ShowEnemySight(Sight *sight)
 {
   // Print in blue color.
-  attron(COLOR_PAIR(2));
-  ShowLine(sight->bound_1->visible_line, sight->bound_1->img);
-  ShowLine(sight->bound_2->visible_line, sight->bound_2->img);
-  ShowLine(sight->bound_3->visible_line, sight->bound_3->img);
+//  attron(COLOR_PAIR(2));
+  ShowLine(sight->bound_1->line, sight->bound_1->img);
+  ShowLine(sight->bound_2->line, sight->bound_2->img);
+  ShowLine(sight->bound_3->line, sight->bound_3->img);
 
 //  attron(COLOR_PAIR(2));
 //  ShowLine(sight->bound_1->visible_line, "v");
 //  ShowLine(sight->bound_2->visible_line, "h");
 //  ShowLine(sight->bound_3->visible_line, "o");
 
-  attron(COLOR_PAIR(1));
-//  ShowLine(sight->bound_1->limit_line, "v");
-//  ShowLine(sight->bound_2->limit_line, "h");
+//  attron(COLOR_PAIR(2));
 //  ShowLine(sight->bound_3->limit_line, "o");
+//  attron(COLOR_PAIR(1));
+//  ShowLine(sight->bound_1->limit_line, "1");
+//  ShowLine(sight->bound_2->limit_line, "2");
+
 }
 //===================================================================
 

@@ -1,6 +1,27 @@
 #include "inc/detection.h"
 
-bool FindPointDirectionFromLine();
+
+bool AreLinesIntersecting(const Line *line_1, const Line *line_2)
+{
+  for(uint16_t i = 0; i < line_1->length; i++)
+  {
+    if( IsPointInLine(LineGetPointRef(i,line_1), line_2) )
+      return true;
+    }
+  return false;
+}
+//===================================================================
+
+bool IsPointInLine(const Point *point, const Line *line)
+{
+  for(uint16_t i = 0; i < line->length; i++)
+  {
+    if( IsPointInPoint( point, LineGetPointRef(i,line) ) )
+      return true;
+  }
+  return false;
+}
+//===================================================================
 
 bool IsPointInPoint(const Point *point_1, const Point *point_2)
 {
@@ -10,6 +31,8 @@ bool IsPointInPoint(const Point *point_1, const Point *point_2)
 
   return false;
 }
+//===================================================================
+
 
 bool IsPointInRectangle(const Point *point, const Rectangle *rec)
 {
@@ -24,64 +47,55 @@ bool IsPointInRectangle(const Point *point, const Rectangle *rec)
   // Is inside the rectangle.
   return true;
 }
+//===================================================================
+
 
 bool IsPointInEnemy(const Point *point, const Enemy *enemy)
 {
-//  // Is point inside Enemy's Box?
-//  if( ! IsPointInRectangle(point, enemy->box) )
-//    return false;
+  // IF point is out of range THEN return false.
+  // Checks the x range.
+  if( point->x < enemy->min_point.x || point->x > enemy->max_point.x)
+    return false;
 
-  // Is point at enemy's icon position?
-  if ( IsPointInPoint(point, &(enemy->icon.point)) )
-       return true;
+  // Checks the y range.
+  if (point->y < enemy->min_point.y || point->y > enemy->max_point.y)
+    return false;
 
-  Point oposite_corner;
+  // Checks the case where the point is over sight's boundries or
+  // over enemy's icon.
+  if( IsPointInLine(point, enemy->sight->bound_1->line) ||
+      IsPointInLine(point, enemy->sight->bound_2->line) ||
+      IsPointInLine(point, enemy->sight->bound_3->line) ||
+      IsPointInPoint(&enemy->icon.point, point) )
+    return true;
 
-  bool flag_sight_is_diagonal = 1;
+  // Checks the case where the point is inside or outside
+  // sight's boundries.
+  Line *detection_line = NewLine();
 
-  // Sight detection when sight direction is diagonal.
-  switch (enemy->sight->angle)
+  uint8_t intersection_counter = 0;
+
+  LineCreate(point, ANGLE_0, enemy->sight->length*2+1, detection_line);
+
+  if(AreLinesIntersecting(detection_line, enemy->sight->bound_1->line))
+    intersection_counter++;
+
+  if(AreLinesIntersecting(detection_line, enemy->sight->bound_2->line))
+    intersection_counter++;
+
+  if(AreLinesIntersecting(detection_line, enemy->sight->bound_3->line))
+    intersection_counter++;
+
+  if(IsPointInLine(&enemy->icon.point, detection_line))
+    intersection_counter++;
+
+  if(intersection_counter != 1)
   {
-    case ANGLE_45:
-    case ANGLE_225:
-      oposite_corner.x = LineGetPoint(enemy->sight->length-1,
-                                      enemy->sight->bound_2->visible_line).x;
-
-      oposite_corner.y = LineGetPoint(enemy->sight->length-1,
-                                      enemy->sight->bound_1->visible_line).y;
-      break;
-
-    case ANGLE_135:
-    case ANGLE_315:
-      oposite_corner.x = LineGetPoint(enemy->sight->length-1,
-                                      enemy->sight->bound_1->visible_line).x;
-
-      oposite_corner.y = LineGetPoint(enemy->sight->length-1,
-                                      enemy->sight->bound_2->visible_line).y;
-      break;
-
-    default:
-      flag_sight_is_diagonal = 0;
-      break;
+    return false;
   }
 
-  if( flag_sight_is_diagonal )
-  {
-    Rectangle *rec = NewRectangle();
 
-    RectangleCreate(&(enemy->icon.point), &oposite_corner, rec);
 
-    if( IsPointInRectangle(point, rec) )
-    {
-      DestroyRectangle(rec);
-      return true;
-    }
-    else
-    {
-      DestroyRectangle(rec);
-      return false;
-    }
-  }
-  return false;
+  return true;
 }
-
+//===================================================================

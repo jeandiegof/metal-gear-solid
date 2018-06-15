@@ -64,8 +64,6 @@ void LineCreate(const Point *origin,
 
   LineReset(line);
 
-  LineSetLength(input_length, line);
-
   Point new_point;
 
   // Attributes the input angle to line.
@@ -75,7 +73,7 @@ void LineCreate(const Point *origin,
   LineAppendPoint(origin, line);
 
   // Builds the Line point by point, in the direction of direction_vector.
-  for(uint8_t i = 1; i < line->length; i++)
+  for(uint8_t i = 1; i < input_length; i++)
   {
     new_point.x = origin->x + ( i * line->direction_vector.x );
     new_point.y = origin->y + ( i * line->direction_vector.y );

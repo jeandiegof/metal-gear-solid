@@ -18,7 +18,13 @@ typedef struct Point
 {
   int16_t x;
   int16_t y;
-
 }Point;
+
+
+Point PointGetArrayMaxValues(const Point *point_array, const uint16_t size);
+//===================================================================
+
+Point PointGetArrayMinValues(const Point *point_array, const uint16_t size);
+//===================================================================
 
 #endif // POINT_H

@@ -4,16 +4,19 @@
 #include <stdint.h>
 
 #include "inc/personage_base.h"
-#include "inc/sight.h"
+#include "inc/sight_structs.h"
 #include "inc/translation.h"
 
 
 typedef struct Enemy
 {
-  /** Image and its position at the terminal.*/
   struct PersonageBase icon;
 
   struct Sight *sight;
+
+  Point max_point;
+  Point min_point;
+
 }Enemy;
 //===================================================================
 
@@ -52,7 +55,7 @@ void TranslateEnemy(const Translation direction,
  * @param rotation_angle
  * @param enemy
  */
-void EnemyRotate(const uint16_t rotation_angle, Enemy *enemy);
+void EnemyRotate(const int16_t rotation_angle, Enemy *enemy);
 //===================================================================
 
 #endif // STRUCTPERSONAGE_H

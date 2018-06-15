@@ -6,6 +6,13 @@
 
 #include "inc/enemy.h"
 
+
+bool AreLinesIntersecting(const Line *line_1, const Line *line_2);
+
+
+bool IsPointInLine(const Point *point, const Line *line);
+
+
 bool IsPointInPoint(const Point *point_1, const Point *point_2);
 
 

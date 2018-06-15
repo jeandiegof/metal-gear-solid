@@ -12,13 +12,7 @@ typedef struct SightBoundry
 
   int16_t length;
 
-  int16_t angle;
-
-  Point direction_vector;
-
-  Line *visible_line;
-
-  Line *limit_line;
+  Line *line;
 
 }SightBoundry;
 //===================================================================
