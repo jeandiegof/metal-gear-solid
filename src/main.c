@@ -7,9 +7,13 @@
 #include "inc/display.h"
 #include "inc/detection.h"
 
+/* dbg */
+#include "inc/map_manager.h"
+/* end dbg */
+
 int main(void)
 {
-
+  /*
   InitWindow();
 
   Point origin = {40,10};
@@ -37,5 +41,8 @@ int main(void)
   while(1);
 
  // Restore normal terminal behavior
- endwin();
+  endwin();
+  */
+  Map map;
+  LoadMapFromFile(&map);
 }
