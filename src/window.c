@@ -36,3 +36,19 @@ static void InitWindowColors()
   init_pair(2, COLOR_BLUE, -1);
   init_pair(3, -1, COLOR_YELLOW);
 }
+
+WINDOW *CreateNewWindow(uint16_t lines, uint16_t columns,
+                      uint16_t start_x, uint16_t start_y) {
+  WINDOW *window;
+  window = newwin(lines, columns, start_x, start_y);
+  box(window, 0, 0);
+
+  return window;
+}
+
+PANEL *CreateNewPanel(WINDOW *window) {
+  PANEL *panel;
+  panel = new_panel(window);
+  update_panels();
+  return panel;
+}

@@ -6,8 +6,8 @@
 #define MAX_LENGTH          80
 #define MAX_HEIGHT          25
 #define LINE_ENDING_CHARS   2
-#define MAX_ENEMIES         20
-#define MAX_HOSTAGES        20
+#define MAX_ENEMIES         10
+#define MAX_HOSTAGES        10
 
 typedef struct MapObjects {
   Point hero;

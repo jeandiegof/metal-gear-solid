@@ -25,12 +25,12 @@ int16_t LoadMapFromFile(Map *map) {
   }
   fclose(fp);
 
-  for (int16_t i = 0; i < MAX_HEIGHT; ++i) {
-    for (int16_t j = 0; j < MAX_LENGTH; ++j) {
-      printw("%c", map->matrix[i][j]);
-    }
-    printw("\n");
-  }
+  // for (int16_t i = 0; i < MAX_HEIGHT; ++i) {
+  //   for (int16_t j = 0; j < MAX_LENGTH; ++j) {
+  //     printw("%c", map->matrix[i][j]);
+  //   }
+  //   printw("\n");
+  // }
   return 0;
 }
 
