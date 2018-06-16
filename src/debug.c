@@ -29,3 +29,18 @@ void DebugLine(Line *line)
   refresh();
   getch();
 }
+
+void DebugObjectsFromMap(Map *map) {
+  printw("Hero position:\t\t(%d, %d)\n", map->object.hero.x, map->object.hero.y);
+  for (int i = 0; i < map->object.enemy_free_index; ++i)
+  {
+    printw("Enemy position:\t\t(%d, %d)\n", map->object.enemy[i].x, map->object.enemy[i].y);
+  }
+  printw("Power Up position:\t(%d, %d)\n", map->object.power_up.x, map->object.power_up.y);
+  for (int i = 0; i < map->object.hostage_free_index; ++i)
+  {
+    printw("Hostage position:\t(%d, %d)\n", map->object.hostage[i].x, map->object.hostage[i].y);
+  }
+  printw("Key position:\t\t(%d, %d)\n", map->object.key.x, map->object.key.y);
+  printw("Exit position:\t\t(%d, %d)\n", map->object.exit.x, map->object.exit.y);
+}

@@ -9,6 +9,7 @@
 
 /* dbg */
 #include "inc/map_manager.h"
+#include "inc/debug.h"
 /* end dbg */
 
 int main(void)
@@ -43,6 +44,14 @@ int main(void)
  // Restore normal terminal behavior
   endwin();
   */
+  InitWindow();
+
   Map map;
   LoadMapFromFile(&map);
+  LoadObjectsFromMap(&map);
+  DebugObjectsFromMap(&map);
+
+  refresh();
+  while(1);
+  endwin();
 }

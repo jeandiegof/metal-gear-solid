@@ -7,17 +7,25 @@
 #define MAX_HEIGHT          25
 #define LINE_ENDING_CHARS   2
 #define MAX_ENEMIES         20
+#define MAX_HOSTAGES        20
+
+typedef struct MapObjects {
+  Point hero;
+  Point enemy[MAX_ENEMIES];
+  uint8_t enemy_free_index;
+  Point power_up;
+  Point hostage[MAX_HOSTAGES];
+  uint8_t hostage_free_index;
+  Point key;
+  Point exit;
+} MapObjects;
 
 typedef struct Map {
   int16_t matrix[MAX_HEIGHT][MAX_LENGTH];
-  Point hero;
-  Point enemy;
-  Point power_up;
-  Point hostage;
-  Point key;
-  Point exit;
+  MapObjects object;
 } Map;
 
 int16_t LoadMapFromFile(Map *map);
+void LoadObjectsFromMap(Map *map);
 
 #endif // MAP_LOADER_H

@@ -7,13 +7,13 @@ int16_t LoadMapFromFile(Map *map) {
   FILE *fp;
   fp = fopen("mapa.txt", "r");
   if (fp == NULL) {
-    printf("Error opening file!");
+    printw("Error opening file!");
     return -1;
   }
 
-  int c;
-  for (int i = 0; i < MAX_HEIGHT; ++i) {
-    for (int j = 0; j < MAX_LENGTH+LINE_ENDING_CHARS; ++j) {
+  int16_t c;
+  for (int16_t i = 0; i < MAX_HEIGHT; ++i) {
+    for (int16_t j = 0; j < MAX_LENGTH+LINE_ENDING_CHARS; ++j) {
       if((c = fgetc(fp)) == EOF) {
         break;
       }
@@ -25,11 +25,51 @@ int16_t LoadMapFromFile(Map *map) {
   }
   fclose(fp);
 
-  for (int i = 0; i < MAX_HEIGHT; ++i) {
-    for (int j = 0; j < MAX_LENGTH; ++j) {
-      printf("%c", map->matrix[i][j]);
+  for (int16_t i = 0; i < MAX_HEIGHT; ++i) {
+    for (int16_t j = 0; j < MAX_LENGTH; ++j) {
+      printw("%c", map->matrix[i][j]);
     }
-    printf("\n");
+    printw("\n");
   }
   return 0;
+}
+
+void LoadObjectsFromMap(Map *map) {
+  map->object.enemy_free_index = 0;
+  map->object.hostage_free_index = 0;
+
+  for (int16_t i = 0; i < MAX_HEIGHT; ++i)
+  {
+    for (int16_t j = 0; j < MAX_LENGTH; ++j)
+    {
+      switch(map->matrix[i][j]) {
+        case 'o':
+          map->object.hero.x = j;
+          map->object.hero.y = i;
+          break;
+        case '@':
+          map->object.enemy[map->object.enemy_free_index].x = j;
+          map->object.enemy[map->object.enemy_free_index].y = i;
+          map->object.enemy_free_index++;
+          break;
+        case '%':
+          map->object.power_up.x = j;
+          map->object.power_up.y = i;
+          break;
+        case '0':
+          map->object.hostage[map->object.hostage_free_index].x = j;
+          map->object.hostage[map->object.hostage_free_index].y = i;
+          map->object.hostage_free_index++;
+          break;
+        case 'K':
+          map->object.key.x = j;
+          map->object.key.y = i;
+          break;
+        case 'x':
+          map->object.exit.x = j;
+          map->object.exit.y = i;
+          break;
+      }
+    }
+  }
 }
