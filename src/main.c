@@ -73,8 +73,8 @@ int main(void)
   ScreenGameUpdate();
   
   Hero hero;
-  hero.base.point.x = map.object.hero.x+MAP_OFFSET_X;
-  hero.base.point.y = map.object.hero.y+MAP_OFFSET_Y;
+  hero.base.point.x = map.object.hero.x;
+  hero.base.point.y = map.object.hero.y;
   mvwprintw(window_map, 0, 5, "%d %d", hero.base.point.x, hero.base.point.y);
   
   char c;
@@ -96,9 +96,7 @@ int main(void)
           break;
       }
       mvwprintw(window_map, 0, 0, "%c", c);
-      LoadObjectsFromMap(&map);
-      hero.base.point.x = map.object.hero.x+MAP_OFFSET_X;
-      hero.base.point.y = map.object.hero.y+MAP_OFFSET_Y;
+      ScreenGameStatusUpdate(&game_status, &window_map);
       ScreenGameMapUpdate(&map, &window_map);
       ScreenGameUpdate();
     }

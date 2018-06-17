@@ -15,7 +15,6 @@ typedef struct Hero
   uint8_t hostages;
   uint8_t key;
 }Hero;
-//===================================================================
 
 void MoveHero(Map *map, Hero *hero, Direction direction);
 

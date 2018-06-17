@@ -16,7 +16,9 @@ void MoveHero(Map *map, Hero *hero, Direction direction) {
     case MOVEMENT_FORBIDDEN:
       break;
     case MOVEMENT_ALLOWED:
-      map->matrix[p.y-6][p.x-1] = 'o';
+      map->matrix[p.y][p.x] = 'o';
+      hero->base.point.x = p.x;
+      hero->base.point.y = p.y;
       break;
     case GAME_OVER:
       break; 
@@ -35,22 +37,22 @@ static Point PointToCheck (Hero **hero, Direction direction) {
 
   switch (direction) {
     case UP:
-      if(--p.y < MAP_OFFSET_Y) {
+      if(--p.y < 0) {
         p.y = 0;
       }
       break;
     case DOWN:
-      if(++p.y > MAX_HEIGHT + MAP_OFFSET_Y) {
+      if(++p.y > 25) {
         p.y = 25;
       }
       break;
     case LEFT:
-      if(--p.x < MAP_OFFSET_X) {
+      if(--p.x < 0) {
         p.x = 0;
       }
       break;
     case RIGHT:
-      if(++p.x > MAX_LENGTH + MAP_OFFSET_X) {
+      if(++p.x > 80) {
         p.x = 80;
       }
       break;
@@ -60,11 +62,8 @@ static Point PointToCheck (Hero **hero, Direction direction) {
 
 static GameState EvaluatePosition(Map **map, Hero **hero, Point p) {
   Point actual;
-  actual.x = (*hero)->base.point.x-MAP_OFFSET_X;
-  actual.y = (*hero)->base.point.y-MAP_OFFSET_Y;
-
-  p.y -= MAP_OFFSET_Y; // offset due to the position of the map on screen;
-  p.x -= MAP_OFFSET_X; // the same. And what if I just dont sum?
+  actual.x = (*hero)->base.point.x;
+  actual.y = (*hero)->base.point.y;
 
   switch ((*map)->matrix[p.y][p.x]) {
     case '#':
