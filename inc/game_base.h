@@ -17,11 +17,4 @@ typedef enum Direction {
   LEFT
 } Direction;
 
-typedef struct GameInformation {
-  uint8_t remaining_lifes;
-  uint8_t darts;
-  uint8_t status;
-  uint16_t score;
-} GameInformation;
-
 #endif // GAME_BASE_H

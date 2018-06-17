@@ -17,23 +17,23 @@ void ScreenGameMapInit(WINDOW **window, PANEL **panel) {
   *panel = CreateNewPanel(*window);
 }
 
-void ScreenGameStatusUpdate(GameInformation *game_status, WINDOW **window) {
+void ScreenGameStatusUpdate(const Hero *hero, GameState game_state, WINDOW **window) {
   mvwprintw(*window, 1, 1, "Vidas: ");
-  for (int i = 0; i < game_status->remaining_lifes; ++i)
+  for (int i = 0; i < hero->life; ++i)
   {
     // TODO: change it to the heart unicode char
     mvwprintw(*window, 1, 9+i, "L  ");
   }
 
-  mvwprintw(*window, 2, 1, "Pontos: %05d", game_status->score);
+  mvwprintw(*window, 2, 1, "Pontos: %05d", hero->score);
   
   mvwprintw(*window, 3, 1, "Dardos: ");
-  for (int i = 0; i < game_status->darts; ++i)
+  for (int i = 0; i < hero->ammo; ++i)
   {
     mvwprintw(*window, 3, 9+i, "|    ");
   }
 
-  if(game_status->status) {
+  if(game_state) {
     mvwprintw(*window, 1, 25, "-= Running =-");
   } else {
     mvwprintw(*window, 1, 25, "-= Paused =- ");

@@ -53,15 +53,10 @@ int main(void)
   LoadMapFromFile(&map);
   LoadObjectsFromMap(&map);
     
-  GameInformation game_status;
-  game_status.remaining_lifes = 3;
-  game_status.darts = 5;
-  game_status.status = 1;
-  game_status.score = 0;
-
-  WINDOW *window_status;
+  GameState game_state = RUNNING;
+  WINDOW *window_status = NULL;
   WINDOW *window_map = NULL;
-  PANEL *panel_status;
+  PANEL *panel_status = NULL;
   PANEL *panel_map = NULL;
 
   ScreenGameStatusInit(&window_status, &panel_status);
@@ -94,10 +89,16 @@ int main(void)
         case 'w':
           MoveHero(&map, &hero, UP);
           break;
+        case 'p':
+          game_state = PAUSED;
+          break;
+        case 'r':
+          game_state = RUNNING;
+          break;
       }
       mvwprintw(window_map, 0, 0, "%c", c);
-      ScreenGameStatusUpdate(&game_status, &window_map);
       ScreenGameMapUpdate(&map, &window_map);
+      ScreenGameStatusUpdate((const)&hero, game_state, &window_map);
       ScreenGameUpdate();
     }
   }

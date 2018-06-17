@@ -14,6 +14,7 @@ typedef struct Hero
   uint8_t ammo; /**< Ammunition counter.*/
   uint8_t hostages;
   uint8_t key;
+  uint16_t score;
 }Hero;
 
 void MoveHero(Map *map, Hero *hero, Direction direction);
