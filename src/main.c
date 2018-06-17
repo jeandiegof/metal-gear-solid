@@ -11,6 +11,8 @@
 #include "inc/map_manager.h"
 #include "inc/debug.h"
 #include "inc/screen_game.h"
+#include "inc/keyboard_manager.h"
+#include "inc/hero.h"
 /* end dbg */
 
 int main(void)
@@ -62,17 +64,6 @@ int main(void)
   PANEL *panel_status;
   PANEL *panel_map = NULL;
 
-
-  /*  
-  window_status = CreateNewWindow(WINDOW_GAME_STATUS_LINES+WINDOW_OFFSET,
-                           WINDOW_GAME_STATUS_COLUMNS+WINDOW_OFFSET,
-                           0, 0);
-  panel_status = CreateNewPanel(window_status);
-  wprintw(window_status, "EITA");
-  update_panels();
-  doupdate();
-  */
-  
   ScreenGameStatusInit(&window_status, &panel_status);
   ScreenGameStatusUpdate(&game_status, &window_status);
   ScreenGameUpdate();
@@ -81,6 +72,38 @@ int main(void)
   ScreenGameMapUpdate(&map, &window_map);
   ScreenGameUpdate();
   
+  Hero hero;
+  hero.base.point.x = map.object.hero.x+MAP_OFFSET_X;
+  hero.base.point.y = map.object.hero.y+MAP_OFFSET_Y;
+  mvwprintw(window_map, 0, 5, "%d %d", hero.base.point.x, hero.base.point.y);
+  
+  char c;
+  while(1) {
+    if(kbhit()) {
+      c = getch();
+      switch(c) {
+        case 'a':
+          MoveHero(&map, &hero, LEFT);
+          break;
+        case 's':
+          MoveHero(&map, &hero, DOWN);
+          break;
+        case 'd':
+          MoveHero(&map, &hero, RIGHT);
+          break;
+        case 'w':
+          MoveHero(&map, &hero, UP);
+          break;
+      }
+      mvwprintw(window_map, 0, 0, "%c", c);
+      LoadObjectsFromMap(&map);
+      hero.base.point.x = map.object.hero.x+MAP_OFFSET_X;
+      hero.base.point.y = map.object.hero.y+MAP_OFFSET_Y;
+      ScreenGameMapUpdate(&map, &window_map);
+      ScreenGameUpdate();
+    }
+  }
+
   while(1);
   endwin();
 }
