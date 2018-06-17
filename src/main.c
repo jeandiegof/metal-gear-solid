@@ -54,27 +54,27 @@ int main(void)
   LoadObjectsFromMap(&map);
     
   GameState game_state = RUNNING;
+
   WINDOW *window_status = NULL;
   WINDOW *window_map = NULL;
   PANEL *panel_status = NULL;
   PANEL *panel_map = NULL;
 
+  Hero hero = NewHero(3, 5, &map.object.hero);
+
   ScreenGameStatusInit(&window_status, &panel_status);
-  ScreenGameStatusUpdate(&game_status, &window_status);
+  ScreenGameStatusUpdate(&hero, game_state, &window_status);
   ScreenGameUpdate();
 
   ScreenGameMapInit(&window_map, &panel_map);
   ScreenGameMapUpdate(&map, &window_map);
   ScreenGameUpdate();
   
-  Hero hero;
-  hero.base.point.x = map.object.hero.x;
-  hero.base.point.y = map.object.hero.y;
-  mvwprintw(window_map, 0, 5, "%d %d", hero.base.point.x, hero.base.point.y);
   
   char c;
   while(1) {
     if(kbhit()) {
+      mvwprintw(window_map, 0, 5, "%03d %03d", hero.base.point.x, hero.base.point.y);
       c = getch();
       switch(c) {
         case 'a':
@@ -98,7 +98,7 @@ int main(void)
       }
       mvwprintw(window_map, 0, 0, "%c", c);
       ScreenGameMapUpdate(&map, &window_map);
-      ScreenGameStatusUpdate((const)&hero, game_state, &window_map);
+      ScreenGameStatusUpdate(&hero, game_state, &window_status);
       ScreenGameUpdate();
     }
   }

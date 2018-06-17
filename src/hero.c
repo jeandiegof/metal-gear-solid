@@ -1,29 +1,47 @@
 #include <ncursesw/ncurses.h>
+#include <stdlib.h>
 #include "inc/hero.h"
-#include "inc/map_manager.h"
-#include "inc/game_base.h"
 
 static GameState EvaluatePosition(Map **map, Hero **hero, Point p);
 static Point PointToCheck (Hero **hero, Direction direction);
 
+Hero NewHero(uint8_t life, uint8_t ammo, Point *origin) {
+  Hero hero;
+
+  hero.speed = 0; // TODO: implement hero speed;
+  hero.life = life;
+  hero.ammo = ammo;
+  hero.hostages = 0;
+  hero.key = 0;
+  hero.base.point = *origin;
+  hero.score = 0;
+
+  return hero;
+}
+
 void MoveHero(Map *map, Hero *hero, Direction direction) {
   Point p = PointToCheck(&hero, direction);
-  mvprintw(5, 20, "%d %d", p.x, p.y);
+  mvprintw(5, 20, "%03d %03d", p.x, p.y);
   refresh();
-  GameState move = EvaluatePosition(&map, &hero, p);
+  GameState game_state = EvaluatePosition(&map, &hero, p);
 
-  switch(move) {
+  switch(game_state) {
     case MOVEMENT_FORBIDDEN:
       break;
+    case GAME_COMPLETE:
+      hero->score += 50*hero->life;
+      hero->score += 10*hero->ammo;
+      // FALLTHROUGH
     case MOVEMENT_ALLOWED:
       map->matrix[p.y][p.x] = 'o';
       hero->base.point.x = p.x;
       hero->base.point.y = p.y;
       break;
     case GAME_OVER:
+      hero->life = 0;
+      endwin();
+      exit(0);
       break; 
-    case GAME_COMPLETE:
-      break;
     case RUNNING:
     case PAUSED:
       break;
@@ -70,10 +88,10 @@ static GameState EvaluatePosition(Map **map, Hero **hero, Point p) {
       return MOVEMENT_FORBIDDEN;
       break;
     case '@':
+      (*map)->matrix[actual.y][actual.x] = ' ';
       if (--(*hero)->life == 0) {
         return GAME_OVER;
       } else {
-        (*map)->matrix[actual.y][actual.x] = ' ';
         return MOVEMENT_ALLOWED;
       }
       break;
@@ -84,16 +102,19 @@ static GameState EvaluatePosition(Map **map, Hero **hero, Point p) {
       break;
     case '0':
       (*hero)->hostages++;
+      (*hero)->score += 100;
       (*map)->matrix[actual.y][actual.x] = ' ';
       return MOVEMENT_ALLOWED;
       break;
     case 'K':
       (*hero)->key = 1;
+      (*map)->matrix[(*map)->object.exit.y][(*map)->object.exit.x] = 'x';
       (*map)->matrix[actual.y][actual.x] = ' ';
       return MOVEMENT_ALLOWED;
       break;
     case 'x':
       if((*hero)->key) {
+        (*map)->matrix[actual.y][actual.x] = ' ';
         return GAME_COMPLETE;
       } else {
         return MOVEMENT_FORBIDDEN;
@@ -102,6 +123,7 @@ static GameState EvaluatePosition(Map **map, Hero **hero, Point p) {
     case ' ':
       (*map)->matrix[actual.y][actual.x] = ' ';
       return MOVEMENT_ALLOWED;
+      break;
     default:
       return MOVEMENT_FORBIDDEN;
   }

@@ -5,6 +5,7 @@
 #include "inc/personage_base.h"
 #include "inc/map_manager.h"
 #include "inc/game_base.h"
+#include "inc/point.h"
 
 typedef struct Hero
 {
@@ -15,8 +16,9 @@ typedef struct Hero
   uint8_t hostages;
   uint8_t key;
   uint16_t score;
-}Hero;
+} Hero;
 
 void MoveHero(Map *map, Hero *hero, Direction direction);
+Hero NewHero(uint8_t life, uint8_t ammo, Point *origin);
 
 #endif // HERO_H
