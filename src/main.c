@@ -14,9 +14,9 @@ int main(void)
 
   Point origin = {40,10};
 
-  Point test_point = {45, 10};
+  Point test_point = {40, 8};
 
-  Enemy *enemy = NewEnemy(ANGLE_270, 2, &origin);
+  Enemy *enemy = NewEnemy(ANGLE_90, 1, &origin);
 
   if(IsPointInEnemy(&test_point,enemy))
   {
@@ -37,5 +37,5 @@ int main(void)
   while(1);
 
  // Restore normal terminal behavior
- endwin();
+  endwin();
 }

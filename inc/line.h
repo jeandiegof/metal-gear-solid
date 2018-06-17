@@ -68,8 +68,8 @@ typedef struct Line
 
   Point direction_vector;
 
-  Point max;
-  Point min;
+  Point *max;
+  Point *min;
 
 }Line;
 //===================================================================
@@ -106,12 +106,8 @@ void LineCopy(const Line *in_line, Line *out_line);
  *
  * @param origin[in] Position to the first Point of the Line.
  * @param angle[in] Angle of the Line.
- * @param length[in] Line's length in pixels.
+ * @param input_length[in] Line's length in pixels.
  * @param line[out] A pointer to a Line.
- *
- * @todo Handle a situation where a line with pre-existing points is a parameter.
- * Now, the function expects an empty *line. Unexpected behavior can occur if
- * a line with pre-existing points is used.
  */
 void LineCreate(const Point *origin,
                 const int16_t angle,

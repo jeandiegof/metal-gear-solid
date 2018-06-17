@@ -32,9 +32,10 @@ void ShowRectangle(const Rectangle *rectangle, const char img[])
 
 void ShowPersonageIcon(PersonageBase *personage)
 {
+  // Print personage in x,y position.
   mvprintw(personage->point.y,
            personage->point.x,
-           "%s", personage->img); /**< Print personage in x,y position */
+           "%s", personage->img);
 }
 //===================================================================
 

@@ -30,13 +30,16 @@
 typedef struct VectorPoint
 {
   /** Number of slots used so far. */
-  uint16_t size;
+  uint16_t length;
 
   /** Total quantity of slots available.*/
   uint16_t capacity;
 
   /** Array of integers for data. */
   Point *data;
+
+  Point max;
+  Point min;
 
 } VectorPoint;
 
@@ -52,8 +55,8 @@ typedef struct VectorPoint
  * @param value[in]
  * @param vector[out]
  */
-
 void VectorPointAppend(const Point *value, VectorPoint *vector);
+//===================================================================
 
 /**
  * @brief Frees the memory allocated for the VectorPoint.
@@ -63,8 +66,8 @@ void VectorPointAppend(const Point *value, VectorPoint *vector);
  *
  * @param vector[out] A pointer to the VectorPoint that should be destroyed.
  */
-
 void DestroyVectorPoint(VectorPoint *vector);
+//===================================================================
 
 /**
  * @brief Initiate VectorInt struct.
@@ -75,8 +78,8 @@ void DestroyVectorPoint(VectorPoint *vector);
  *
  * @return A pointer to the VectorPoint created.
  */
-
 VectorPoint *NewVectorPoint();
+//===================================================================
 
 /**
  * @brief Inserts @p value at the given @p index.
@@ -90,18 +93,18 @@ VectorPoint *NewVectorPoint();
  * @param value[in]
  * @param vector[out]
  */
-
 void VectorPointInsert(const uint16_t index,
                        const Point *value,
                        VectorPoint *vector);
+//===================================================================
 
 /**
  * @brief Returns the number of points in the vector.
  * @param vector[in]
  * @return The number of slots used so far in the vector.
  */
-
 uint16_t VectorPointGetSize(const VectorPoint *vector);
+//===================================================================
 
 /**
  * @brief Returns a Point inside VectorPoint at @p index position.
@@ -119,6 +122,7 @@ uint16_t VectorPointGetSize(const VectorPoint *vector);
  */
 
 Point VectorPointGetValue(const int index, const VectorPoint *vector);
+//===================================================================
 
 /**
  * @brief Returns a reference to a Point inside VectorPoint at @p index position.
@@ -135,6 +139,20 @@ Point VectorPointGetValue(const int index, const VectorPoint *vector);
  * @return The address of some Point inside VectorPoint.
  */
 Point *VectorPointValueRef(const int index, const VectorPoint *vector);
+//===================================================================
 
+/**
+ * @brief VectorPointRemoveLastPoint
+ * @param vector
+ */
+void VectorPointRemoveLastPoint(VectorPoint *vector);
+//===================================================================
+
+/**
+ * @brief VectorPointReset
+ * @param vector
+ */
+void VectorPointReset(VectorPoint *vector);
+//===================================================================
 
 #endif // VECTORPOINT_H

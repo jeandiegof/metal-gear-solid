@@ -45,6 +45,7 @@ void SightBoundryCreate(const int16_t angle,
     printf("Creating a line with lenght zero or less.");
     exit(1);
   }
+
   // Reset lines.
   LineReset(boundry->line);
 
@@ -90,7 +91,6 @@ void SightBoundryGrow(SightBoundry *boundry)
 void SightBoundryShrink(SightBoundry *boundry)
 {
   LineRemoveLastPoint(boundry->line);
-
 }
 //===================================================================
 

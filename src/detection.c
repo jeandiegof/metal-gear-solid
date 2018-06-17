@@ -52,6 +52,23 @@ bool IsPointInRectangle(const Point *point, const Rectangle *rec)
 
 bool IsPointInEnemy(const Point *point, const Enemy *enemy)
 {
+  // Little workaround to cover two blind points in the logic.
+  if(enemy->sight->angle == ANGLE_90)
+ {
+    Point aux_point = LineGetPoint(0, enemy->sight->bound_3->line);
+    aux_point.x -= enemy->sight->bound_3->line->direction_vector.x;
+    if(IsPointInPoint(point, &aux_point))
+      return true;
+  }
+  else if(enemy->sight->angle == ANGLE_270)
+  {
+    Point aux_point = LineGetLastPoint(enemy->sight->bound_3->line);
+    aux_point.x += enemy->sight->bound_3->line->direction_vector.x;
+    if(IsPointInPoint(point, &aux_point))
+      return true;
+  }
+
+
   // IF point is out of range THEN return false.
   // Checks the x range.
   if( point->x < enemy->min_point.x || point->x > enemy->max_point.x)
@@ -69,7 +86,7 @@ bool IsPointInEnemy(const Point *point, const Enemy *enemy)
       IsPointInPoint(&enemy->icon.point, point) )
     return true;
 
-  // Checks the case where the point is inside or outside
+  // Checks the case whether the point is inside or outside
   // sight's boundries.
   Line *detection_line = NewLine();
 
@@ -89,12 +106,12 @@ bool IsPointInEnemy(const Point *point, const Enemy *enemy)
   if(IsPointInLine(&enemy->icon.point, detection_line))
     intersection_counter++;
 
+  DestroyLine(detection_line);
+
   if(intersection_counter != 1)
   {
     return false;
   }
-
-
 
   return true;
 }

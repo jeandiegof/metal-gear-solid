@@ -83,25 +83,28 @@ void EnemyRotate(const int16_t rotation_angle, Enemy *enemy)
 
 static void EnemyGetMaxMinPoints(Enemy *enemy)
 {
-  // Temporary arrays.
-  Point max_array[4];
-  Point min_array[4];
+  // Temporary array.
+  VectorPoint *array = NewVectorPoint();
 
   // Finds which is the greatest values for y and x.
-  max_array[0] = enemy->sight->bound_1->line->max;
-  max_array[1] = enemy->sight->bound_2->line->max;
-  max_array[2] = enemy->sight->bound_3->line->max;
-  max_array[3] = enemy->icon.point;
+  VectorPointAppend(enemy->sight->bound_1->line->max, array);
+  VectorPointAppend(enemy->sight->bound_2->line->max, array);
+  VectorPointAppend(enemy->sight->bound_3->line->max, array);
+  VectorPointAppend(&enemy->icon.point, array);
 
-  enemy->max_point = PointGetArrayMaxValues(max_array,4);
+  enemy->max_point = array->max;
+
+  VectorPointReset(array);
 
   // Finds which is the smallest values for y and x.
-  min_array[0] = enemy->sight->bound_1->line->min;
-  min_array[1] = enemy->sight->bound_2->line->min;
-  min_array[2] = enemy->sight->bound_3->line->min;
-  min_array[3] = enemy->icon.point;
+  VectorPointAppend(enemy->sight->bound_1->line->min, array);
+  VectorPointAppend(enemy->sight->bound_2->line->min, array);
+  VectorPointAppend(enemy->sight->bound_3->line->min, array);
+  VectorPointAppend(&enemy->icon.point, array);
 
-  enemy->min_point = PointGetArrayMinValues(min_array,4);
+  enemy->min_point = array->min;
+
+  DestroyVectorPoint(array);
 }
 //===================================================================
 

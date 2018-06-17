@@ -120,21 +120,21 @@ static void RectangleInitMaxMinPoints(Rectangle *rectangle)
 static void RectangleUpdateMaxMinPoints(const Line *line,
                                         Rectangle *rectangle)
 {
-  if(line->max.x > rectangle->max.x)
+  if(line->max->x > rectangle->max.x)
 
-    rectangle->max.x = line->max.x;
+    rectangle->max.x = line->max->x;
 
-  else if(line->min.x < rectangle->min.x)
+  else if(line->min->x < rectangle->min.x)
 
-    rectangle->min.x = line->min.x;
+    rectangle->min.x = line->min->x;
 
-  if(line->max.y > rectangle->max.y)
+  if(line->max->y > rectangle->max.y)
 
-    rectangle->max.y = line->max.y;
+    rectangle->max.y = line->max->y;
 
-  else if(line->min.y < rectangle->min.y)
+  else if(line->min->y < rectangle->min.y)
 
-    rectangle->min.y = line->min.y;
+    rectangle->min.y = line->min->y;
 }
 //===================================================================
 
