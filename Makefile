@@ -7,7 +7,7 @@ CFLAGS   = -std=c11 -Wall -Wextra -I.
 
 LINKER   = gcc -g
 # linking flags here
-LFLAGS   = -Wall -Wextra -I. -lm -lncursesw -lpanelw
+LFLAGS   = -Wall -Wextra -I. -lm -lncursesw -lpanelw -lmenuw
 
 # change these to proper directories where each file should be
 SRCDIR   = src
