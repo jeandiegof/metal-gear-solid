@@ -7,9 +7,14 @@
 #include "inc/display.h"
 #include "inc/detection.h"
 
+/* dbg */
+#include "inc/map_manager.h"
+#include "inc/debug.h"
+#include "inc/screen_game.h"
+/* end dbg */
+
 int main(void)
 {
-
   InitWindow();
 
   Point origin = {40,10};
@@ -33,7 +38,7 @@ int main(void)
   refresh();
 
   DestroyEnemy(enemy);
-
+  
   while(1);
 
  // Restore normal terminal behavior

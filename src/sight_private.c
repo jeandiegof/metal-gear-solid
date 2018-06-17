@@ -79,19 +79,6 @@ void SightGrow(Sight *sight)
 }
 //===================================================================
 
-
-void SightGrowBoundry1(Sight *sight)
-{
-  SightBoundryGrow(sight->bound_1);
-}
-//===================================================================
-
-void SightGrowBoundry2(Sight *sight)
-{
-  SightBoundryGrow(sight->bound_2);
-}
-//===================================================================
-
 void SightShrink(Sight *sight)
 {
   SightBoundryShrink(sight->bound_1);
