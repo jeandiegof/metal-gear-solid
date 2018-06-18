@@ -38,5 +38,4 @@ void ScreenMenuInit (MENU **menu, WINDOW **window, PANEL **panel) {
   post_menu(*menu);
 
   *panel = CreateNewPanel(*window);
-  //wrefresh(*window);
 }

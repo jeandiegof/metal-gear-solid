@@ -19,36 +19,6 @@
 
 int main(void)
 {
-  /*
-  InitWindow();
-
-  Point origin = {40,10};
-
-  Point test_point = {45, 10};
-
-  Enemy *enemy = NewEnemy(ANGLE_270, 2, &origin);
-
-  if(IsPointInEnemy(&test_point,enemy))
-  {
-    printw("IN");
-  }
-  else
-  {
-    printw("OUT");
-  }
-
-  ShowEnemy(enemy);
-  ShowPoint(&test_point, "p");
-
-  refresh();
-
-  DestroyEnemy(enemy);
-  
-  while(1);
-
- // Restore normal terminal behavior
-  endwin();
-  */
   InitWindow();
   
   // Map map;
@@ -131,7 +101,6 @@ int main(void)
   */
 
   Game *game = NewGame();
-  game->actual_screen = SCREEN_MENU;
 
   MENU *menu;
   WINDOW *window_menu;
@@ -186,6 +155,7 @@ int main(void)
         default:
           game->actual_screen = SCREEN_MENU;
       }
+      ScreenGameUpdate();
     }
     switch(game->actual_screen) {
       case SCREEN_MENU:
@@ -195,13 +165,16 @@ int main(void)
           if(opt == 'w') menu_driver(menu, REQ_UP_ITEM);
           else if(opt == 's') menu_driver(menu, REQ_DOWN_ITEM);
         }
+        // atualiza SCREEN para trocar de tela
         break;
       case SCREEN_GAME:
         // game_controller
         break;
     }
     ScreenGameUpdate();
-  } 
+  }
+  // REMEMBER TO FREE THE MEMORY USED W/ WINDOWS, PANELS, MENUS, etc
+  DestroyGame(game);
   while(1);
   endwin();
 }
