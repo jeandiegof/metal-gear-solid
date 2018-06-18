@@ -1,6 +1,7 @@
 #include <ncursesw/ncurses.h>
 #include <stdlib.h>
 #include "inc/hero.h"
+#include "inc/keyboard_manager.h"
 
 static GameState EvaluatePosition(Map **map, Hero **hero, Point p);
 static Point PointToCheck (Hero **hero, Direction direction);
@@ -19,7 +20,7 @@ Hero NewHero(uint8_t life, uint8_t ammo, Point *origin) {
   return hero;
 }
 
-void MoveHero(Map *map, Hero *hero, Direction direction) {
+Screen MoveHero(Map *map, Hero *hero, Direction direction) {
   Point p = PointToCheck(&hero, direction);
   mvprintw(5, 20, "%03d %03d", p.x, p.y);
   refresh();
@@ -31,6 +32,7 @@ void MoveHero(Map *map, Hero *hero, Direction direction) {
     case GAME_COMPLETE:
       hero->score += 50*hero->life;
       hero->score += 10*hero->ammo;
+      return SCREEN_GAME_COMPLETE;
       // FALLTHROUGH
     case MOVEMENT_ALLOWED:
       map->matrix[p.y][p.x] = 'o';
@@ -39,13 +41,36 @@ void MoveHero(Map *map, Hero *hero, Direction direction) {
       break;
     case GAME_OVER:
       hero->life = 0;
-      endwin();
-      exit(0);
+      return SCREEN_GAME_OVER;
       break; 
     case RUNNING:
     case PAUSED:
       break;
   }
+  return SCREEN_GAME;
+}
+
+Screen HeroManager(Map *map, Hero *hero) {
+  char opt;
+  Screen next_screen = SCREEN_GAME;
+  if(kbhit()) {
+    opt = getch();
+    switch(opt) {
+      case 'w':
+        next_screen = MoveHero(map, hero, UP);
+        break;
+      case 's':
+        next_screen = MoveHero(map, hero, DOWN);
+        break;
+      case 'a':
+        next_screen = MoveHero(map, hero, LEFT);
+        break;
+      case 'd':
+        next_screen = MoveHero(map, hero, RIGHT);
+        break;
+    }
+  }
+  return next_screen;
 }
 
 static Point PointToCheck (Hero **hero, Direction direction) {

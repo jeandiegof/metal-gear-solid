@@ -2,6 +2,7 @@
 #include <ncursesw/menu.h>
 #include <stdlib.h>
 #include "inc/screen_menu.h"
+#include "inc/keyboard_manager.h"
 
 void ScreenMenuInit (MENU **menu, WINDOW **window, PANEL **panel) {
   char *choices[] = {
@@ -38,4 +39,36 @@ void ScreenMenuInit (MENU **menu, WINDOW **window, PANEL **panel) {
   post_menu(*menu);
 
   *panel = CreateNewPanel(*window);
+}
+
+Screen MenuManager(MENU **menu) {
+  char opt;
+  const ITEM *actual_item;
+  if(kbhit()) {
+    opt = getch();
+    switch(opt) {
+      case 'w':
+        menu_driver(*menu, REQ_UP_ITEM);
+        break;
+      case 's':
+        menu_driver(*menu, REQ_DOWN_ITEM);
+        break;
+      case 10:
+        actual_item = current_item(*menu);
+        const char index = item_index(actual_item);
+        switch(index) {
+          case 0:
+            return SCREEN_GAME;
+            break;
+          case 1:
+            return SCREEN_RANKING;
+            break;
+          case 2:
+            return SCREEN_EXIT_GAME;
+            break;
+        }
+        break;
+    }
+  }
+  return SCREEN_MENU;
 }

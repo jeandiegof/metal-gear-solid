@@ -101,6 +101,7 @@ int main(void)
   */
 
   Game *game = NewGame();
+  //game->actual_screen = SCREEN_GAME;
 
   MENU *menu;
   WINDOW *window_menu;
@@ -128,7 +129,6 @@ int main(void)
   ScreenGameMapUpdate(&map, &window_map);
   hide_panel(panel_map);
   
-
   // init das telas;
   char c;
   char opt;
@@ -152,6 +152,8 @@ int main(void)
           break;
         case SCREEN_GAME_COMPLETE:
           break;
+        case SCREEN_EXIT_GAME:
+          break;
         default:
           game->actual_screen = SCREEN_MENU;
       }
@@ -160,15 +162,25 @@ int main(void)
     switch(game->actual_screen) {
       case SCREEN_MENU:
         //  menu_controller
-        if(kbhit()) {
-          opt = getch();
-          if(opt == 'w') menu_driver(menu, REQ_UP_ITEM);
-          else if(opt == 's') menu_driver(menu, REQ_DOWN_ITEM);
-        }
-        // atualiza SCREEN para trocar de tela
+        game->actual_screen = MenuManager(&menu);
         break;
       case SCREEN_GAME:
         // game_controller
+        game->actual_screen = HeroManager(&map, &hero);
+        ScreenGameMapUpdate(&map, &window_map);
+        ScreenGameStatusUpdate(&hero, game_state, &window_status);
+        break;
+      case SCREEN_RANKING:
+        break;
+      case SCREEN_GAME_OVER:
+        endwin();
+        exit(0);  
+        break;
+      case SCREEN_GAME_COMPLETE:
+        break;
+      case SCREEN_EXIT_GAME:
+        endwin();
+        exit(0);
         break;
     }
     ScreenGameUpdate();

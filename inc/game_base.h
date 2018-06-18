@@ -1,6 +1,8 @@
 #ifndef GAME_BASE_H
 #define GAME_BASE_H
 
+#include <ncursesw/menu.h>
+
 typedef enum GameState {
   PAUSED = 0,
   RUNNING,
@@ -16,6 +18,7 @@ typedef enum Screen {
   SCREEN_RANKING,
   SCREEN_GAME_OVER,
   SCREEN_GAME_COMPLETE,
+  SCREEN_EXIT_GAME,
 } Screen;
 
 typedef struct Game {
@@ -32,5 +35,6 @@ typedef enum Direction {
 } Direction;
 
 Game *NewGame();
+void DestroyGame(Game *game);
 
 #endif // GAME_BASE_H

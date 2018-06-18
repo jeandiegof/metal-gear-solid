@@ -18,7 +18,8 @@ typedef struct Hero
   uint16_t score;
 } Hero;
 
-void MoveHero(Map *map, Hero *hero, Direction direction);
 Hero NewHero(uint8_t life, uint8_t ammo, Point *origin);
+Screen MoveHero(Map *map, Hero *hero, Direction direction);
+Screen HeroManager(Map *map, Hero *hero);
 
 #endif // HERO_H
