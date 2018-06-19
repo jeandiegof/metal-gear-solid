@@ -15,6 +15,7 @@
 #include "inc/hero.h"
 #include "inc/screen_menu.h"
 #include "inc/game_base.h"
+#include "inc/ranking.h"
 /* end dbg */
 
 int main(void)
@@ -101,7 +102,7 @@ int main(void)
   */
 
   Game *game = NewGame();
-  //game->actual_screen = SCREEN_GAME;
+  game->actual_screen = SCREEN_RANKING;
 
   MENU *menu;
   WINDOW *window_menu;
@@ -130,6 +131,12 @@ int main(void)
   hide_panel(panel_map);
   
   // init das telas;
+  RankingEntry entry[10];
+  uint8_t count;
+  RankingEntry this;
+  sprintf(this.name, "EITA");
+  this.score = 7;
+
   char c;
   char opt;
   while(1) {
@@ -171,6 +178,58 @@ int main(void)
         ScreenGameStatusUpdate(&hero, game_state, &window_status);
         break;
       case SCREEN_RANKING:
+        
+        LoadRankingFromFile(entry, &count);
+        DebugRanking(entry, count);
+        printw("\n\n");
+        SortRanking(entry, count);
+        DebugRanking(entry, count);
+        getch();
+
+
+        // if(count < 10) {
+        //   entry[count] = this;
+        //   AddEntriesOnRanking(entry, count);
+        // } else {
+        //   entry[9] = this;
+        //   AddEntriesOnRanking(entry, 10);
+        // }
+
+        
+        
+        // sprintf(entry[0].name, "A");
+        // entry[0].score = 1;
+        // sprintf(entry[1].name, "B");
+        // entry[1].score = 2;
+        // sprintf(entry[2].name, "C");
+        // entry[2].score = 3;
+        // sprintf(entry[3].name, "D");
+        // entry[3].score = 4;
+        // sprintf(entry[4].name, "E");
+        // entry[4].score = 5;
+        // sprintf(entry[5].name, "F");
+        // entry[5].score = 6;
+        // sprintf(entry[6].name, "G");
+        // entry[6].score = 7;
+        // sprintf(entry[7].name, "H");
+        // entry[7].score = 8;
+        // sprintf(entry[8].name, "I");
+        // entry[8].score = 9;
+        // sprintf(entry[9].name, "J");
+        // entry[9].score = 10;
+
+
+        // printw("\n\n");
+        // printw("\n\n");
+        // AddEntriesOnRanking(entry, 10);
+        // DebugRanking(entry, count);
+        // SortRanking(entry, count);
+        // DebugRanking(entry, count);
+        
+        getch();
+
+        endwin();
+        exit(0);
         break;
       case SCREEN_GAME_OVER:
         endwin();
