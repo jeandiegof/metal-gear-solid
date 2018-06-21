@@ -20,6 +20,16 @@ Hero NewHero(uint8_t life, uint8_t ammo, Point *origin) {
   return hero;
 }
 
+void ResetHero(Hero *hero, Point *origin) {
+  hero->speed = 0;
+  hero->life = 3;
+  hero->ammo = 5;
+  hero->hostages = 0;
+  hero->key = 0;
+  hero->base.point = *origin;
+  hero->score = 0;
+}
+
 Screen MoveHero(Map *map, Hero *hero, Direction direction) {
   Point p = PointToCheck(&hero, direction);
   mvprintw(5, 20, "%03d %03d", p.x, p.y);

@@ -2,8 +2,13 @@
 #define RANKING_H
 
 #include <stdint.h>
+#include <ncursesw/panel.h>
+#include "inc/window.h"
 
-#define MAX_PLAYER_NAME     10
+#define MAX_PLAYER_NAME              10
+#define WINDOW_RANKING_LINES         15   
+#define WINDOW_RANKING_COLUMNS       MAX_PLAYER_NAME+30
+#define TITLE_OFFSET                 14
 
 typedef struct RankingEntry {
   char name[MAX_PLAYER_NAME+1];
@@ -14,11 +19,13 @@ typedef enum FileState {
   OPENING_ERROR,
   WRITING_ERROR,
   READING_ERROR,
-  OH_GOD_EVERYTHING_WENT_GREAT,
+  EVERYTHING_OK
 } FileState;
 
 FileState AddEntriesOnRanking(RankingEntry *entry, uint8_t entries);
 FileState LoadRankingFromFile(RankingEntry *entry, uint8_t *ranking_entries);
 void DebugRanking(RankingEntry *entry, uint8_t ranking_entries);
 void SortRanking(RankingEntry *entry, uint8_t entries);
+void ScreenRankingInit(WINDOW **window, PANEL **panel);
+void ScreenRankingUpdate(RankingEntry *entry, WINDOW **window);
 #endif // RANKING_H

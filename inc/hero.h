@@ -19,6 +19,7 @@ typedef struct Hero
 } Hero;
 
 Hero NewHero(uint8_t life, uint8_t ammo, Point *origin);
+void ResetHero(Hero *hero, Point *origin);
 Screen MoveHero(Map *map, Hero *hero, Direction direction);
 Screen HeroManager(Map *map, Hero *hero);
 

@@ -16,6 +16,8 @@
 #include "inc/screen_menu.h"
 #include "inc/game_base.h"
 #include "inc/ranking.h"
+#include "inc/screen_game_over.h"
+#include "inc/screen_game_complete.h"
 /* end dbg */
 
 int main(void)
@@ -102,7 +104,7 @@ int main(void)
   */
 
   Game *game = NewGame();
-  game->actual_screen = SCREEN_RANKING;
+  //game->actual_screen = SCREEN_RANKING;
 
   MENU *menu;
   WINDOW *window_menu;
@@ -130,6 +132,22 @@ int main(void)
   ScreenGameMapUpdate(&map, &window_map);
   hide_panel(panel_map);
   
+  WINDOW *window_ranking;
+  PANEL *panel_ranking;
+  ScreenRankingInit(&window_ranking, &panel_ranking);
+  hide_panel(panel_ranking);
+  
+  WINDOW *window_game_over;
+  PANEL *panel_game_over;
+  ScreenGameOverInit(&window_game_over, &panel_game_over);
+  hide_panel(panel_game_over);
+
+  WINDOW *window_game_complete;
+  PANEL *panel_game_complete;
+  ScreenGameCompleteInit(&window_game_complete, &panel_game_complete);
+  hide_panel(panel_game_complete);
+
+
   // init das telas;
   RankingEntry entry[10];
   uint8_t count;
@@ -147,17 +165,44 @@ int main(void)
           show_panel(panel_menu);
           hide_panel(panel_status);
           hide_panel(panel_map);
+          hide_panel(panel_ranking);
+          hide_panel(panel_game_over);
+          hide_panel(panel_game_complete);
           break;
         case SCREEN_GAME:
+          ResetHero(&hero, &map.object.hero);
+          // TODO: remove it from here:
+          ScreenGameMapInit(&window_map, &panel_map);
+          ScreenGameMapUpdate(&map, &window_map);
+          ScreenGameStatusUpdate(&hero, game_state, &window_status);
           show_panel(panel_map);
           show_panel(panel_status);
           hide_panel(panel_menu);
+          hide_panel(panel_ranking);
+          hide_panel(panel_game_over);
+          hide_panel(panel_game_complete);
           break;
         case SCREEN_RANKING:
+          hide_panel(panel_map);
+          hide_panel(panel_status);
+          hide_panel(panel_menu);
+          show_panel(panel_ranking);
+          hide_panel(panel_game_over);
+          hide_panel(panel_game_complete);
           break;
         case SCREEN_GAME_OVER:
+          hide_panel(panel_map);
+          hide_panel(panel_status);
+          hide_panel(panel_menu);
+          show_panel(panel_game_over);
+          hide_panel(panel_game_complete);
           break;
         case SCREEN_GAME_COMPLETE:
+          hide_panel(panel_map);
+          hide_panel(panel_status);
+          hide_panel(panel_menu);
+          hide_panel(panel_game_over);
+          show_panel(panel_game_complete);
           break;
         case SCREEN_EXIT_GAME:
           break;
@@ -178,66 +223,23 @@ int main(void)
         ScreenGameStatusUpdate(&hero, game_state, &window_status);
         break;
       case SCREEN_RANKING:
-        
-        LoadRankingFromFile(entry, &count);
-        DebugRanking(entry, count);
-        printw("\n\n");
-        SortRanking(entry, count);
-        DebugRanking(entry, count);
+        ScreenRankingUpdate(entry, &window_ranking);
+        ScreenGameUpdate();
         getch();
-
-
-        // if(count < 10) {
-        //   entry[count] = this;
-        //   AddEntriesOnRanking(entry, count);
-        // } else {
-        //   entry[9] = this;
-        //   AddEntriesOnRanking(entry, 10);
-        // }
-
-        
-        
-        // sprintf(entry[0].name, "A");
-        // entry[0].score = 1;
-        // sprintf(entry[1].name, "B");
-        // entry[1].score = 2;
-        // sprintf(entry[2].name, "C");
-        // entry[2].score = 3;
-        // sprintf(entry[3].name, "D");
-        // entry[3].score = 4;
-        // sprintf(entry[4].name, "E");
-        // entry[4].score = 5;
-        // sprintf(entry[5].name, "F");
-        // entry[5].score = 6;
-        // sprintf(entry[6].name, "G");
-        // entry[6].score = 7;
-        // sprintf(entry[7].name, "H");
-        // entry[7].score = 8;
-        // sprintf(entry[8].name, "I");
-        // entry[8].score = 9;
-        // sprintf(entry[9].name, "J");
-        // entry[9].score = 10;
-
-
-        // printw("\n\n");
-        // printw("\n\n");
-        // AddEntriesOnRanking(entry, 10);
-        // DebugRanking(entry, count);
-        // SortRanking(entry, count);
-        // DebugRanking(entry, count);
-        
-        getch();
-
-        endwin();
-        exit(0);
+        game->actual_screen = SCREEN_MENU;
         break;
       case SCREEN_GAME_OVER:
-        endwin();
-        exit(0);  
+        getch();
+        getch();
+        game->actual_screen = SCREEN_MENU;
         break;
       case SCREEN_GAME_COMPLETE:
+        getch();
+        getch();
+        game->actual_screen = SCREEN_MENU;
         break;
       case SCREEN_EXIT_GAME:
+        DestroyGame(game);
         endwin();
         exit(0);
         break;
@@ -245,7 +247,6 @@ int main(void)
     ScreenGameUpdate();
   }
   // REMEMBER TO FREE THE MEMORY USED W/ WINDOWS, PANELS, MENUS, etc
-  DestroyGame(game);
   while(1);
   endwin();
 }

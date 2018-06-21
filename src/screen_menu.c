@@ -27,13 +27,13 @@ void ScreenMenuInit (MENU **menu, WINDOW **window, PANEL **panel) {
   
   *window = CreateNewWindow(15, 40, 3, 20);
   set_menu_win(*menu, *window);
-  set_menu_sub(*menu, derwin(*window, MAX_CHOICES, MARK_SIZE+MAX_CHOICE_SIZE, 5, 9));
+  set_menu_sub(*menu, derwin(*window, MAX_CHOICES, MARK_SIZE+MAX_CHOICE_SIZE, 3, 9));
   set_menu_mark(*menu, " -> ");
 
   mvwaddch(*window, 2, 0, ACS_LTEE);
   mvwhline(*window, 2, 1, ACS_HLINE, 38);
   mvwaddch(*window, 2, 39, ACS_RTEE);
-  mvwprintw(*window, 1, 12, "METAL GEAR SOLID");
+  mvwprintw(*window, 1, 12, "METAL GEAR SOLID");  
 
   refresh();
   post_menu(*menu);
