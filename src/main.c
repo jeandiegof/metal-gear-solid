@@ -24,85 +24,6 @@ int main(void)
 {
   InitWindow();
   
-  // Map map;
-  // LoadMapFromFile(&map);
-  // LoadObjectsFromMap(&map);
-    
-  // GameState game_state = RUNNING;
-
-  // WINDOW *window_status = NULL;
-  // WINDOW *window_map = NULL;
-  // PANEL *panel_status = NULL;
-  // PANEL *panel_map = NULL;
-
-  // Hero hero = NewHero(3, 5, &map.object.hero);
-
-  // ScreenGameStatusInit(&window_status, &panel_status);
-  // ScreenGameStatusUpdate(&hero, game_state, &window_status);
-  // ScreenGameUpdate();
-
-  // ScreenGameMapInit(&window_map, &panel_map);
-  // ScreenGameMapUpdate(&map, &window_map);
-  // ScreenGameUpdate();
-  
-  
-  // char c;
-  // while(1) {
-  //   if(kbhit()) {
-  //     mvwprintw(window_map, 0, 5, "%03d %03d", hero.base.point.x, hero.base.point.y);
-  //     c = getch();
-  //     switch(c) {
-  //       case 'a':
-  //         MoveHero(&map, &hero, LEFT);
-  //         break;
-  //       case 's':
-  //         MoveHero(&map, &hero, DOWN);
-  //         break;
-  //       case 'd':
-  //         MoveHero(&map, &hero, RIGHT);
-  //         break;
-  //       case 'w':
-  //         MoveHero(&map, &hero, UP);
-  //         break;
-  //       case 'p':
-  //         game_state = PAUSED;
-  //         break;
-  //       case 'r':
-  //         game_state = RUNNING;
-  //         break;
-  //     }
-  //     mvwprintw(window_map, 0, 0, "%c", c);
-  //     ScreenGameMapUpdate(&map, &window_map);
-  //     ScreenGameStatusUpdate(&hero, game_state, &window_status);
-  //     ScreenGameUpdate();
-  //   }
-  // }
-
-  /* old menu
-  MENU *menu;
-  WINDOW *window_menu;
-  PANEL *panel_menu;
-  
-  menu = CreateMenu(&window_menu);
-  panel_menu = CreateMenuNewPanel(window_menu);
-
-  char opt;
-  while((opt = getch()) != 'z') {
-    switch(opt) {
-      case 's':
-        menu_driver(menu, REQ_DOWN_ITEM);
-        break;
-      case 'w':
-        menu_driver(menu, REQ_UP_ITEM);
-        break;
-      case 10:
-
-        break;
-    }
-    ScreenGameUpdate();
-  }
-  */
-
   Game *game = NewGame();
   //game->actual_screen = SCREEN_RANKING;
 
@@ -149,11 +70,9 @@ int main(void)
 
 
   // init das telas;
-  RankingEntry entry[10];
-  uint8_t count;
+  RankingEntry entry[11];
   RankingEntry this;
-  sprintf(this.name, "EITA");
-  this.score = 7;
+  uint8_t ranking_entries;
 
   char c;
   char opt;
@@ -170,11 +89,13 @@ int main(void)
           hide_panel(panel_game_complete);
           break;
         case SCREEN_GAME:
+          LoadMapFromFile(&map);
+          LoadObjectsFromMap(&map);
           ResetHero(&hero, &map.object.hero);
-          // TODO: remove it from here:
           ScreenGameMapInit(&window_map, &panel_map);
           ScreenGameMapUpdate(&map, &window_map);
           ScreenGameStatusUpdate(&hero, game_state, &window_status);
+          
           show_panel(panel_map);
           show_panel(panel_status);
           hide_panel(panel_menu);
@@ -189,6 +110,9 @@ int main(void)
           show_panel(panel_ranking);
           hide_panel(panel_game_over);
           hide_panel(panel_game_complete);
+
+          ScreenRankingUpdate(entry, &window_ranking);
+          ScreenGameUpdate();
           break;
         case SCREEN_GAME_OVER:
           hide_panel(panel_map);
@@ -223,17 +147,16 @@ int main(void)
         ScreenGameStatusUpdate(&hero, game_state, &window_status);
         break;
       case SCREEN_RANKING:
-        ScreenRankingUpdate(entry, &window_ranking);
-        ScreenGameUpdate();
         getch();
         game->actual_screen = SCREEN_MENU;
         break;
       case SCREEN_GAME_OVER:
-        getch();
-        getch();
-        game->actual_screen = SCREEN_MENU;
-        break;
       case SCREEN_GAME_COMPLETE:
+        sprintf(this.name, "Jean");
+        this.score = hero.score;
+        LoadRankingFromFile(entry, &ranking_entries);
+        AddEntryOnRanking(entry, this, &ranking_entries);
+        AddRankingOnFile(entry, ranking_entries);
         getch();
         getch();
         game->actual_screen = SCREEN_MENU;

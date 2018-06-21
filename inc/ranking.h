@@ -22,8 +22,9 @@ typedef enum FileState {
   EVERYTHING_OK
 } FileState;
 
-FileState AddEntriesOnRanking(RankingEntry *entry, uint8_t entries);
+FileState AddRankingOnFile(RankingEntry *entry, uint8_t entries);
 FileState LoadRankingFromFile(RankingEntry *entry, uint8_t *ranking_entries);
+void AddEntryOnRanking(RankingEntry *entry_list, RankingEntry this_entry, uint8_t *index);
 void DebugRanking(RankingEntry *entry, uint8_t ranking_entries);
 void SortRanking(RankingEntry *entry, uint8_t entries);
 void ScreenRankingInit(WINDOW **window, PANEL **panel);

@@ -24,8 +24,20 @@ void ScreenRankingUpdate(RankingEntry *entry, WINDOW **window) {
   }
 }
 
+void AddEntryOnRanking(RankingEntry *entry_list, RankingEntry this_entry, uint8_t *index) {
+  if(*index == 10) {
+    SortRanking(entry_list, *index);
+    if(this_entry.score >= entry_list[9].score) {
+      entry_list[9] = this_entry;
+    }
+  } else {
+    entry_list[*index] = this_entry;
+    *index += 1;
+  }
+} 
+
 void SortRanking(RankingEntry *entry, uint8_t entries) {
-  RankingEntry tmp;
+  RankingEntry swap;
   uint8_t again;
 
   do {
@@ -33,31 +45,35 @@ void SortRanking(RankingEntry *entry, uint8_t entries) {
     for (int i = 0; i < (entries-1); ++i)
     {
       if(entry[i+1].score > entry[i].score) {
-        tmp = entry[i];
+        swap = entry[i];
         entry[i] = entry[i+1];
-        entry[i+1] = tmp;
+        entry[i+1] = swap;
         again = 1;
       }
     }
   } while (again);
 }
 
-FileState AddEntriesOnRanking(RankingEntry *entry, uint8_t entries) {
-  SortRanking(entry, entries);
+// TODO: change the name to AddRankingOnFile
+FileState AddRankingOnFile(RankingEntry *entry, uint8_t entries) {
   FILE *fp = fopen("ranking.txt", "wb");
   if(fp == NULL) {
     return OPENING_ERROR;
   }
+
+  SortRanking(entry, entries);
   if(fwrite(entry, sizeof(RankingEntry), entries, fp) != entries) {
     return WRITING_ERROR;
   } else {
     return OK;
   }
+  fflush(fp);
   fclose(fp);
 }
 
 FileState LoadRankingFromFile(RankingEntry *entry, uint8_t *ranking_entries) {
   FILE *fp = fopen("ranking.txt", "rb");
+
   *ranking_entries = 0;
   for (int i = 0; i < 10; ++i)
   {

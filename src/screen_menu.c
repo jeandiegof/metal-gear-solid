@@ -8,7 +8,7 @@ void ScreenMenuInit (MENU **menu, WINDOW **window, PANEL **panel) {
   char *choices[] = {
                     " Novo Jogo  (n)",
                     " Ranking    (r)",
-                    " Sair       (s)",
+                    " Sair       (S)",
                     "",
                   };
 
@@ -52,6 +52,15 @@ Screen MenuManager(MENU **menu) {
         break;
       case 's':
         menu_driver(*menu, REQ_DOWN_ITEM);
+        break;
+      case 'n':
+        return SCREEN_GAME;
+        break;
+      case 'r':
+        return SCREEN_RANKING;
+        break;
+      case 'S':
+        return SCREEN_EXIT_GAME;
         break;
       case 10:
         actual_item = current_item(*menu);
