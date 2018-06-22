@@ -4,49 +4,140 @@
 #include <string.h>
 
 
+
+void HidePoint(const Point *point)
+{
+    mvprintw(point->y, point->x, " ");
+}
+//===================================================================
+
+
+void HideLine(const Line *line)
+{
+  for(uint16_t i = 0; i < line->length; i++)
+  {
+    HidePoint(LineGetPointRef(i, line));
+  }
+}
+//===================================================================
+
+
+//void HideLine(const Line *line, Map *map)
+//{
+//  Point aux_point;
+
+//  bool end_flag = 0;
+
+//  for(uint8_t i = 0; i < line->length; i++)
+//  {
+//    aux_point = LineGetPoint(i,line);
+//    switch(map->matrix[aux_point.y][aux_point.x])
+//    {
+//      case '#':
+//      case 'x':
+//        end_flag = 1;
+//        break;
+
+//      case '@':
+//      case '0':
+//      case 'K':
+//      case '%':
+//        break;
+
+//      default:
+//        HidePoint(&aux_point);
+//        map->matrix[aux_point.y][aux_point.x] = ' ';
+//        break;
+//    }
+//    if(end_flag)
+//      break;
+//  }
+//}
+//===================================================================
+
+
+//void HideEnemySight(Sight *sight, Map *map)
+//{
+//  HideLine(sight->bound_1->line, map);
+//  HideLine(sight->bound_2->line, map);
+//  HideLine(sight->bound_3->line, map);
+//}
+////===================================================================
+
+
+//void HideEnemy(Enemy *enemy, Map *map)
+//{
+//  HidePoint( &(enemy->icon.point) );
+
+//  HideEnemySight(enemy->sight, map);
+
+//}
+////===================================================================
+
+
+
+
 void ShowPoint(const Point *point, const char img[])
 {
   mvprintw(point->y, point->x, "%s", img);
 }
 //===================================================================
 
+
 void ShowLine(const Line *line, const char img[])
 {
-  for(uint8_t i = 0; i < line->length; i++)
+  for(uint16_t i = 0; i < line->length; i++)
   {
-    ShowPoint( LineGetPointRef(i,line), img);
+    ShowPoint(LineGetPointRef(i, line), img);
   }
 }
 //===================================================================
 
 
-void ShowRectangle(const Rectangle *rectangle, const char img[])
+void ShowEnemySightBoundry(SightBoundry *boundry,  Map *map)
 {
-  ShowLine(rectangle->bottom_line, img);
-  ShowLine(rectangle->right_line, img);
-  ShowLine(rectangle->top_line, img);
-  ShowLine(rectangle->left_line, img);
+  Point aux_point;
+
+  bool end_flag = 0;
+
+  for(uint8_t i = 0; i < boundry->length; i++)
+  {
+    aux_point = LineGetPoint(i, boundry->line);
+
+    switch(map->matrix[aux_point.y][aux_point.x])
+    {
+      case '#':
+      case 'x':
+        end_flag = 1;
+        break;
+
+      case '@':
+      case '0':
+      case 'K':
+      case '%':
+        break;
+
+      default:
+        ShowPoint(&aux_point, boundry->img);
+        boundry->visible_counter++;
+        map->matrix[aux_point.y][aux_point.x] = '@';
+        break;
+    }
+    if(end_flag)
+      break;
+  }  
 }
 //===================================================================
 
 
-void ShowPersonageIcon(PersonageBase *personage)
+void ShowEnemySight(Sight *sight, Map *map)
 {
-  // Print personage in x,y position.
-  mvprintw(personage->point.y,
-           personage->point.x,
-           "%s", personage->img);
-}
-//===================================================================
 
-
-void ShowEnemySight(Sight *sight)
-{
   // Print in blue color.
 //  attron(COLOR_PAIR(2));
-  ShowLine(sight->bound_1->line, sight->bound_1->img);
-  ShowLine(sight->bound_2->line, sight->bound_2->img);
-  ShowLine(sight->bound_3->line, sight->bound_3->img);
+  ShowEnemySightBoundry(sight->bound_1, map);
+  ShowEnemySightBoundry(sight->bound_2, map);
+  ShowEnemySightBoundry(sight->bound_3, map);
 
 //  attron(COLOR_PAIR(2));
 //  ShowLine(sight->bound_1->visible_line, "v");
@@ -63,10 +154,13 @@ void ShowEnemySight(Sight *sight)
 //===================================================================
 
 
-void ShowEnemy(Enemy *enemy)
+void ShowEnemy(Enemy *enemy, Map *map)
 {
-  ShowPersonageIcon(&(enemy->icon));
-  ShowEnemySight(enemy->sight);
+  ShowPoint( &(enemy->icon.point), enemy->icon.img );
+
+  if(!enemy->sight_active)
+    return;
+
+  ShowEnemySight(enemy->sight, map);
 }
 //===================================================================
-

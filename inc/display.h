@@ -1,10 +1,24 @@
 #ifndef DRAWING_H
 #define DRAWING_H
 
-#include "inc/rectangle.h"
-#include "inc/personage_base.h"
 #include "inc/enemy.h"
+#include "inc/map_manager.h"
+#include "inc/personage_base.h"
+#include "inc/rectangle.h"
 #include "inc/translation.h"
+
+
+void HidePoint(const Point *point);
+//===================================================================
+
+void HideLine(const Line *line);
+//===================================================================
+
+void HideEnemySight(Sight *sight, Map *map);
+//===================================================================
+
+void HideEnemy(Enemy *enemy, Map *map);
+//===================================================================
 
 
 void ShowPoint(const Point *point, const char img[]);
@@ -13,17 +27,15 @@ void ShowPoint(const Point *point, const char img[]);
 void ShowLine(const Line *line, const char img[]);
 //===================================================================
 
-void ShowRectangle(const Rectangle *rectangle, const char img[]);
+void ShowEnemySightBoundry(SightBoundry *boundry, Map *map);
 //===================================================================
 
-void ShowEnemy(Enemy *enemy);
+void ShowEnemySight(Sight *sight, Map *map);
 //===================================================================
 
-void ShowPersonageIcon(PersonageBase *personage);
+void ShowEnemy(Enemy *enemy, Map *map);
 //===================================================================
 
-void ShowEnemySight(Sight *sight);
-//===================================================================
 
 
 #endif // DRAWING_H

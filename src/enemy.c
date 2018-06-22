@@ -7,13 +7,10 @@
 #include "inc/angles.h"
 #include "inc/line.h"
 
-static void EnemyGetMaxMinPoints(Enemy *enemy);
-//===================================================================
-
-
 Enemy *NewEnemy(const int16_t angle,
                 const int16_t sight_length,
-                const Point *origin)
+                const Point *origin,
+                const Map *map)
 {
   // Create Enemy object.
   Enemy *enemy = malloc(sizeof(Enemy));
@@ -24,15 +21,28 @@ Enemy *NewEnemy(const int16_t angle,
   // Init enemy image.
   strcpy(enemy->icon.img, U_ENEMY);
 
+  enemy->sleep = 0;
+
+  // Length test.
+  if(sight_length <= 0)
+  {
+    enemy->sight_active = 0;
+    return enemy;
+  }
+
+  enemy->sight_active = 1;
+
   // Create Enemy's Sight object.
   enemy->sight = NewSight();
 
+  // Create Boundries.
   SightCreateBoundries(angle,
                        sight_length,
                        &enemy->icon.point,
                        enemy->sight);
 
-  EnemyGetMaxMinPoints(enemy);
+  // Adapt Sight to map objects.
+  SightCreateInstantLines(map, enemy->sight);
 
   return enemy;
 }
@@ -41,13 +51,65 @@ Enemy *NewEnemy(const int16_t angle,
 
 void DestroyEnemy(Enemy *enemy)
 {
-  DestroySight(enemy->sight);
+  if(enemy->sight_active)
+    DestroySight(enemy->sight);
+
   free(enemy);
 }
 //===================================================================
 
 
-void TranslateEnemy(const Translation direction,
+bool EnemyIsSightActive(Enemy *enemy)
+{
+  if(enemy->sight->length > 0)
+    return true;
+  else
+    return false;
+}
+//===================================================================
+
+
+void EnemySightGrow(Enemy *enemy)
+{
+  enemy->sight->length++;
+
+  SightCreateBoundries(enemy->sight->angle,
+                       enemy->sight->length,
+                       &enemy->icon.point,
+                       enemy->sight);
+
+
+}
+//===================================================================
+
+
+void EnemyRotate(const int16_t rotation_angle, Enemy *enemy)
+{
+  int16_t new_angle = AngleCorrection(rotation_angle + enemy->sight->angle);
+
+  SightCreateBoundries(new_angle,
+                       enemy->sight->length,
+                       &enemy->icon.point,
+                       enemy->sight);
+
+}
+//===================================================================
+
+
+void EnemySightShrink(Enemy *enemy)
+{
+  if(--enemy->sight->length <= 0)
+    return;
+
+  SightCreateBoundries(enemy->sight->angle,
+                       enemy->sight->length,
+                       &enemy->icon.point,
+                       enemy->sight);
+}
+//===================================================================
+
+
+void EnemyTranslate(const Translation direction,
                     const uint16_t scalar,
                     Enemy *enemy)
 {
@@ -66,46 +128,5 @@ void TranslateEnemy(const Translation direction,
 }
 //===================================================================
 
-
-void EnemyRotate(const int16_t rotation_angle, Enemy *enemy)
-{
-  int16_t new_angle = AngleCorrection(rotation_angle + enemy->sight->angle);
-
-  SightCreateBoundries(new_angle,
-                       enemy->sight->length,
-                       &enemy->icon.point,
-                       enemy->sight);
-
-  EnemyGetMaxMinPoints(enemy);
-}
-//===================================================================
-
-
-static void EnemyGetMaxMinPoints(Enemy *enemy)
-{
-  // Temporary array.
-  VectorPoint *array = NewVectorPoint();
-
-  // Finds which is the greatest values for y and x.
-  VectorPointAppend(enemy->sight->bound_1->line->max, array);
-  VectorPointAppend(enemy->sight->bound_2->line->max, array);
-  VectorPointAppend(enemy->sight->bound_3->line->max, array);
-  VectorPointAppend(&enemy->icon.point, array);
-
-  enemy->max_point = array->max;
-
-  VectorPointReset(array);
-
-  // Finds which is the smallest values for y and x.
-  VectorPointAppend(enemy->sight->bound_1->line->min, array);
-  VectorPointAppend(enemy->sight->bound_2->line->min, array);
-  VectorPointAppend(enemy->sight->bound_3->line->min, array);
-  VectorPointAppend(&enemy->icon.point, array);
-
-  enemy->min_point = array->min;
-
-  DestroyVectorPoint(array);
-}
-//===================================================================
 
 // ----- END Global Functions Definitions

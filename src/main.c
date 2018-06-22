@@ -13,32 +13,33 @@
 #include "inc/screen_game.h"
 /* end dbg */
 
+
 int main(void)
 {
   InitWindow();
 
-  Point origin = {40,10};
+  Map map;
 
-  Point test_point = {40, 8};
+  LoadMapFromFile(&map);
 
-  Enemy *enemy = NewEnemy(ANGLE_90, 1, &origin);
+  Point origin = {40,18};
 
-  if(IsPointInEnemy(&test_point,enemy))
-  {
-    printw("IN");
-  }
-  else
-  {
-    printw("OUT");
-  }
+  Enemy *enemy = NewEnemy(ANGLE_90, 3, &origin, &map);
 
-  ShowEnemy(enemy);
-  ShowPoint(&test_point, "p");
+  DebugPrintMap(&map);
+
+//  mvprintw(9, 34, U_DOTLINE_H);
+
+  ShowEnemy(enemy, &map);
+
+//  DebugEnemySightFullLines(enemy);
+
+//  DebugEnemySightInstantLines(enemy);
 
   refresh();
 
   DestroyEnemy(enemy);
-  
+
   while(1);
 
  // Restore normal terminal behavior

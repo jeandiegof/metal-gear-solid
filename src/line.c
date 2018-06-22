@@ -32,6 +32,8 @@ void LineAppendPoint(const Point *point, Line *line)
 
 void LineCopy(const Line *in_line, Line *out_line)
 {
+  LineReset(out_line);
+
   for(uint16_t i = 0; i < in_line->length; i++)
   {
     LineAppendPoint( LineGetPointRef(i, in_line), out_line );
