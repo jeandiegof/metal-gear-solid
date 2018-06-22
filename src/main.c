@@ -188,6 +188,7 @@ int main(void)
           hide_panel(panel_game_over);
           hide_panel(panel_game_complete);
 
+          LoadRankingFromFile(entry, &ranking_entries);
           ScreenRankingUpdate(entry, &window_ranking);
           ScreenGameUpdate();
           break;
