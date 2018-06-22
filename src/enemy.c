@@ -46,6 +46,10 @@ void EnemyMove(Map *map, Enemy *enemy)
   {
     enemy->motion = EnemySortAction();
     enemy->steps = EnemySortSteps();
+
+    if(enemy->motion == kStop)
+      enemy->steps *= 4;
+
     enemy->status = kMoving;
   }
 
