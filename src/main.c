@@ -21,6 +21,9 @@ int main(void)
 
   struct timespec tim, tim2;
   tim.tv_sec = 1;
+  tim.tv_nsec = 0;
+  //100000000L = 100ms
+  //500000000L = 500ms
 
   Map map;
 
@@ -28,21 +31,20 @@ int main(void)
 
   Point origin = {40,18};
 
-  Enemy *enemy = NewEnemy(ANGLE_0, 3, &origin, &map);
+  Enemy *enemy = NewEnemy(ANGLE_90, 2, &origin, &map);
 
-  for(uint16_t i = 0; i < 100; i++)
-  {
-    EnemyMove(&map, enemy);
+//  for(uint16_t i = 0; i < 30; i++)
+//  {
+//    EnemyMove(&map, enemy);
 
-    DebugPrintMap(&map);
+//    DebugPrintMap(&map);
 
-    refresh();
+//    refresh();
 
-    nanosleep(&tim , &tim2);
-  }
+//    nanosleep(&tim , &tim2);
+//  }
 
-
-//  mvprintw(9, 34, U_DOTLINE_H);
+  DebugPrintMap(&map);
 
 //  ShowEnemy(enemy, &map);
 

@@ -168,6 +168,7 @@ bool IsPointAnObject(const Point *point, const Map *map)
     case '#':
     case 'x':
     case '@':
+    case 'Z':
     case '0':
     case 'K':
     case '%':

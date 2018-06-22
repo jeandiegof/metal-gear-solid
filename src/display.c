@@ -119,8 +119,6 @@ void ShowEnemySightBoundry(SightBoundry *boundry,  Map *map)
 
       default:
         ShowPoint(&aux_point, boundry->img);
-        boundry->visible_counter++;
-        map->matrix[aux_point.y][aux_point.x] = '@';
         break;
     }
     if(end_flag)

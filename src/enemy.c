@@ -23,6 +23,8 @@ static void EnemyTransferTomMatrix(Map *map, Enemy *enemy);
 
 
 
+
+
 void DestroyEnemy(Enemy *enemy)
 {
   if(enemy->sight_active)
@@ -33,24 +35,36 @@ void DestroyEnemy(Enemy *enemy)
 //===================================================================
 
 
-bool EnemyIsSightActive(Enemy *enemy)
+void EnemyHitSignal(Map *map, Enemy *enemy)
 {
-  return enemy->sight_active;
+  if(enemy->sleep)
+    return;
+
+  EnemyEraseFromMatrix(map, enemy);
+
+  // Tranfer enemy icon.
+  map->matrix[enemy->icon.point.y][enemy->icon.point.x]=ENEMY_SLEEP_MATRIX_CHAR;
+
+  enemy->sleep = 1;
+
+  /** @todo counter for enemy sleep time. */
+
+  EnemyTransferTomMatrix(map, enemy);
 }
 //===================================================================
 
 
 void EnemyMove(Map *map, Enemy *enemy)
 {
-  if(enemy->status == kWaiting)
+  if(enemy->status == kEnemyWaiting)
   {
     enemy->motion = EnemySortAction();
-    enemy->steps = EnemySortSteps();
+    enemy->steps_total = EnemySortSteps();
 
     if(enemy->motion == kStop)
-      enemy->steps *= 4;
+      enemy->steps_total *= 4;
 
-    enemy->status = kMoving;
+    enemy->status = kEnemyMoving;
   }
 
   switch (enemy->motion)
@@ -84,10 +98,10 @@ void EnemyMove(Map *map, Enemy *enemy)
       break;
   }
 
-  if(enemy->steps_counter == enemy->steps)
+  if(enemy->steps_counter == enemy->steps_total)
   {
     enemy->steps_counter = 0;
-    enemy->status = kWaiting;
+    enemy->status = kEnemyWaiting;
   }
 }
 //===================================================================
@@ -109,6 +123,63 @@ void EnemyRotate(const int16_t rotation_angle, Map *map, Enemy *enemy)
   SightCreateInstantLines(map, enemy->sight);
 
   EnemyTransferTomMatrix(map, enemy);
+}
+//===================================================================
+
+
+int16_t EnemySortAngle()
+{
+  srand(time(NULL));
+
+  switch ( rand() % 4 )
+  {
+    case 0:
+      return ANGLE_0;
+
+    case 1:
+      return ANGLE_90;
+
+    case 2:
+      return ANGLE_180;
+
+    case 3:
+      return ANGLE_270;
+  }
+
+  // Program never reaches this point, just to avoid compiler warning.
+  return ANGLE_0;
+}
+//===================================================================
+
+
+int16_t EnemySortLength(int16_t range_1, int16_t range_2)
+{
+  if( range_1 < 0 )
+    range_1 = 0;
+
+  if( range_2 < 0 )
+    range_2 = 0;
+
+  int16_t max;
+  int16_t min;
+
+  if(range_1 > range_2)
+  {
+    max = range_1;
+    min = range_2;
+  }
+  else
+  {
+    max = range_2;
+    min = range_1;
+  }
+
+  if(max == 0)
+    return 0;
+  else
+  {
+    return ( ( rand() % (max - 1) ) + min );
+  }
 }
 //===================================================================
 
@@ -164,14 +235,17 @@ Enemy *NewEnemy(const int16_t angle,
     enemy->sight_active = 0;
     return enemy;
   }
+  else
+  {
+    enemy->sight_active = 1;
+  }
 
-  enemy->sight_active = true;
   enemy->sleep = false;
   enemy->sleep_counter = 0;
 
   enemy->steps_counter = 0;
-  enemy->steps = 0;
-  enemy->status = kWaiting;
+  enemy->steps_total = 0;
+  enemy->status = kEnemyWaiting;
 
   // Create Enemy's Sight object.
   enemy->sight = NewSight();
@@ -240,6 +314,7 @@ static Translation EnemySortAction()
     case 4:
       return kStop;
   }
+
   // Program never reaches this point, just to avoid compiler warning.
   return kStop;
 }
@@ -250,9 +325,10 @@ static uint8_t EnemySortSteps()
 {
   srand(time(NULL));
 
-  return ( (rand()%3) + 2 );
+  return ( ( rand() % 3 ) + 2 );
 }
 //===================================================================
+
 
 static void EnemyTransferTomMatrix(Map *map, Enemy *enemy)
 {
@@ -260,7 +336,7 @@ static void EnemyTransferTomMatrix(Map *map, Enemy *enemy)
   Point *aux_point;
 
   // Tranfer enemy icon.
-  map->matrix[enemy->icon.point.y][enemy->icon.point.x] = '@';
+  map->matrix[enemy->icon.point.y][enemy->icon.point.x] = ENEMY_MATRIX_CHAR;
 
   // Transfer Sight points.
   for(uint16_t i = 0; i < enemy->sight->instant_lines->length; i++)
@@ -271,7 +347,7 @@ static void EnemyTransferTomMatrix(Map *map, Enemy *enemy)
     {
       aux_point = LineGetPointRef(j, aux_line);
 
-      map->matrix[aux_point->y][aux_point->x] = '.';
+      map->matrix[aux_point->y][aux_point->x] = ENEMY_SIGHT_MATRIX_CHAR;
     }
   }
 }

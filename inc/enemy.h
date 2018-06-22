@@ -9,11 +9,15 @@
 #include "inc/sight_structs.h"
 #include "inc/translation.h"
 
+#define ENEMY_MATRIX_CHAR        '@'
+#define ENEMY_SLEEP_MATRIX_CHAR  'Z'
+#define ENEMY_SIGHT_MATRIX_CHAR  '.'
+
 typedef enum EnemyStatus
 {
-  kMoving,
-  kSleeping,
-  kWaiting
+  kEnemyMoving,
+  kEnemySleeping,
+  kEnemyWaiting
 }EnemyStatus;
 
 
@@ -27,15 +31,15 @@ typedef struct Enemy
 
   bool sleep;
 
+  uint16_t sleep_total;
+
   uint16_t sleep_counter;
 
-  bool already_moving;
-
-  Translation motion;
-
-  uint8_t steps;
+  uint8_t steps_total;
 
   uint8_t steps_counter;
+
+  Translation motion;
 
   EnemyStatus status;
 
@@ -73,6 +77,12 @@ void EnemyMove(Map *map, Enemy *enemy);
  * @param enemy
  */
 void EnemyRotate(const int16_t rotation_angle, Map *map, Enemy *enemy);
+//===================================================================
+
+int16_t EnemySortAngle();
+//===================================================================
+
+int16_t EnemySortLength(int16_t range_1, int16_t range_2);
 //===================================================================
 
 /**
