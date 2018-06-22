@@ -1,5 +1,7 @@
 #include <math.h>
 #include <ncursesw/ncurses.h>
+#include <time.h>
+#include <unistd.h>
 
 #include "inc/rectangle.h"
 #include "inc/window.h"
@@ -18,6 +20,8 @@
 #include "inc/ranking.h"
 #include "inc/screen_game_over.h"
 #include "inc/screen_game_complete.h"
+#include "inc/timer.h"
+#include "inc/dart.h"
 /* end dbg */
 
 int main(void)
@@ -71,11 +75,14 @@ int main(void)
 
   // init das telas;
   RankingEntry entry[11];
-  RankingEntry this;
+  RankingEntry player;
   uint8_t ranking_entries;
 
+  clock_t cycles_start;
+  uint8_t game_cycles;
+
+  Dart dart;
   char c;
-  char opt;
   while(1) {
     if(game->actual_screen != game->last_screen) {
       game->last_screen = game->actual_screen;
@@ -135,6 +142,7 @@ int main(void)
       }
       ScreenGameUpdate();
     }
+    cycles_start = clock();
     switch(game->actual_screen) {
       case SCREEN_MENU:
         //  menu_controller
@@ -142,9 +150,15 @@ int main(void)
         break;
       case SCREEN_GAME:
         // game_controller
-        game->actual_screen = HeroManager(&map, &hero);
+        if(game_cycles % 4 == 0) {
+          game->actual_screen = HeroManager(&map, &hero);
+        }
+        /*
+        DartInit(&dart, hero, hero.last_direction);
+        DartEvaluatePosition(&map, &dart, DartPointToCheck(dart));
         ScreenGameMapUpdate(&map, &window_map);
         ScreenGameStatusUpdate(&hero, game_state, &window_status);
+        */
         break;
       case SCREEN_RANKING:
         getch();
@@ -152,10 +166,10 @@ int main(void)
         break;
       case SCREEN_GAME_OVER:
       case SCREEN_GAME_COMPLETE:
-        sprintf(this.name, "Jean");
-        this.score = hero.score;
+        sprintf(player.name, "Jean");
+        player.score = hero.score;
         LoadRankingFromFile(entry, &ranking_entries);
-        AddEntryOnRanking(entry, this, &ranking_entries);
+        AddEntryOnRanking(entry, player, &ranking_entries);
         AddRankingOnFile(entry, ranking_entries);
         getch();
         getch();
@@ -168,8 +182,8 @@ int main(void)
         break;
     }
     ScreenGameUpdate();
+    TimeManager(cycles_start, &game_cycles);
   }
   // REMEMBER TO FREE THE MEMORY USED W/ WINDOWS, PANELS, MENUS, etc
-  while(1);
   endwin();
 }

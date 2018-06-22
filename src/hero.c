@@ -68,15 +68,19 @@ Screen HeroManager(Map *map, Hero *hero) {
     switch(opt) {
       case 'w':
         next_screen = MoveHero(map, hero, UP);
+        hero->last_direction = UP;
         break;
       case 's':
         next_screen = MoveHero(map, hero, DOWN);
+        hero->last_direction = DOWN;
         break;
       case 'a':
         next_screen = MoveHero(map, hero, LEFT);
+        hero->last_direction = LEFT;
         break;
       case 'd':
         next_screen = MoveHero(map, hero, RIGHT);
+        hero->last_direction = RIGHT;
         break;
     }
   }

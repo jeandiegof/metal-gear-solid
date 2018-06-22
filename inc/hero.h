@@ -16,6 +16,7 @@ typedef struct Hero
   uint8_t hostages;
   uint8_t key;
   uint16_t score;
+  Direction last_direction;
 } Hero;
 
 Hero NewHero(uint8_t life, uint8_t ammo, Point *origin);

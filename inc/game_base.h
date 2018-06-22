@@ -13,6 +13,7 @@ typedef enum GameState {
 } GameState;
 
 typedef enum Screen {
+  SCREEN_NAME,
   SCREEN_MENU,
   SCREEN_GAME,
   SCREEN_RANKING,
