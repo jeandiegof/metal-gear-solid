@@ -2,20 +2,47 @@
 #define STRUCTPERSONAGE_H
 
 #include <stdint.h>
+#include <stdbool.h>
 
+#include "inc/map_manager.h"
 #include "inc/personage_base.h"
 #include "inc/sight_structs.h"
 #include "inc/translation.h"
 
+#define ENEMY_MATRIX_CHAR        '@'
+#define ENEMY_SLEEP_MATRIX_CHAR  'Z'
+#define ENEMY_SIGHT_MATRIX_CHAR  '.'
+
+typedef enum EnemyStatus
+{
+  kEnemyMoving,
+  kEnemySleeping,
+  kEnemyWaiting
+}EnemyStatus;
+
 
 typedef struct Enemy
 {
-  struct PersonageBase icon;
+  PersonageBase icon;
 
-  struct Sight *sight;
+  Sight *sight;
 
-  Point max_point;
-  Point min_point;
+  bool sight_active;
+
+  bool sleep;
+
+  uint16_t sleep_total;
+
+  uint16_t sleep_counter;
+
+  uint8_t steps_total;
+
+  uint8_t steps_counter;
+
+  Translation motion;
+
+  EnemyStatus status;
+
 
 }Enemy;
 //===================================================================
@@ -29,7 +56,8 @@ typedef struct Enemy
  */
 Enemy *NewEnemy(const int16_t angle,
                 const int16_t sight_length,
-                const Point *origin);
+                const Point *origin,
+                Map *map);
 //===================================================================
 
 /**
@@ -39,15 +67,8 @@ Enemy *NewEnemy(const int16_t angle,
 void DestroyEnemy(Enemy *enemy);
 //===================================================================
 
-/**
- * @brief TranslateEnemy
- * @param direction
- * @param scalar
- * @param enemy
- */
-void TranslateEnemy(const Translation direction,
-                    const uint16_t scalar,
-                    Enemy *enemy);
+
+void EnemyMove(Map *map, Enemy *enemy);
 //===================================================================
 
 /**
@@ -55,7 +76,24 @@ void TranslateEnemy(const Translation direction,
  * @param rotation_angle
  * @param enemy
  */
-void EnemyRotate(const int16_t rotation_angle, Enemy *enemy);
+void EnemyRotate(const int16_t rotation_angle, Map *map, Enemy *enemy);
 //===================================================================
 
+int16_t EnemySortAngle();
+//===================================================================
+
+int16_t EnemySortLength(int16_t range_1, int16_t range_2);
+//===================================================================
+
+/**
+ * @brief TranslateEnemy
+ * @param direction
+ * @param scalar
+ * @param enemy
+ */
+void EnemyTranslate(const Translation direction,
+                    const uint16_t scalar,
+                    Map *map,
+                    Enemy *enemy);
+//===================================================================
 #endif // STRUCTPERSONAGE_H

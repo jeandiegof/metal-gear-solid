@@ -14,12 +14,38 @@ bool AreLinesIntersecting(const Line *line_1, const Line *line_2)
 
 bool IsPointInLine(const Point *point, const Line *line)
 {
-  for(uint16_t i = 0; i < line->length; i++)
+  // Is point in the x range?
+  if ( point->x <  line->min->x || point->x >  line->max->x )
+    return false;
+
+  // Is point in the y range?
+  if ( point->y < line->min->y || point->y > line->max->y )
+    return false;
+
+  switch (line->angle)
   {
-    if( IsPointInPoint( point, LineGetPointRef(i,line) ) )
+    case ANGLE_0:
+    case ANGLE_90:
+    case ANGLE_180:
+    case ANGLE_270:
       return true;
+      break;
+
+    case ANGLE_45:
+    case ANGLE_135:
+    case ANGLE_225:
+    case ANGLE_315:
+      for(uint16_t i = 0; i < line->length; i++)
+      {
+        if(IsPointInPoint(LineGetPointRef(i, line), point))
+          return true;
+      }
+      return false;
+      break;
   }
-  return false;
+
+  // Just to avoid compiler warnings, functions never reachs this line;
+  return true;
 }
 //===================================================================
 
@@ -50,52 +76,107 @@ bool IsPointInRectangle(const Point *point, const Rectangle *rec)
 //===================================================================
 
 
-bool IsPointInEnemy(const Point *point, const Enemy *enemy)
+int16_t IfObjectOverLineGetIndex(const Line *line, const Map *map)
 {
-  // IF point is out of range THEN return false.
-  // Checks the x range.
-  if( point->x < enemy->min_point.x || point->x > enemy->max_point.x)
-    return false;
-
-  // Checks the y range.
-  if (point->y < enemy->min_point.y || point->y > enemy->max_point.y)
-    return false;
-
-  // Checks the case where the point is over sight's boundries or
-  // over enemy's icon.
-  if( IsPointInLine(point, enemy->sight->bound_1->line) ||
-      IsPointInLine(point, enemy->sight->bound_2->line) ||
-      IsPointInLine(point, enemy->sight->bound_3->line) ||
-      IsPointInPoint(&enemy->icon.point, point) )
-    return true;
-
-  // Checks the case where the point is inside or outside
-  // sight's boundries.
-  Line *detection_line = NewLine();
-
-  uint8_t intersection_counter = 0;
-
-  LineCreate(point, ANGLE_0, enemy->sight->length*2+1, detection_line);
-
-  if(AreLinesIntersecting(detection_line, enemy->sight->bound_1->line))
-    intersection_counter++;
-
-  if(AreLinesIntersecting(detection_line, enemy->sight->bound_2->line))
-    intersection_counter++;
-
-  if(AreLinesIntersecting(detection_line, enemy->sight->bound_3->line))
-    intersection_counter++;
-
-  if(IsPointInLine(&enemy->icon.point, detection_line))
-    intersection_counter++;
-
-  if(intersection_counter != 1)
+  for(uint16_t i = 0; i < line->length; i++)
   {
-    return false;
+    if( IsPointAnObject(LineGetPointRef(i, line), map) )
+      return i;
   }
 
+  // There is no object over the line.
+  return -1;
+}
+//===================================================================
+
+bool IsObjectBetweenPointsHorizontal(const Point *origin_point,
+                                     const Point *point,
+                                     const Map *map)
+{
+  Point map_point = *origin_point;
+
+  int16_t max_x;
+  int16_t min_x;
+
+  int16_t distance;
+
+  if(origin_point->x < point->x)
+  {
+    max_x = point->x;
+    min_x = origin_point->x;
+  }
+  else
+  {
+    max_x = origin_point->x;
+    min_x = point->x;
+  }
+
+  distance = max_x - min_x;
+
+  for(uint16_t i = 0; i <= distance; i++)
+  {
+    map_point.x = min_x + i;
+    if(IsPointAnObject(&map_point, map))
+      return true;
+  }
+
+  return false;
+}
+//===================================================================
 
 
-  return true;
+bool IsObjectBetweenPointsVertical(const Point *origin_point,
+                                   const Point *point,
+                                   const Map *map)
+{
+  Point map_point = *origin_point;
+
+  int16_t max_y;
+  int16_t min_y;
+
+  int16_t distance;
+
+  if(origin_point->y < point->y)
+  {
+    max_y = point->y;
+    min_y = origin_point->y;
+  }
+  else
+  {
+    max_y = origin_point->y;
+    min_y = point->y;
+  }
+
+  distance = max_y - min_y;
+
+  for(uint16_t i = 0; i <= distance; i++)
+  {
+    map_point.y = min_y + i;
+    if(IsPointAnObject(&map_point, map))
+      return true;
+  }
+
+  return false;
+}
+//===================================================================
+
+
+bool IsPointAnObject(const Point *point, const Map *map)
+{
+  switch (map->matrix[point->y][point->x])
+  {
+    case '#':
+    case 'x':
+    case '@':
+    case 'Z':
+    case '0':
+    case 'K':
+    case '%':
+      return true;
+      break;
+
+    default:
+      return false;
+  }
 }
 //===================================================================

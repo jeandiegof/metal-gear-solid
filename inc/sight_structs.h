@@ -3,12 +3,12 @@
 
 #include <stdint.h>
 
-#include "inc/line.h"
+#include "inc/vector_line.h"
 #include "inc/unicodes.h"
 
 typedef struct SightBoundry
 {
-  char img[U_length];
+  char img[U_LENGTH];
 
   int16_t length;
 
@@ -32,11 +32,23 @@ typedef struct Sight
 
   int16_t length;
 
-  struct SightBoundry *bound_1;
+  SightBoundry *bound_1;
 
-  struct SightBoundry *bound_2;
+  SightBoundry *bound_2;
 
-  struct SightBoundry *bound_3;
+  SightBoundry *bound_3;
+
+  VectorLine *full_lines;
+
+  VectorLine *full_lines_1;
+
+  VectorLine *full_lines_2;
+
+  VectorLine *instant_lines;
+
+  VectorLine *instant_lines_1;
+
+  VectorLine *instant_lines_2;
 
 }Sight;
 //===================================================================

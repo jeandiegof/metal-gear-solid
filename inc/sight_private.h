@@ -3,6 +3,8 @@
 
 #include "sight_structs.h"
 
+#include "inc/map_manager.h"
+
 /**
  * @brief Creates a Sight object.
  *
@@ -27,52 +29,20 @@ void DestroySight(Sight *sight);
  * @param enemy_origin
  * @param sight
  */
-void SightCreateBoundries(const int16_t angle,
-                          const int16_t length,
-                          const Point *enemy_origin,
-                          Sight *sight);
+void SightCreate(const int16_t angle,
+                 const int16_t length,
+                 const Point *enemy_origin,
+                 Sight *sight);
+//===================================================================
+
+void SightCreateInstantLines(const Map *map, Sight *sight);
 //===================================================================
 
 /**
- * @brief SightGrow
+ * @brief SightFill
  * @param sight
  */
-void SightGrow(Sight *sight);
-//===================================================================
-
-/**
- * @brief SightGrowBoundry1
- * @param sight
- */
-void SightGrowBoundry1(Sight *sight);
-//===================================================================
-
-/**
- * @brief SightGrowBoundry2
- * @param sight
- */
-void SightGrowBoundry2(Sight *sight);
-//===================================================================
-
-/**
- * @brief SightShrink
- * @param sight
- */
-void SightShrink(Sight *sight);
-//===================================================================
-
-/**
- * @brief SightShrinkBoundry1
- * @param sight
- */
-void SightShrinkBoundry1(Sight *sight);
-//===================================================================
-
-/**
- * @brief SightShrinkBoundry2
- * @param sight
- */
-void SightShrinkBoundry2(Sight *sight);
+void SightFill(const Point *enemy_origin, Sight *sight);
 //===================================================================
 
 #endif // SIGHT_H

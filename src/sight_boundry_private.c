@@ -39,12 +39,6 @@ void SightBoundryCreate(const int16_t angle,
                         const Point *ref_point,
                         SightBoundry *boundry)
 {
-  // Init length.
-  if(length <= 0)
-  {
-    printf("Creating a line with lenght zero or less.");
-    exit(1);
-  }
   // Reset lines.
   LineReset(boundry->line);
 
@@ -54,6 +48,12 @@ void SightBoundryCreate(const int16_t angle,
   // Init image for the actual angle.
   SightBoundrySetImg(boundry);
 
+  // Init length.
+  if(length <= 0)
+  {
+    return;
+  }
+
   Point origin;
   origin.x = ref_point->x + ( 1 * boundry->line->direction_vector.x );
   origin.y = ref_point->y + ( 1 * boundry->line->direction_vector.y );
@@ -61,6 +61,8 @@ void SightBoundryCreate(const int16_t angle,
   // Append the first point. SightBoundryGrow() requires the Line
   // object to have at least one point.
   LineAppendPoint(&origin, boundry->line);
+
+  boundry->length = 1;
 
   for(uint8_t i = 1; i < length; i++)
   {
@@ -91,6 +93,7 @@ void SightBoundryShrink(SightBoundry *boundry)
 {
   LineRemoveLastPoint(boundry->line);
 
+  boundry->length = boundry->line->length;
 }
 //===================================================================
 

@@ -1,25 +1,13 @@
-/**
- * @file pointvector.h
- * @author Carlo Fornari and Jean Fontena
- * @date 21 may 2018
- *
- * @brief Code to define a dynamic vector to store xy coordinate points defined
- * by the struct Point.
- *
- *
- * @see Point
- */
-
-#ifndef VECTORPOINT_H
-#define VECTORPOINT_H
+#ifndef VECTOR_LINE_H
+#define VECTOR_LINE_H
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 
-#include "inc/point.h"
+#include "inc/line.h"
 
-#define VECTOR_POINT_DEFAULT_CAPACITY 4
+#define VECTOR_LINE_DEFAULT_CAPACITY 4
 
 /**
  * @brief Definition of VectorInt type.
@@ -27,7 +15,7 @@
  * This is a dynamic vector. Initial capcaity is determined by the macro
  * @p VECTOR_POINT_DEFAULT_CAPACITY.
  */
-typedef struct VectorPoint
+typedef struct VectorLine
 {
   /** Number of slots used so far. */
   uint16_t length;
@@ -35,13 +23,10 @@ typedef struct VectorPoint
   /** Total quantity of slots available.*/
   uint16_t capacity;
 
-  /** Array of integers for data. */
-  Point *data;
+  /** Array of Lines */
+  Line **data;
 
-  Point max;
-  Point min;
-
-} VectorPoint;
+} VectorLine;
 
 
 /**
@@ -55,18 +40,22 @@ typedef struct VectorPoint
  * @param value[in]
  * @param vector[out]
  */
-void VectorPointAppend(const Point *value, VectorPoint *vector);
+void VectorLineAppend(const Line *value, VectorLine *vector);
+//===================================================================
+
+
+void VectorLineAppendVector(const VectorLine *input, VectorLine *output);
 //===================================================================
 
 /**
- * @brief Frees the memory allocated for the VectorPoint.
+ * @brief Frees the memory allocated for the VectorLine.
  *
- * Freeing the VectorPoint struct is left to client code (so it can
+ * Freeing the VectorLine struct is left to client code (so it can
  * use any sort of pointer, be it stack or heap, and then clean up.
  *
- * @param vector[out] A pointer to the VectorPoint that should be destroyed.
+ * @param vector[out] A pointer to the VectorLine that should be destroyed.
  */
-void DestroyVectorPoint(VectorPoint *vector);
+void DestroyVectorLine(VectorLine *vector);
 //===================================================================
 
 /**
@@ -76,9 +65,9 @@ void DestroyVectorPoint(VectorPoint *vector);
  * allocates an appropriate amount of memory (@p vector->capacity * sizeof(int))
  * for the underlying data array.
  *
- * @return A pointer to the VectorPoint created.
+ * @return A pointer to the VectorLine created.
  */
-VectorPoint *NewVectorPoint();
+VectorLine *NewVectorLine();
 //===================================================================
 
 /**
@@ -93,9 +82,9 @@ VectorPoint *NewVectorPoint();
  * @param value[in]
  * @param vector[out]
  */
-void VectorPointInsert(const uint16_t index,
-                       const Point *value,
-                       VectorPoint *vector);
+void VectorLineInsert(const uint16_t index,
+                      const Line *value,
+                      VectorLine *vector);
 //===================================================================
 
 /**
@@ -103,14 +92,14 @@ void VectorPointInsert(const uint16_t index,
  * @param vector[in]
  * @return The number of slots used so far in the vector.
  */
-uint16_t VectorPointGetSize(const VectorPoint *vector);
+uint16_t VectorLineGetSize(const VectorLine *vector);
 //===================================================================
 
 /**
- * @brief Returns a Point inside VectorPoint at @p index position.
+ * @brief Returns a reference to a Line inside VectorLine at @p index position.
  *
- * Should be used when the client just wants Point's value.
- * If Point's value will be modified, VectorPointValueRef() should be
+ * Should be used when the client wants to modify Line's value.
+ * If Line's value will NOT be modified, VectorLineValue() should be
  * used instead.
  *
  * This function will throw an error message and exit the code if
@@ -118,41 +107,23 @@ uint16_t VectorPointGetSize(const VectorPoint *vector);
  *
  * @param index[in]
  * @param vector[in]
- * @return The value of some Point inside Line.
+ * @return The address of some Line inside VectorLine.
  */
-
-Point VectorPointGetValue(const int index, const VectorPoint *vector);
+Line *VectorLineGetLine(const int index, const VectorLine *vector);
 //===================================================================
 
 /**
- * @brief Returns a reference to a Point inside VectorPoint at @p index position.
- *
- * Should be used when the client wants to modify Point's value.
- * If Point's value will NOT be modified, VectorPointValue() should be
- * used instead.
- *
- * This function will throw an error message and exit the code if
- * @p index >= @p vector->size || @p index < 0.
- *
- * @param index[in]
- * @param vector[in]
- * @return The address of some Point inside VectorPoint.
- */
-Point *VectorPointValueRef(const int index, const VectorPoint *vector);
-//===================================================================
-
-/**
- * @brief VectorPointRemoveLastPoint
+ * @brief VectorLineRemoveLastPoint
  * @param vector
  */
-void VectorPointRemoveLastPoint(VectorPoint *vector);
+void VectorLineRemoveLastLine(VectorLine *vector);
 //===================================================================
 
 /**
- * @brief VectorPointReset
+ * @brief VectorLineReset
  * @param vector
  */
-void VectorPointReset(VectorPoint *vector);
+void VectorLineReset(VectorLine *vector);
 //===================================================================
 
-#endif // VECTORPOINT_H
+#endif // VECTOR_LINE_H

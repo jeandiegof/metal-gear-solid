@@ -19,6 +19,18 @@ bool IsPointInPoint(const Point *point_1, const Point *point_2);
 bool IsPointInRectangle(const Point *point, const Rectangle *rec);
 
 
-bool IsPointInEnemy(const Point *point, const Enemy *enemy);
+int16_t IfObjectOverLineGetIndex(const Line *line, const Map *map);
+
+bool IsObjectBetweenPointsHorizontal(const Point *origin_point,
+                                     const Point *point,
+                                     const Map *map);
+
+
+bool IsObjectBetweenPointsVertical(const Point *origin_point,
+                                   const Point *point,
+                                   const Map *map);
+
+
+bool IsPointAnObject(const Point *point, const Map *map);
 
 #endif // COLISION_H

@@ -54,6 +54,18 @@ void TranslateLine(const Translation direction,
 //===================================================================
 
 
+void TranslateVectorLine(const Translation direction,
+                         const uint16_t scalar,
+                         VectorLine *vector)
+{
+  for(uint16_t i = 0; i < vector->length; i++)
+  {
+    TranslateLine(direction, scalar, VectorLineGetLine(i, vector));
+  }
+}
+//===================================================================
+
+
 void TranslateRectangle(const Translation direction,
                         const uint16_t scalar,
                         Rectangle *rectangle)

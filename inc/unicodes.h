@@ -2,7 +2,7 @@
 #define UNICODES_H
 
 
-#define U_length 11 // Unicode length meant to be used by some client.
+#define U_LENGTH 11 // Unicode length meant to be used by some client.
 
 
 #define U_HERO_STOPPED "\U00002687"
