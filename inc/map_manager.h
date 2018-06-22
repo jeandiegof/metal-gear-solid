@@ -8,6 +8,8 @@
 #define LINE_ENDING_CHARS   2
 #define MAX_ENEMIES         10
 #define MAX_HOSTAGES        10
+//#define MAP_OFFSET_X        1
+//#define MAP_OFFSET_Y        6
 
 typedef struct MapObjects {
   Point hero;

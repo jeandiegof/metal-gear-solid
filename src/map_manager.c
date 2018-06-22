@@ -68,6 +68,8 @@ void LoadObjectsFromMap(Map *map) {
         case 'x':
           map->object.exit.x = j;
           map->object.exit.y = i;
+          // hides the key
+          map->matrix[i][j] = '#';
           break;
       }
     }
