@@ -9,6 +9,13 @@
 #include "inc/sight_structs.h"
 #include "inc/translation.h"
 
+typedef enum EnemyStatus
+{
+  kMoving,
+  kSleeping,
+  kWaiting
+}EnemyStatus;
+
 
 typedef struct Enemy
 {
@@ -20,8 +27,18 @@ typedef struct Enemy
 
   bool sleep;
 
-  Point max_point;
-  Point min_point;
+  uint16_t sleep_counter;
+
+  bool already_moving;
+
+  Translation motion;
+
+  uint8_t steps;
+
+  uint8_t steps_counter;
+
+  EnemyStatus status;
+
 
 }Enemy;
 //===================================================================
@@ -36,7 +53,7 @@ typedef struct Enemy
 Enemy *NewEnemy(const int16_t angle,
                 const int16_t sight_length,
                 const Point *origin,
-                const Map *map);
+                Map *map);
 //===================================================================
 
 /**
@@ -47,7 +64,7 @@ void DestroyEnemy(Enemy *enemy);
 //===================================================================
 
 
-void EnemySightGrow(Enemy *enemy);
+void EnemyMove(Map *map, Enemy *enemy);
 //===================================================================
 
 /**
@@ -55,10 +72,7 @@ void EnemySightGrow(Enemy *enemy);
  * @param rotation_angle
  * @param enemy
  */
-void EnemyRotate(const int16_t rotation_angle, Enemy *enemy);
-//===================================================================
-
-void EnemySightShrink(Enemy *enemy);
+void EnemyRotate(const int16_t rotation_angle, Map *map, Enemy *enemy);
 //===================================================================
 
 /**
@@ -69,6 +83,7 @@ void EnemySightShrink(Enemy *enemy);
  */
 void EnemyTranslate(const Translation direction,
                     const uint16_t scalar,
+                    Map *map,
                     Enemy *enemy);
 //===================================================================
 #endif // STRUCTPERSONAGE_H

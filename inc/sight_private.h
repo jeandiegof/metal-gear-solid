@@ -29,10 +29,10 @@ void DestroySight(Sight *sight);
  * @param enemy_origin
  * @param sight
  */
-void SightCreateBoundries(const int16_t angle,
-                          const int16_t length,
-                          const Point *enemy_origin,
-                          Sight *sight);
+void SightCreate(const int16_t angle,
+                 const int16_t length,
+                 const Point *enemy_origin,
+                 Sight *sight);
 //===================================================================
 
 void SightCreateInstantLines(const Map *map, Sight *sight);

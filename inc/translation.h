@@ -4,13 +4,15 @@
 #include <stdint.h>
 
 #include "inc/rectangle.h"
+#include "inc/vector_line.h"
 
 typedef enum Translation
 {
   kEast,
   kNorth,
   kSouth,
-  kWest
+  kWest,
+  kStop
 }Translation;
 
 
@@ -33,6 +35,11 @@ void TranslatePoint(const Translation direction,
 void TranslateLine(const Translation direction,
                    const uint16_t scalar,
                    Line *line);
+
+
+void TranslateVectorLine(const Translation direction,
+                         const uint16_t scalar,
+                         VectorLine *vector);
 
 /**
  * @brief TranslateRectangle

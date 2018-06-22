@@ -88,10 +88,10 @@ void DestroySight(Sight *sight)
 //===================================================================
 
 
-void SightCreateBoundries(const int16_t angle,
-                          const int16_t length,
-                          const Point *enemy_origin,
-                          Sight *sight)
+void SightCreate(const int16_t angle,
+                 const int16_t length,
+                 const Point *enemy_origin,
+                 Sight *sight)
 {
   // Init sight's angle.
   SighValidateAngle(angle, sight);
@@ -118,6 +118,10 @@ void SightCreateInstantLines(const Map *map, Sight *sight)
 {
   Line *full_line;
   Line *new_instant_line = NewLine();
+
+  VectorLineReset(sight->instant_lines);
+  VectorLineReset(sight->instant_lines_1);
+  VectorLineReset(sight->instant_lines_2);
 
   int16_t vector_1_length;
   int16_t vector_2_length;
