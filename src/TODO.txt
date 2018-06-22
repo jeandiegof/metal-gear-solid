@@ -1,0 +1,44 @@
+[TODO] Implementar o dardo
+[TODO] Tela para perguntar nome do jogador;
+[TODO] Dar suporte pra dois caracteres na chave o¬
+[TODO] Criar arquivo do ranking se não existir.
+
+[BUG] Ranking só atualiza se sair e entrar no jogo;
+[TODO] Implementar um free everything pra sair do jogo;
+[TODO] Tratar erros das funções
+
+CORRIGIDOS/FEITOS:
+
+[TODO] Timer para gerenciamento geral do jogo;
+[TODO] Implementar atalhos n, r e s no menu inicial.
+[BUG] Mapa não atualiza ao iniciar novo jogo a partir de antigo
+[BUG] Heroi não aparece no começo de um novo jogo iniciado pelo menu após um jogo ter terminado;
+
+-------------------------------
+
+Dart {
+  Point position;
+  Direction direction;
+  uint8_t is_started;
+  uint8_t steps;
+}
+
+Polling space par, then:
+  InitDart(&dart, hero, direction);
+    dart.steps = 0;
+    dart.is_started = 1;
+    dart.direction = direction;
+    dart.position = hero.base.point;
+    switch(dart.direction) {
+      case UP:
+        if(--dart.position.y < 0) {
+          dart.position.y = 0;
+        }
+        break;
+      case DOWN:
+        if(++dart.position.y > 25) {
+          dart.position.y = 25;
+        }
+      case LEFT:
+
+    }
