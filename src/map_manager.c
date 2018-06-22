@@ -46,6 +46,7 @@ void LoadObjectsFromMap(Map *map) {
         case 'o':
           map->object.hero.x = j;
           map->object.hero.y = i;
+          map->object.hero_origin = map->object.hero;
           break;
         case '@':
           map->object.enemy[map->object.enemy_free_index].x = j;

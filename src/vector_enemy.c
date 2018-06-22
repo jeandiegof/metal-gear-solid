@@ -59,7 +59,7 @@ VectorEnemy *NewVectorEnemy()
 //===================================================================
 
 
-Enemy *VectorEnemyGetbyIndex(const int index, const VectorEnemy *vector)
+Enemy *VectorEnemyGetByIndex(const int index, const VectorEnemy *vector)
 {
   if (index >= vector->length || index < 0)
   {
@@ -72,13 +72,13 @@ Enemy *VectorEnemyGetbyIndex(const int index, const VectorEnemy *vector)
 //===================================================================
 
 
-Enemy *VectorEnemyGetbyPoint(const Point *point, const VectorEnemy *vector)
+Enemy *VectorEnemyGetByPoint(const Point *point, const VectorEnemy *vector)
 {
   Enemy *aux_enemy;
 
   for(uint16_t i = 0; i < vector->length; i++)
   {
-    aux_enemy = VectorEnemyGetbyIndex(i, vector);
+    aux_enemy = VectorEnemyGetByIndex(i, vector);
     if(point->x == aux_enemy->icon.point.x &&
        point->y == aux_enemy->icon.point.y)
     {

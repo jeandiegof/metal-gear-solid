@@ -80,7 +80,10 @@ VectorEnemy *NewVectorEnemy();
  * @param vector[in]
  * @return The address of some Enemy inside VectorEnemy.
  */
-Enemy *VectorEnemyGetbyIndex(const int index, const VectorEnemy *vector);
+Enemy *VectorEnemyGetByIndex(const int index, const VectorEnemy *vector);
+//===================================================================
+
+Enemy *VectorEnemyGetByPoint(const Point *point, const VectorEnemy *vector);
 //===================================================================
 
 /**

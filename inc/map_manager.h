@@ -13,6 +13,7 @@
 
 typedef struct MapObjects {
   Point hero;
+  Point hero_origin;
   Point enemy[MAX_ENEMIES];
   uint8_t enemy_free_index;
   Point power_up;

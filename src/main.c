@@ -22,58 +22,58 @@
 #include "inc/screen_game_complete.h"
 #include "inc/timer.h"
 #include "inc/dart.h"
+#include "inc/vector_enemy.h"
 /* end dbg */
 
 
 int main(void)
 {
   InitWindow();
-/*
-  struct timespec tim, tim2;
-  tim.tv_sec = 1;
-  tim.tv_nsec = 0;
-  //100000000L = 100ms
-  //500000000L = 500ms
 
-  Map map;
+//   struct timespec tim, tim2;
+//   tim.tv_sec = 1;
+//   tim.tv_nsec = 0;
+//   //100000000L = 100ms
+//   //500000000L = 500ms
 
-  LoadMapFromFile(&map);
+//   Map map;
 
-  Point origin = {40,18};
+//   LoadMapFromFile(&map);
 
-  Enemy *enemy = NewEnemy(ANGLE_90, 2, &origin, &map);
+//   Point origin = {40,18};
 
-//  for(uint16_t i = 0; i < 30; i++)
-//  {
-//    EnemyMove(&map, enemy);
+//   Enemy *enemy = NewEnemy(ANGLE_90, 3, &origin, &map);
 
-//    DebugPrintMap(&map);
+//  // for(uint16_t i = 0; i < 60; i++)
+//  // {
+//  //   EnemyMove(&map, enemy);
 
-//    refresh();
+//  //   DebugPrintMap(&map);
 
-//    nanosleep(&tim , &tim2);
-//  }
+//  //   refresh();
 
-  DebugPrintMap(&map);
+//  //   nanosleep(&tim , &tim2);
+//  // }
+
+//   // DebugPrintMap(&map);
 
 //  ShowEnemy(enemy, &map);
 
-//  DebugEnemySightFullLines(enemy);
+// //  DebugEnemySightFullLines(enemy);
 
-//  DebugEnemySightInstantLines(enemy);
+// //  DebugEnemySightInstantLines(enemy);
 
-  refresh();
+//   refresh();
 
-  DestroyEnemy(enemy);
+//   DestroyEnemy(enemy);
 
-  while(1);
+//   while(1);
 
- // Restore normal terminal behavior
-  endwin();
-}*/
-  
+//  // Restore normal terminal behavior
+//   endwin();
+// }
+
   Game *game = NewGame();
-  //game->actual_screen = SCREEN_RANKING;
 
   MENU *menu;
   WINDOW *window_menu;
@@ -84,7 +84,23 @@ int main(void)
   Map map;
   LoadMapFromFile(&map);
   LoadObjectsFromMap(&map);
-  
+
+  VectorEnemy *vector_enemy = NewVectorEnemy();
+  Enemy *new_enemy;  
+  Enemy *aux_enemy;
+
+  for (int i = 0; i < map.object.enemy_free_index; ++i)
+  {
+     new_enemy = NewEnemy(EnemySortAngle(), 2, &(map.object.enemy[i]), &map);
+     VectorEnemyAppend(new_enemy, vector_enemy);
+  }
+
+  struct timespec tim, tim2;
+  tim.tv_sec = 0;
+  tim.tv_nsec = 10000000L;
+  //100000000L = 100ms
+  //500000000L = 500ms
+
   // TODO: stop using GameState var and change it to Game struct
   GameState game_state = RUNNING;
   Hero hero = NewHero(3, 5, &map.object.hero);
@@ -123,7 +139,7 @@ int main(void)
   uint8_t ranking_entries;
 
   clock_t cycles_start;
-  uint8_t game_cycles;
+  uint8_t game_cycles = 0;
 
   Dart dart;
   char c;
@@ -186,7 +202,8 @@ int main(void)
       }
       ScreenGameUpdate();
     }
-    cycles_start = clock();
+    // cycles_start = clock();
+
     switch(game->actual_screen) {
       case SCREEN_MENU:
         //  menu_controller
@@ -194,15 +211,27 @@ int main(void)
         break;
       case SCREEN_GAME:
         // game_controller
-        if(game_cycles % 4 == 0) {
+        if((game_cycles % 4) == 0) {
           game->actual_screen = HeroManager(&map, &hero);
         }
-        /*
-        DartInit(&dart, hero, hero.last_direction);
-        DartEvaluatePosition(&map, &dart, DartPointToCheck(dart));
+        if((game_cycles % 16) == 0) {
+          for (int i = 0; i < vector_enemy->length; ++i)
+          {
+            aux_enemy = VectorEnemyGetByIndex(i, vector_enemy);
+            EnemyMove(&map, aux_enemy);
+            if(map.matrix[hero.base.point.y][hero.base.point.x] == '@' ||
+               map.matrix[hero.base.point.y][hero.base.point.x] == '.')
+            {
+              map.matrix[map.object.hero_origin.y][map.object.hero_origin.x] = 'o';
+              hero.base.point = map.object.hero_origin;
+              if(--hero.life == 0) {
+                game->actual_screen == GAME_OVER;
+              }
+            }
+          }
+        }
         ScreenGameMapUpdate(&map, &window_map);
         ScreenGameStatusUpdate(&hero, game_state, &window_status);
-        */
         break;
       case SCREEN_RANKING:
         getch();
@@ -210,14 +239,14 @@ int main(void)
         break;
       case SCREEN_GAME_OVER:
       case SCREEN_GAME_COMPLETE:
-        sprintf(player.name, "Jean");
-        player.score = hero.score;
-        LoadRankingFromFile(entry, &ranking_entries);
-        AddEntryOnRanking(entry, player, &ranking_entries);
-        AddRankingOnFile(entry, ranking_entries);
-        getch();
-        getch();
-        game->actual_screen = SCREEN_MENU;
+        if(getch() == 27) {
+          sprintf(player.name, "Jean");
+          player.score = hero.score;
+          LoadRankingFromFile(entry, &ranking_entries);
+          AddEntryOnRanking(entry, player, &ranking_entries);
+          AddRankingOnFile(entry, ranking_entries);
+          game->actual_screen = SCREEN_MENU;
+        }
         break;
       case SCREEN_EXIT_GAME:
         DestroyGame(game);
@@ -226,7 +255,12 @@ int main(void)
         break;
     }
     ScreenGameUpdate();
-    TimeManager(cycles_start, &game_cycles);
+    // TimeManager(cycles_start, &game_cycles);
+    nanosleep(&tim , &tim2);
+    if(++game_cycles == 255)
+    {
+      game_cycles = 0;
+    }
   }
   // REMEMBER TO FREE THE MEMORY USED W/ WINDOWS, PANELS, MENUS, etc
   endwin();

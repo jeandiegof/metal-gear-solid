@@ -1,5 +1,6 @@
 #include <ncursesw/ncurses.h>
 #include <locale.h>
+#include <time.h>
 
 #include "inc/window.h"
 
@@ -7,6 +8,15 @@ static void InitWindowColors();
 
 void InitWindow()
 {
+  srand(time(NULL));
+
+  initscr();
+
+  cbreak();
+  noecho();
+  scrollok(stdscr, TRUE);
+  nodelay(stdscr, TRUE);
+
   // Enable the use of unicodes.
 	setlocale(LC_ALL, "en_US.utf8");
 
@@ -22,9 +32,6 @@ void InitWindow()
 
 static void InitWindowColors()
 {
-  // Init the window.
-  initscr();
-
   // Enable the use of colors.
   start_color();
 

@@ -4,7 +4,7 @@
 #include <time.h>
 #include <unistd.h>
 
-#define GAME_CYCLE_TIME         0.01
+#define GAME_CYCLE_TIME         100
 
 void TimeManager(clock_t start_clock, uint8_t *game_cycles);
 

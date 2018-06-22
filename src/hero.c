@@ -46,13 +46,18 @@ Screen MoveHero(Map *map, Hero *hero, Direction direction) {
       // FALLTHROUGH
     case MOVEMENT_ALLOWED:
       map->matrix[p.y][p.x] = 'o';
-      hero->base.point.x = p.x;
-      hero->base.point.y = p.y;
+      hero->base.point = p;
+      return SCREEN_GAME;
       break;
     case GAME_OVER:
       hero->life = 0;
       return SCREEN_GAME_OVER;
       break; 
+    case ENEMY_FOUND:
+      map->matrix[map->object.hero_origin.y][map->object.hero_origin.x] = 'o';
+      hero->base.point = map->object.hero_origin;
+      return SCREEN_GAME;
+      break;
     case RUNNING:
     case PAUSED:
       break;
@@ -63,9 +68,9 @@ Screen MoveHero(Map *map, Hero *hero, Direction direction) {
 Screen HeroManager(Map *map, Hero *hero) {
   char opt;
   Screen next_screen = SCREEN_GAME;
-  if(kbhit()) {
-    opt = getch();
-    switch(opt) {
+  //if(kbhit()) {
+    //opt = getch();
+    switch(getch()) {
       case 'w':
         next_screen = MoveHero(map, hero, UP);
         hero->last_direction = UP;
@@ -83,7 +88,7 @@ Screen HeroManager(Map *map, Hero *hero) {
         hero->last_direction = RIGHT;
         break;
     }
-  }
+  //}
   return next_screen;
 }
 
@@ -127,11 +132,13 @@ static GameState EvaluatePosition(Map **map, Hero **hero, Point p) {
       return MOVEMENT_FORBIDDEN;
       break;
     case '@':
+    case '.':
       (*map)->matrix[actual.y][actual.x] = ' ';
       if (--(*hero)->life == 0) {
         return GAME_OVER;
       } else {
-        return MOVEMENT_ALLOWED;
+        //return MOVEMENT_ALLOWED;
+        return ENEMY_FOUND;
       }
       break;
     case '%':

@@ -10,6 +10,7 @@ typedef enum GameState {
   GAME_COMPLETE,
   MOVEMENT_ALLOWED,
   MOVEMENT_FORBIDDEN,
+  ENEMY_FOUND,
 } GameState;
 
 typedef enum Screen {

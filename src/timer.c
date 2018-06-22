@@ -7,7 +7,7 @@ void TimeManager(clock_t start_clock, uint8_t *game_cycles) {
   
   double time_taken;
   time_taken =  total_clock/CLOCKS_PER_SEC;
-  sleep(GAME_CYCLE_TIME-time_taken);
+  sleep((double)(GAME_CYCLE_TIME/1000)-time_taken);
 
   if(++(*game_cycles) == 255) {
     game_cycles = 0;

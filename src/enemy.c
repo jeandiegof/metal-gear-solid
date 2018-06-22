@@ -129,8 +129,6 @@ void EnemyRotate(const int16_t rotation_angle, Map *map, Enemy *enemy)
 
 int16_t EnemySortAngle()
 {
-  srand(time(NULL));
-
   switch ( rand() % 4 )
   {
     case 0:
@@ -295,8 +293,6 @@ static void EnemyEraseFromMatrix(Map *map, Enemy *enemy)
 
 static Translation EnemySortAction()
 {
-  srand(time(NULL));
-
   switch (rand()%5)
   {
     case 0:
@@ -323,8 +319,6 @@ static Translation EnemySortAction()
 
 static uint8_t EnemySortSteps()
 {
-  srand(time(NULL));
-
   return ( ( rand() % 3 ) + 2 );
 }
 //===================================================================
