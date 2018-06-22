@@ -88,6 +88,7 @@ int main(void)
   VectorEnemy *vector_enemy = NewVectorEnemy();
   Enemy *new_enemy;  
   Enemy *aux_enemy;
+  Point enemy_position;
 
   for (int i = 0; i < map.object.enemy_free_index; ++i)
   {
@@ -214,7 +215,7 @@ int main(void)
         if((game_cycles % 4) == 0) {
           game->actual_screen = HeroManager(&map, &hero);
         }
-        if((game_cycles % 16) == 0) {
+        if((game_cycles % 32) == 0) {
           for (int i = 0; i < vector_enemy->length; ++i)
           {
             aux_enemy = VectorEnemyGetByIndex(i, vector_enemy);
@@ -225,17 +226,33 @@ int main(void)
               map.matrix[map.object.hero_origin.y][map.object.hero_origin.x] = 'o';
               hero.base.point = map.object.hero_origin;
               if(--hero.life == 0) {
-                game->actual_screen == GAME_OVER;
+                game->actual_screen = SCREEN_GAME_OVER;
               }
             }
+          }
+        }
+        if(kbhit()) {
+          c = getch();
+          if(c == 32){
+            DartInit(&dart, &hero, hero.last_direction);
+          } else {
+            ungetch(c);
+          }
+        }
+        if((game_cycles % 1) == 0) {
+          if(DartEvaluatePosition(&map, &dart, DartPointToCheck(dart)) == ENEMY_FOUND) {
+            //enemy_position = DartPointToCheck(dart);
+            //aux_enemy = VectorEnemyGetByPoint(&enemy_position, vector_enemy);
+            //EnemyHitSignal(&map, aux_enemy);
           }
         }
         ScreenGameMapUpdate(&map, &window_map);
         ScreenGameStatusUpdate(&hero, game_state, &window_status);
         break;
       case SCREEN_RANKING:
-        getch();
-        game->actual_screen = SCREEN_MENU;
+        if(getch() == 27) {
+          game->actual_screen = SCREEN_MENU;
+        }
         break;
       case SCREEN_GAME_OVER:
       case SCREEN_GAME_COMPLETE:

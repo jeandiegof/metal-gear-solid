@@ -1,14 +1,15 @@
 #include "inc/dart.h"
 #include "inc/keyboard_manager.h"
 
-void DartInit(Dart *dart, Hero hero, Direction direction) {
-  if(dart->is_started) {
+void DartInit(Dart *dart, Hero *hero, Direction direction) {
+  if(dart->is_started || hero->ammo == 0) {
     return;
   }
-  
+
+  hero->ammo--;
   dart->steps = 0;
   dart->is_started = 1;
-  dart->position = hero.base.point;
+  dart->position = hero->base.point;
   dart->direction = direction;
 
   switch(dart->direction) {
@@ -68,10 +69,38 @@ Point DartPointToCheck(Dart dart) {
 GameState DartEvaluatePosition(Map *map, Dart *dart, Point p) {
   switch(map->matrix[p.y][p.x]) {
     case ' ':
-      map->matrix[dart->position.y][dart->position.x] = ' ';
-      map->matrix[p.y][p.x] = '-';
-      dart->position = p;
+    case '.':
+      if(dart->is_started) {
+        map->matrix[dart->position.y][dart->position.x] = ' ';
+        map->matrix[p.y][p.x] = '-';
+        dart->position = p;
+        if(++dart->steps == 12) {
+          dart->steps = 0;
+          dart->is_started = 0;
+          map->matrix[dart->position.y][dart->position.x] = ' ';
+        }
+      }
       return MOVEMENT_ALLOWED;
       break;
+    case '#':
+    case '%':
+    case '0':
+    case 'K':
+      if(dart->is_started) {
+        map->matrix[dart->position.y][dart->position.x] = ' ';
+        dart->steps = 0;
+        dart->is_started = 0;
+      }
+    case '@':
+      if(dart->is_started) {
+        map->matrix[dart->position.y][dart->position.x] = ' ';
+        // remove the following line if EnemyHitSignal already handle enemy position on matrix
+        map->matrix[p.y][p.x] = '-';
+        dart->steps = 0;
+        dart->is_started = 0;
+      }
+      return ENEMY_FOUND;
+      break;
+    break;
   }
 }

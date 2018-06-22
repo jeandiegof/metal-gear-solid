@@ -12,11 +12,6 @@ void InitWindow()
 
   initscr();
 
-  cbreak();
-  noecho();
-  scrollok(stdscr, TRUE);
-  nodelay(stdscr, TRUE);
-
   // Enable the use of unicodes.
 	setlocale(LC_ALL, "en_US.utf8");
 
@@ -28,6 +23,11 @@ void InitWindow()
 
   // Don't display a cursor
   curs_set(FALSE);
+
+  cbreak();
+  noecho();
+  scrollok(stdscr, TRUE);
+  nodelay(stdscr, TRUE);
 }
 
 static void InitWindowColors()

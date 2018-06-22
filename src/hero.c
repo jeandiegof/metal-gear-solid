@@ -68,9 +68,9 @@ Screen MoveHero(Map *map, Hero *hero, Direction direction) {
 Screen HeroManager(Map *map, Hero *hero) {
   char opt;
   Screen next_screen = SCREEN_GAME;
-  //if(kbhit()) {
-    //opt = getch();
-    switch(getch()) {
+  if(kbhit()) {
+    opt = getch();
+    switch(opt) {
       case 'w':
         next_screen = MoveHero(map, hero, UP);
         hero->last_direction = UP;
@@ -87,8 +87,10 @@ Screen HeroManager(Map *map, Hero *hero) {
         next_screen = MoveHero(map, hero, RIGHT);
         hero->last_direction = RIGHT;
         break;
+      default:
+        ungetch(opt);
     }
-  //}
+  }
   return next_screen;
 }
 

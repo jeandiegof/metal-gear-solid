@@ -28,9 +28,13 @@ void ScreenGameStatusUpdate(const Hero *hero, GameState game_state, WINDOW **win
   mvwprintw(*window, 2, 1, "Pontos: %05d", hero->score);
   
   mvwprintw(*window, 3, 1, "Dardos: ");
-  for (int i = 0; i < hero->ammo; ++i)
-  {
-    mvwprintw(*window, 3, 9+i, "|    ");
+  if(hero->ammo != 0) {
+    for (int i = 0; i < hero->ammo; ++i)
+    {
+      mvwprintw(*window, 3, 9+i, "|    ");
+    }
+  } else {
+    mvwprintw(*window, 3, 9, "     ");
   }
 
   if(game_state) {

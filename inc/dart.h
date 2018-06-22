@@ -11,7 +11,7 @@ typedef struct Dart {
   uint8_t steps;
 } Dart;
 
-void DartInit(Dart *dart, Hero hero, Direction direction);
+void DartInit(Dart *dart, Hero *hero, Direction direction);
 Point DartPointToCheck(Dart dart);
 GameState DartEvaluatePosition(Map *map, Dart *dart, Point p);
 

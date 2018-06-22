@@ -96,4 +96,7 @@ void EnemyTranslate(const Translation direction,
                     Map *map,
                     Enemy *enemy);
 //===================================================================
+
+void EnemyHitSignal(Map *map, Enemy *enemy);
+
 #endif // STRUCTPERSONAGE_H
