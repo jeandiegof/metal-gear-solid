@@ -17,5 +17,3 @@ void ScreenGameOverInit(WINDOW **window, PANEL **panel) {
   mvwprintw(*window, ++start_line, start_column, "| |__| |/ ____ \\| |  | | |____  | |__| | \\  /  | |____| | \\ \\|_|");
   mvwprintw(*window, ++start_line, start_column, " \\_____/_/    \\_\\_|  |_|______|  \\____/   \\/   |______|_|  \\_(_)");
 }
-
-

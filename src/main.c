@@ -23,6 +23,7 @@
 #include "inc/timer.h"
 #include "inc/dart.h"
 #include "inc/vector_enemy.h"
+#include "inc/screen_title.h"
 /* end dbg */
 
 
@@ -75,6 +76,11 @@ int main(void)
 
   Game *game = NewGame();
 
+  WINDOW *window_title;
+  PANEL *panel_title;
+  ScreenTitleInit(&window_title, &panel_title);
+  hide_panel(panel_title);
+    
   MENU *menu;
   WINDOW *window_menu;
   PANEL *panel_menu;
@@ -149,6 +155,7 @@ int main(void)
       game->last_screen = game->actual_screen;
       switch(game->actual_screen) {
         case SCREEN_MENU:
+          show_panel(panel_title);
           show_panel(panel_menu);
           hide_panel(panel_status);
           hide_panel(panel_map);
@@ -164,6 +171,7 @@ int main(void)
           ScreenGameMapUpdate(&map, &window_map);
           ScreenGameStatusUpdate(&hero, game_state, &window_status);
           
+          hide_panel(panel_title);
           show_panel(panel_map);
           show_panel(panel_status);
           hide_panel(panel_menu);
@@ -172,6 +180,7 @@ int main(void)
           hide_panel(panel_game_complete);
           break;
         case SCREEN_RANKING:
+          hide_panel(panel_title);
           hide_panel(panel_map);
           hide_panel(panel_status);
           hide_panel(panel_menu);
@@ -183,6 +192,7 @@ int main(void)
           ScreenGameUpdate();
           break;
         case SCREEN_GAME_OVER:
+          hide_panel(panel_title);
           hide_panel(panel_map);
           hide_panel(panel_status);
           hide_panel(panel_menu);
@@ -190,6 +200,7 @@ int main(void)
           hide_panel(panel_game_complete);
           break;
         case SCREEN_GAME_COMPLETE:
+          hide_panel(panel_title);
           hide_panel(panel_map);
           hide_panel(panel_status);
           hide_panel(panel_menu);

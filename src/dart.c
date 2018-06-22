@@ -86,6 +86,7 @@ GameState DartEvaluatePosition(Map *map, Dart *dart, Point p) {
     case '%':
     case '0':
     case 'K':
+    case 'Z':
       if(dart->is_started) {
         map->matrix[dart->position.y][dart->position.x] = ' ';
         dart->steps = 0;
