@@ -95,7 +95,7 @@ GameState DartEvaluatePosition(Map *map, Dart *dart, Point p) {
       if(dart->is_started) {
         map->matrix[dart->position.y][dart->position.x] = ' ';
         // remove the following line if EnemyHitSignal already handle enemy position on matrix
-        map->matrix[p.y][p.x] = '-';
+        map->matrix[p.y][p.x] = ' ';
         dart->steps = 0;
         dart->is_started = 0;
       }

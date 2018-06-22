@@ -131,6 +131,7 @@ static GameState EvaluatePosition(Map **map, Hero **hero, Point p) {
 
   switch ((*map)->matrix[p.y][p.x]) {
     case '#':
+    case 'Z':
       return MOVEMENT_FORBIDDEN;
       break;
     case '@':
