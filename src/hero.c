@@ -54,6 +54,10 @@ Screen MoveHero(Map *map, Hero *hero, Direction direction) {
       return SCREEN_GAME_OVER;
       break; 
     case ENEMY_FOUND:
+      map->matrix[p.y][p.x] = 'K';
+      map->matrix[map->object.exit.y][map->object.exit.x] = '#';
+      map->object.key = p;
+      hero->key = 0;
       map->matrix[map->object.hero_origin.y][map->object.hero_origin.x] = 'o';
       hero->base.point = map->object.hero_origin;
       return SCREEN_GAME;

@@ -225,6 +225,12 @@ int main(void)
             {
               map.matrix[map.object.hero_origin.y][map.object.hero_origin.x] = 'o';
               hero.base.point = map.object.hero_origin;
+              map.matrix[hero.base.point.y][hero.base.point.x] = 'K';
+              map.matrix[map.object.exit.y][map.object.exit.x] = '#';
+              map.object.key = hero.base.point;
+              hero.key = 0;
+              map.matrix[map.object.hero_origin.y][map.object.hero_origin.x] = 'o';
+              hero.base.point = map.object.hero_origin;
               if(--hero.life == 0) {
                 game->actual_screen = SCREEN_GAME_OVER;
               }
