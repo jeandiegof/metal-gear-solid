@@ -8,7 +8,10 @@
 #define U_HERO_STOPPED "\U00002687"
 #define U_HERO_MOVING  "\U00002686"
 
+#define U_WALL         "\U00002593"
+
 #define U_ENEMY        "\U0001F480"
+#define U_ENEMY_SLEEP  "\U0001F4A4"
 
 #define U_HOSTAGE      "\U000026C4"
 
@@ -18,7 +21,7 @@
 
 #define U_AMMO         "\U0001F52B"
 
-#define U_HEART        "\U0001F496"
+#define U_HEART        "\U00002665"
 
 #define U_DART_U       "\U00002B6B"
 #define U_DART_D       "\U00002B6D"
