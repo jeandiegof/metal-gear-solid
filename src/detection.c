@@ -168,6 +168,8 @@ bool IsPointAnObject(const Point *point, const Map *map)
     case '#':
     case 'x':
     case '@':
+    case '.':
+    case '-':
     case 'Z':
     case '0':
     case 'K':
@@ -177,6 +179,23 @@ bool IsPointAnObject(const Point *point, const Map *map)
 
     default:
       return false;
+      break;
+  }
+}
+//===================================================================
+
+bool IsPointInEnemy(const Point *point, const Map *map)
+{
+  switch (map->matrix[point->y][point->x])
+  {
+    case '@':
+    case '.':
+      return true;
+      break;
+
+    default:
+      return false;
+      break;
   }
 }
 //===================================================================

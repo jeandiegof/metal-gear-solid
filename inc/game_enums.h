@@ -1,0 +1,50 @@
+#ifndef ENUMS_H
+#define ENUMS_H
+
+typedef enum GameState {
+  PAUSED = 0,
+  LOADING,
+  RUNNING,
+  GAME_OVER,
+  GAME_COMPLETE,
+  MOVEMENT_ALLOWED,
+  MOVEMENT_FORBIDDEN,
+  ENEMY_FOUND,
+  HOSTAGE_FOUND,
+  DART_VANISH,
+} GameState;
+
+
+typedef enum GameScreen
+{
+  SCREEN_MENU,
+  SCREEN_GAME,
+  SCREEN_PAUSED,
+  SCREEN_RANKING,
+  SCREEN_GAME_OVER,
+  SCREEN_GAME_COMPLETE,
+  SCREEN_SAVE_GAME,
+  SCREEN_LOAD_GAME,
+  SCREEN_EXIT_GAME,
+} GameScreen;
+
+typedef enum Direction {
+  UP,
+  DOWN,
+  RIGHT,
+  LEFT
+} Direction;
+
+
+typedef enum FileState
+{
+  OPENING_ERROR,
+  CREATED_FILE,
+  CREATED_FILE_FAILL,
+  WRITING_ERROR,
+  READING_ERROR,
+  EVERYTHING_OK
+} FileState;
+
+
+#endif // ENUMS_H

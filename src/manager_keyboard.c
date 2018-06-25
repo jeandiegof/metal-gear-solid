@@ -1,5 +1,6 @@
+#include "inc/manager_keyboard.h"
+
 #include <ncursesw/ncurses.h>
-#include "inc/keyboard_manager.h"
 
 uint8_t kbhit () {
   int ch = getch();

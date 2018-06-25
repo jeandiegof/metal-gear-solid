@@ -23,8 +23,6 @@ static void EnemyTransferTomMatrix(Map *map, Enemy *enemy);
 
 
 
-
-
 void DestroyEnemy(Enemy *enemy)
 {
   if(enemy->sight_active)
@@ -37,25 +35,33 @@ void DestroyEnemy(Enemy *enemy)
 
 void EnemyHitSignal(Map *map, Enemy *enemy)
 {
-  if(enemy->sleep)
+  if(enemy->status == kEnemySleeping)
     return;
+
+  enemy->status = kEnemySleeping;
 
   EnemyEraseFromMatrix(map, enemy);
 
   // Tranfer enemy icon.
-  map->matrix[enemy->icon.point.y][enemy->icon.point.x]=ENEMY_SLEEP_MATRIX_CHAR;
-
-  enemy->sleep = 1;
-
-  /** @todo counter for enemy sleep time. */
-
-  EnemyTransferTomMatrix(map, enemy);
+  map->matrix[enemy->icon.point.y][enemy->icon.point.x]=ENEMY_SLEEP_MATRIX_CHAR;    
 }
 //===================================================================
 
 
 void EnemyMove(Map *map, Enemy *enemy)
 {
+  if(enemy->status == kEnemySleeping)
+  {
+    enemy->sleep_counter++;
+
+    if(enemy->sleep_counter >= ENEMY_SLEEP_CYCLES_VALUE)
+    {
+      enemy->sleep_counter = 0;
+      enemy->status = kEnemyWaiting;
+    }
+    return;
+  }
+
   if(enemy->status == kEnemyWaiting)
   {
     enemy->motion = EnemySortAction();
@@ -238,7 +244,6 @@ Enemy *NewEnemy(const int16_t angle,
     enemy->sight_active = 1;
   }
 
-  enemy->sleep = false;
   enemy->sleep_counter = 0;
 
   enemy->steps_counter = 0;

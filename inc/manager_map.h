@@ -28,7 +28,8 @@ typedef struct Map {
   MapObjects object;
 } Map;
 
-int16_t LoadMapFromFile(Map *map);
-void LoadObjectsFromMap(Map *map);
-
+int16_t MapLoadFromFile(Map *map);
+void MapLoadObjects(Map *map);
+void MapInit(Map *map);
+void MapReset(Map *map);
 #endif // MAP_LOADER_H

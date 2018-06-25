@@ -7,7 +7,7 @@
 #include "inc/personage_base.h"
 #include "inc/enemy.h"
 #include "inc/display.h"
-#include "inc/map_manager.h"
+#include "inc/manager_map.h"
 
 void dFlag();
 

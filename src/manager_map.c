@@ -1,9 +1,11 @@
+#include "inc/manager_map.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ncursesw/ncurses.h>
-#include "inc/map_manager.h"
 
-int16_t LoadMapFromFile(Map *map) {
+
+int16_t MapLoadFromFile(Map *map) {
   FILE *fp;
   fp = fopen("mapa.txt", "r");
   if (fp == NULL) {
@@ -25,16 +27,12 @@ int16_t LoadMapFromFile(Map *map) {
   }
   fclose(fp);
 
-  // for (int16_t i = 0; i < MAX_HEIGHT; ++i) {
-  //   for (int16_t j = 0; j < MAX_LENGTH; ++j) {
-  //     printw("%c", map->matrix[i][j]);
-  //   }
-  //   printw("\n");
-  // }
   return 0;
 }
+//===================================================================
 
-void LoadObjectsFromMap(Map *map) {
+
+void MapLoadObjects(Map *map) {
   map->object.enemy_free_index = 0;
   map->object.hostage_free_index = 0;
 
@@ -76,3 +74,29 @@ void LoadObjectsFromMap(Map *map) {
     }
   }
 }
+//===================================================================
+
+
+void MapInit(Map *map)
+{
+  MapLoadFromFile(map);
+  MapLoadObjects(map);
+}
+//===================================================================
+
+
+void MapReset(Map *map)
+{
+  MapObjects reseted_obj = {0};
+
+  map->object = reseted_obj;
+
+  for (int i = 0; i < MAX_HEIGHT; i++)
+  {
+    for(int j=0; j < MAX_LENGTH; j++)
+    {
+      map->matrix[i][j] = 0;
+    }
+  }
+}
+//===================================================================

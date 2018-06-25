@@ -2,7 +2,6 @@
 
 #include <math.h>
 
-#include "inc/log.h"
 #include "inc/debug.h"
 
 
@@ -38,6 +37,10 @@ void TranslatePoint(const Translation direction,
 
     case kWest:
       TranslateW(scalar, point);
+      break;
+
+    // Never reaches this point.
+    case kStop:
       break;
   }
 }

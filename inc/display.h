@@ -2,7 +2,7 @@
 #define DRAWING_H
 
 #include "inc/enemy.h"
-#include "inc/map_manager.h"
+#include "inc/manager_map.h"
 #include "inc/personage_base.h"
 #include "inc/rectangle.h"
 #include "inc/translation.h"

@@ -1,6 +1,7 @@
 #include <ncursesw/ncurses.h>
 #include <locale.h>
 #include <time.h>
+#include <stdlib.h>
 
 #include "inc/window.h"
 
@@ -10,15 +11,12 @@ void InitWindow()
 {
   srand(time(NULL));
 
-  initscr();
-
-  cbreak();
-  noecho();
-  scrollok(stdscr, TRUE);
-  nodelay(stdscr, TRUE);
+  system("resize -s 33 83");
 
   // Enable the use of unicodes.
-	setlocale(LC_ALL, "en_US.utf8");
+  setlocale(LC_ALL, "en_US.utf8");
+
+  initscr();
 
   // Configure window to use colors.
   InitWindowColors();
@@ -28,6 +26,13 @@ void InitWindow()
 
   // Don't display a cursor
   curs_set(FALSE);
+
+  cbreak();
+
+  scrollok(stdscr, TRUE);
+  nodelay(stdscr, TRUE);
+
+  refresh();
 }
 
 static void InitWindowColors()
@@ -45,7 +50,8 @@ static void InitWindowColors()
 }
 
 WINDOW *CreateNewWindow(uint16_t lines, uint16_t columns,
-                      uint16_t start_x, uint16_t start_y) {
+                        uint16_t start_x, uint16_t start_y)
+{
   WINDOW *window;
   window = newwin(lines, columns, start_x, start_y);
   box(window, 0, 0);

@@ -3,7 +3,7 @@
 
 #include "sight_structs.h"
 
-#include "inc/map_manager.h"
+#include "inc/manager_map.h"
 
 /**
  * @brief Creates a Sight object.

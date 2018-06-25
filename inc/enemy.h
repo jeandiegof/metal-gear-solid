@@ -4,7 +4,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "inc/map_manager.h"
+#include "inc/game_definitions.h"
+#include "inc/manager_map.h"
 #include "inc/personage_base.h"
 #include "inc/sight_structs.h"
 #include "inc/translation.h"
@@ -28,8 +29,6 @@ typedef struct Enemy
   Sight *sight;
 
   bool sight_active;
-
-  bool sleep;
 
   uint16_t sleep_total;
 
@@ -96,4 +95,7 @@ void EnemyTranslate(const Translation direction,
                     Map *map,
                     Enemy *enemy);
 //===================================================================
+
+void EnemyHitSignal(Map *map, Enemy *enemy);
+
 #endif // STRUCTPERSONAGE_H
